@@ -1,5 +1,6 @@
 import sys
-sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 """
 Linked Lists - Practice One Question at a Time
 ==============================================
@@ -971,6 +972,13 @@ def run_test(QUESTION_NUMBER, silent=False):
     import io
     import sys
     
+    # Resolve PyCharm warnings for dynamic helper references
+    to_linked_list = globals().get('to_linked_list')
+    to_list = globals().get('to_list')
+    ListNode = globals().get('ListNode')
+    to_tree = globals().get('to_tree')
+    TreeNode = globals().get('TreeNode')
+    
     old_stdout = sys.stdout
     captured = io.StringIO()
     if silent:
@@ -996,7 +1004,6 @@ def run_test(QUESTION_NUMBER, silent=False):
             print("-" * 60)
             
         # Run conversion logic if applicable (Linked Lists / Trees)
-        # We check filename to apply custom converters if they are defined
         import os
         filename = os.path.basename(__file__)
         
@@ -1115,8 +1122,8 @@ def run_test(QUESTION_NUMBER, silent=False):
                 
         elif filename == "tries.py":
             # Tries test runner class-based instantiation and method calling
-            commands = args[0]
-            arguments = args[1]
+            commands = args[0] if isinstance(args[0], (list, tuple)) else []
+            arguments = args[1] if isinstance(args[1], (list, tuple)) else []
             obj = func() # Instantiate the class (Trie or MapSum)
             result = [None]
             for i in range(1, len(commands)):
@@ -1185,7 +1192,7 @@ if __name__ == "__main__":
                 source = inspect.getsource(func)
                 tree = ast.parse(source)
                 func_def = tree.body[0]
-                body = func_def.body
+                body = getattr(func_def, 'body', [])
                 
                 # Check if there are non-docstring, non-pass statements
                 non_empty = False
