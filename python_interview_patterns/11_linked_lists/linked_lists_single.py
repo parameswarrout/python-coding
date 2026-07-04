@@ -10,7 +10,7 @@ HOW TO USE:
 """
 
 # ==================== CHANGE THIS NUMBER ====================
-QUESTION_NUMBER = 3  # <-- Change this to solve different questions
+QUESTION_NUMBER = None  # <-- Change this to solve different questions
 # ============================================================
 
 
@@ -967,164 +967,207 @@ TESTS = {
 
 # ==================== RUN TEST ====================
 
-if __name__ == "__main__":
-    test = TESTS.get(QUESTION_NUMBER)
+def run_test(QUESTION_NUMBER, silent=False):
+    import io
+    import sys
     
-    if not test:
-        print(f"❌ Question {QUESTION_NUMBER} not found!")
-        exit(1)
-    
-    func = test['func']
-    args = test['args']
-    expected = test['expected']
-    
-    print(f"\n{'='*60}")
-    print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0]}")
-    print(f"{'='*60}")
-    print(f"Input: {args}")
-    print(f"Expected: {expected}")
-    print("-"*60)
-    
+    old_stdout = sys.stdout
+    captured = io.StringIO()
+    if silent:
+        sys.stdout = captured
+        
     try:
-        # Convert inputs to linked list nodes where applicable
-        if QUESTION_NUMBER <= 25 and QUESTION_NUMBER not in [19]: # 19 is special deep copy
-            # Convert list args to ListNode structure
-            processed_args = []
+        test = TESTS.get(QUESTION_NUMBER)
+    
+        if not test:
+            print(f"❌ Question {QUESTION_NUMBER} not found!")
+            return False
+    
+        func = test['func']
+        args = test['args']
+        expected = test['expected']
+    
+        print(f"\n{'='*60}")
+        print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0]}")
+        print(f"{'='*60}")
+        print(f"Input: {args}")
+        print(f"Expected: {expected}")
+        print("-"*60)
+    
+        try:
+            # Convert inputs to linked list nodes where applicable
+            if QUESTION_NUMBER <= 25 and QUESTION_NUMBER not in [19]: # 19 is special deep copy
+                # Convert list args to ListNode structure
+                processed_args = []
             
-            # Special case for Q2: delete node in-place.
-            if QUESTION_NUMBER == 2:
-                # args is [list_vals, val_to_delete]
-                list_vals = args[0]
-                target_val = args[1]
-                head = to_linked_list(list_vals)
-                # Find target node
-                curr = head
-                target_node = None
-                while curr:
-                    if curr.val == target_val:
-                        target_node = curr
-                        break
-                    curr = curr.next
-                # execute function
-                func(target_node)
-                result = to_list(head)
-            
-            # Special case for Q8: cycle detection
-            elif QUESTION_NUMBER == 8:
-                list_vals = args[0]
-                cycle_pos = args[1]
-                head = to_linked_list(list_vals)
-                # create cycle
-                if cycle_pos != -1:
+                # Special case for Q2: delete node in-place.
+                if QUESTION_NUMBER == 2:
+                    # args is [list_vals, val_to_delete]
+                    list_vals = args[0]
+                    target_val = args[1]
+                    head = to_linked_list(list_vals)
+                    # Find target node
                     curr = head
-                    cycle_node = None
-                    tail = None
-                    idx = 0
+                    target_node = None
                     while curr:
-                        if idx == cycle_pos:
-                            cycle_node = curr
-                        tail = curr
-                        curr = curr.next
-                        idx += 1
-                    if tail and cycle_node:
-                        tail.next = cycle_node
-                result = func(head)
-                
-            # Special case for Q9: intersection of two lists
-            elif QUESTION_NUMBER == 9:
-                # args is [listA, listB, skipA, skipB]
-                listA = args[0]
-                listB = args[1]
-                skipA = args[2]
-                skipB = args[3]
-                
-                headA = to_linked_list(listA[:skipA])
-                headB = to_linked_list(listB[:skipB])
-                intersect = to_linked_list(listA[skipA:])
-                
-                # Link intersection
-                if headA:
-                    curr = headA
-                    while curr.next:
-                        curr = curr.next
-                    curr.next = intersect
-                else:
-                    headA = intersect
-                    
-                if headB:
-                    curr = headB
-                    while curr.next:
-                        curr = curr.next
-                    curr.next = intersect
-                else:
-                    headB = intersect
-                    
-                res_node = func(headA, headB)
-                result = to_list(res_node)
-                
-            # Special case for Q23: Merge K Sorted Lists
-            elif QUESTION_NUMBER == 23:
-                # args is list of lists
-                list_nodes = [to_linked_list(arr) for arr in args[0]]
-                res_node = func(list_nodes)
-                result = to_list(res_node)
-                
-            # Special case for Q25: Linked List Cycle II
-            elif QUESTION_NUMBER == 25:
-                list_vals = args[0]
-                cycle_pos = args[1]
-                head = to_linked_list(list_vals)
-                # create cycle
-                if cycle_pos != -1:
-                    curr = head
-                    cycle_node = None
-                    tail = None
-                    idx = 0
-                    while curr:
-                        if idx == cycle_pos:
-                            cycle_node = curr
-                        tail = curr
-                        curr = curr.next
-                        idx += 1
-                    if tail and cycle_node:
-                        tail.next = cycle_node
-                res_node = func(head)
-                # find index of res_node
-                if not res_node:
-                    result = -1
-                else:
-                    curr = head
-                    idx = 0
-                    result = -1
-                    # limit traversal in case of infinite loop
-                    for _ in range(100):
-                        if curr == res_node:
-                            result = idx
+                        if curr.val == target_val:
+                            target_node = curr
                             break
                         curr = curr.next
-                        idx += 1
-                        
-            # Standard single or dual list input/output functions
-            else:
-                for arg in args:
-                    if isinstance(arg, list):
-                        processed_args.append(to_linked_list(arg))
-                    else:
-                        processed_args.append(arg)
-                        
-                res_node = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
-                result = to_list(res_node) if isinstance(res_node, ListNode) else res_node
-        else:
-            # Fallback for questions 26-100 placeholder tests
-            result = func(*args) if isinstance(args, list) else func(args)
+                    # execute function
+                    func(target_node)
+                    result = to_list(head)
             
-        print(f"Your Output: {result}")
+                # Special case for Q8: cycle detection
+                elif QUESTION_NUMBER == 8:
+                    list_vals = args[0]
+                    cycle_pos = args[1]
+                    head = to_linked_list(list_vals)
+                    # create cycle
+                    if cycle_pos != -1:
+                        curr = head
+                        cycle_node = None
+                        tail = None
+                        idx = 0
+                        while curr:
+                            if idx == cycle_pos:
+                                cycle_node = curr
+                            tail = curr
+                            curr = curr.next
+                            idx += 1
+                        if tail and cycle_node:
+                            tail.next = cycle_node
+                    result = func(head)
+                
+                # Special case for Q9: intersection of two lists
+                elif QUESTION_NUMBER == 9:
+                    # args is [listA, listB, skipA, skipB]
+                    listA = args[0]
+                    listB = args[1]
+                    skipA = args[2]
+                    skipB = args[3]
+                
+                    headA = to_linked_list(listA[:skipA])
+                    headB = to_linked_list(listB[:skipB])
+                    intersect = to_linked_list(listA[skipA:])
+                
+                    # Link intersection
+                    if headA:
+                        curr = headA
+                        while curr.next:
+                            curr = curr.next
+                        curr.next = intersect
+                    else:
+                        headA = intersect
+                    
+                    if headB:
+                        curr = headB
+                        while curr.next:
+                            curr = curr.next
+                        curr.next = intersect
+                    else:
+                        headB = intersect
+                    
+                    res_node = func(headA, headB)
+                    result = to_list(res_node)
+                
+                # Special case for Q23: Merge K Sorted Lists
+                elif QUESTION_NUMBER == 23:
+                    # args is list of lists
+                    list_nodes = [to_linked_list(arr) for arr in args[0]]
+                    res_node = func(list_nodes)
+                    result = to_list(res_node)
+                
+                # Special case for Q25: Linked List Cycle II
+                elif QUESTION_NUMBER == 25:
+                    list_vals = args[0]
+                    cycle_pos = args[1]
+                    head = to_linked_list(list_vals)
+                    # create cycle
+                    if cycle_pos != -1:
+                        curr = head
+                        cycle_node = None
+                        tail = None
+                        idx = 0
+                        while curr:
+                            if idx == cycle_pos:
+                                cycle_node = curr
+                            tail = curr
+                            curr = curr.next
+                            idx += 1
+                        if tail and cycle_node:
+                            tail.next = cycle_node
+                    res_node = func(head)
+                    # find index of res_node
+                    if not res_node:
+                        result = -1
+                    else:
+                        curr = head
+                        idx = 0
+                        result = -1
+                        # limit traversal in case of infinite loop
+                        for _ in range(100):
+                            if curr == res_node:
+                                result = idx
+                                break
+                            curr = curr.next
+                            idx += 1
+                        
+                # Standard single or dual list input/output functions
+                else:
+                    for arg in args:
+                        if isinstance(arg, list):
+                            processed_args.append(to_linked_list(arg))
+                        else:
+                            processed_args.append(arg)
+                        
+                    res_node = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
+                    result = to_list(res_node) if isinstance(res_node, ListNode) else res_node
+            else:
+                # Fallback for questions 26-100 placeholder tests
+                result = func(*args) if isinstance(args, list) else func(args)
+            
+            print(f"Your Output: {result}")
         
-        if result == expected:
-            print("\n✅ PASS - Correct!")
-        else:
-            print("\n❌ FAIL - Output doesn't match expected")
-    except Exception as e:
-        print(f"\n❌ ERROR: {e}")
+            if result == expected:
+                print("\n✅ PASS - Correct!")
+            else:
+                print("\n❌ FAIL - Output doesn't match expected")
+        except Exception as e:
+            print(f"\n❌ ERROR: {e}")
     
-    print(f"{'='*60}\n")
+        print(f"{'='*60}\n")
+    except Exception as e:
+        if not silent:
+            print(f"\n❌ ERROR: {e}")
+        return False
+    finally:
+        sys.stdout = old_stdout
+        
+    if silent:
+        output_str = captured.getvalue()
+        return "✅ PASS" in output_str
+    return True
+
+if __name__ == "__main__":
+    import sys
+    # Check CLI arguments first
+    if len(sys.argv) > 1:
+        try:
+            QUESTION_NUMBER = int(sys.argv[1])
+        except ValueError:
+            pass
+
+    # If QUESTION_NUMBER is None or 0, auto-detect the first unsolved question
+    if QUESTION_NUMBER is None or QUESTION_NUMBER == 0:
+        detected_q = 1
+        for q_num in sorted(TESTS.keys()):
+            if not run_test(q_num, silent=True):
+                detected_q = q_num
+                break
+        else:
+            detected_q = max(TESTS.keys())
+        QUESTION_NUMBER = detected_q
+
+    # Run the selected question in verbose mode
+    run_test(QUESTION_NUMBER, silent=False)

@@ -10,7 +10,7 @@ HOW TO USE:
 """
 
 # ==================== CHANGE THIS NUMBER ====================
-QUESTION_NUMBER = 3  # <-- Change this to solve different questions
+QUESTION_NUMBER = None  # <-- Change this to solve different questions
 # ============================================================
 
 
@@ -1029,95 +1029,138 @@ TESTS = {
 
 # ==================== RUN TEST ====================
 
-if __name__ == "__main__":
-    test = TESTS.get(QUESTION_NUMBER)
+def run_test(QUESTION_NUMBER, silent=False):
+    import io
+    import sys
     
-    if not test:
-        print(f"❌ Question {QUESTION_NUMBER} not found!")
-        exit(1)
-    
-    func = test['func']
-    args = test['args']
-    expected = test['expected']
-    
-    print(f"\n{'='*60}")
-    print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0]}")
-    print(f"{'='*60}")
-    print(f"Input: {args}")
-    print(f"Expected: {expected}")
-    print("-"*60)
-    
-    try:
-        # Mock class logic for query classes if required
-        if QUESTION_NUMBER == 11:
-            # WordFilter simulation f(prefix, suffix)
-            wf_args = args[1]
-            # Create a simple simulator
-            words_in_filter = args[0][1][0]
-            result_list = []
-            # we will run it directly to check matches
-            # query is f(prefix, suffix)
-            prefix, suffix = wf_args[1], wf_args[2]
-            best_idx = -1
-            for idx, word in enumerate(words_in_filter):
-                if word.startswith(prefix) and word.endswith(suffix):
-                    best_idx = idx
-            result = [None, best_idx]
-            
-        elif QUESTION_NUMBER == 16:
-            # StreamChecker check(char)
-            # Create mock simulator
-            words_list = args[0][1][0]
-            queries_chars = args[1][1:]
-            res_list = [None]
-            stream = []
-            for ch in queries_chars:
-                stream.append(ch)
-                matched = False
-                for w in words_list:
-                    if len(stream) >= len(w):
-                        # compare suffix
-                        if "".join(stream[-len(w):]) == w:
-                            matched = True
-                            break
-                res_list.append(matched)
-            result = res_list
-            
-        elif QUESTION_NUMBER == 21:
-            # AutocompleteSystem simulator
-            # Create mock search
-            sentences = args[0][1][0][0]
-            times = args[0][1][0][1]
-            inputs = args[1][1:]
-            res_list = [None]
-            curr_str = ""
-            for char in inputs:
-                curr_str += char
-                matches = []
-                for s, t in zip(sentences, times):
-                    if s.startswith(curr_str):
-                        matches.append((s, t))
-                # Sort matches by count descending, then lexicographically ascending
-                matches.sort(key=lambda x: (-x[1], x[0]))
-                res_list.append([x[0] for x in matches[:3]])
-            result = res_list
-            
-        else:
-            result = func(*args) if isinstance(args, list) else func(args)
-            
-        # Sort lists if order doesn't matter for query matches (Word Search II etc.)
-        if QUESTION_NUMBER in [7, 23]:
-            if result and isinstance(result, list):
-                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
-                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
-                
-        print(f"Your Output: {result}")
+    old_stdout = sys.stdout
+    captured = io.StringIO()
+    if silent:
+        sys.stdout = captured
         
-        if result == expected:
-            print("\n✅ PASS - Correct!")
-        else:
-            print("\n❌ FAIL - Output doesn't match expected")
-    except Exception as e:
-        print(f"\n❌ ERROR: {e}")
+    try:
+        test = TESTS.get(QUESTION_NUMBER)
     
-    print(f"{'='*60}\n")
+        if not test:
+            print(f"❌ Question {QUESTION_NUMBER} not found!")
+            return False
+    
+        func = test['func']
+        args = test['args']
+        expected = test['expected']
+    
+        print(f"\n{'='*60}")
+        print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0]}")
+        print(f"{'='*60}")
+        print(f"Input: {args}")
+        print(f"Expected: {expected}")
+        print("-"*60)
+    
+        try:
+            # Mock class logic for query classes if required
+            if QUESTION_NUMBER == 11:
+                # WordFilter simulation f(prefix, suffix)
+                wf_args = args[1]
+                # Create a simple simulator
+                words_in_filter = args[0][1][0]
+                result_list = []
+                # we will run it directly to check matches
+                # query is f(prefix, suffix)
+                prefix, suffix = wf_args[1], wf_args[2]
+                best_idx = -1
+                for idx, word in enumerate(words_in_filter):
+                    if word.startswith(prefix) and word.endswith(suffix):
+                        best_idx = idx
+                result = [None, best_idx]
+            
+            elif QUESTION_NUMBER == 16:
+                # StreamChecker check(char)
+                # Create mock simulator
+                words_list = args[0][1][0]
+                queries_chars = args[1][1:]
+                res_list = [None]
+                stream = []
+                for ch in queries_chars:
+                    stream.append(ch)
+                    matched = False
+                    for w in words_list:
+                        if len(stream) >= len(w):
+                            # compare suffix
+                            if "".join(stream[-len(w):]) == w:
+                                matched = True
+                                break
+                    res_list.append(matched)
+                result = res_list
+            
+            elif QUESTION_NUMBER == 21:
+                # AutocompleteSystem simulator
+                # Create mock search
+                sentences = args[0][1][0][0]
+                times = args[0][1][0][1]
+                inputs = args[1][1:]
+                res_list = [None]
+                curr_str = ""
+                for char in inputs:
+                    curr_str += char
+                    matches = []
+                    for s, t in zip(sentences, times):
+                        if s.startswith(curr_str):
+                            matches.append((s, t))
+                    # Sort matches by count descending, then lexicographically ascending
+                    matches.sort(key=lambda x: (-x[1], x[0]))
+                    res_list.append([x[0] for x in matches[:3]])
+                result = res_list
+            
+            else:
+                result = func(*args) if isinstance(args, list) else func(args)
+            
+            # Sort lists if order doesn't matter for query matches (Word Search II etc.)
+            if QUESTION_NUMBER in [7, 23]:
+                if result and isinstance(result, list):
+                    result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                    expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+                
+            print(f"Your Output: {result}")
+        
+            if result == expected:
+                print("\n✅ PASS - Correct!")
+            else:
+                print("\n❌ FAIL - Output doesn't match expected")
+        except Exception as e:
+            print(f"\n❌ ERROR: {e}")
+    
+        print(f"{'='*60}\n")
+    except Exception as e:
+        if not silent:
+            print(f"\n❌ ERROR: {e}")
+        return False
+    finally:
+        sys.stdout = old_stdout
+        
+    if silent:
+        output_str = captured.getvalue()
+        return "✅ PASS" in output_str
+    return True
+
+if __name__ == "__main__":
+    import sys
+    # Check CLI arguments first
+    if len(sys.argv) > 1:
+        try:
+            QUESTION_NUMBER = int(sys.argv[1])
+        except ValueError:
+            pass
+
+    # If QUESTION_NUMBER is None or 0, auto-detect the first unsolved question
+    if QUESTION_NUMBER is None or QUESTION_NUMBER == 0:
+        detected_q = 1
+        for q_num in sorted(TESTS.keys()):
+            if not run_test(q_num, silent=True):
+                detected_q = q_num
+                break
+        else:
+            detected_q = max(TESTS.keys())
+        QUESTION_NUMBER = detected_q
+
+    # Run the selected question in verbose mode
+    run_test(QUESTION_NUMBER, silent=False)

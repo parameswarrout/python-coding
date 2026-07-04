@@ -10,7 +10,7 @@ HOW TO USE:
 """
 
 # ==================== CHANGE THIS NUMBER ====================
-QUESTION_NUMBER = 25  # <-- Change this to solve different questions
+QUESTION_NUMBER = None  # <-- Change this to solve different questions
 # ============================================================
 
 
@@ -345,12 +345,41 @@ def q26(arr):
 def q27(arr, k):
     """Q27: Count Subarrays with Sum K"""
     # Write your logic here
-    
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+
+    count = 0
+
+    for i in range(n):
+        for j in range(i, n):
+            if i == 0:
+                sub_sum = prefix[j]
+            else:
+                sub_sum = prefix[j] - prefix[i - 1]
+            if sub_sum == k:
+                count += 1
+    return count
 
 def q28(arr, k):
     """Q28: Longest Subarray with Sum K"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+
+    result = 0
+    for i in range(n):
+        for j in range(i, n):
+            if i == 0:
+                result
+
 
 def q29(arr):
     """Q29: Maximum Subarray Sum"""
@@ -742,7 +771,7 @@ TESTS = {
     24: {'func': q24, 'args': [[1, 2, 3, 4, 5]], 'expected': [15, 14, 12, 9, 5]},
     25: {'func': q25, 'args': [[2,4,6,8,10,12], 2, 5], 'expected': 18},
     26: {'func': q26, 'args': [[4, -3, 2, 1, -4]], 'expected': True},
-    27: {'func': q27, 'args': [[1, 2, 3, 4, 5, 6], 10], 'expected': 2},
+    27: {'func': q27, 'args': [[1, 2, 3, 4, 5, 6], 10], 'expected': 1},
     28: {'func': q28, 'args': [[5, 10, 3, 2, 7, 1, 4], 15], 'expected': 3},
     29: {'func': q29, 'args': [[3, -1, 4, -2, 5, -3]], 'expected': 9},
     30: {'func': q30, 'args': [[2, -5, 3, -1, 4, -6]], 'expected': -6},
@@ -821,33 +850,76 @@ TESTS = {
 
 # ==================== RUN TEST ====================
 
-if __name__ == "__main__":
-    test = TESTS.get(QUESTION_NUMBER)
+def run_test(QUESTION_NUMBER, silent=False):
+    import io
+    import sys
     
-    if not test:
-        print(f"❌ Question {QUESTION_NUMBER} not found!")
-        exit(1)
-    
-    func = test['func']
-    args = test['args']
-    expected = test['expected']
-    
-    print(f"\n{'='*60}")
-    print(f"Question {QUESTION_NUMBER}: {func.__doc__}")
-    print(f"{'='*60}")
-    print(f"Input: {args}")
-    print(f"Expected: {expected}")
-    print("-"*60)
-    
-    try:
-        result = func(*args) if isinstance(args, list) else func(args)
-        print(f"Your Output: {result}")
+    old_stdout = sys.stdout
+    captured = io.StringIO()
+    if silent:
+        sys.stdout = captured
         
-        if result == expected:
-            print("\n✅ PASS - Correct!")
-        else:
-            print("\n❌ FAIL - Output doesn't match expected")
-    except Exception as e:
-        print(f"\n❌ ERROR: {e}")
+    try:
+        test = TESTS.get(QUESTION_NUMBER)
     
-    print(f"{'='*60}\n")
+        if not test:
+            print(f"❌ Question {QUESTION_NUMBER} not found!")
+            return False
+    
+        func = test['func']
+        args = test['args']
+        expected = test['expected']
+    
+        print(f"\n{'='*60}")
+        print(f"Question {QUESTION_NUMBER}: {func.__doc__}")
+        print(f"{'='*60}")
+        print(f"Input: {args}")
+        print(f"Expected: {expected}")
+        print("-"*60)
+    
+        try:
+            result = func(*args) if isinstance(args, list) else func(args)
+            print(f"Your Output: {result}")
+        
+            if result == expected:
+                print("\n✅ PASS - Correct!")
+            else:
+                print("\n❌ FAIL - Output doesn't match expected")
+        except Exception as e:
+            print(f"\n❌ ERROR: {e}")
+    
+        print(f"{'='*60}\n")
+    except Exception as e:
+        if not silent:
+            print(f"\n❌ ERROR: {e}")
+        return False
+    finally:
+        sys.stdout = old_stdout
+        
+    if silent:
+        output_str = captured.getvalue()
+        return "✅ PASS" in output_str
+    return True
+
+if __name__ == "__main__":
+    import sys
+    # Check CLI arguments first
+    if len(sys.argv) > 1:
+        try:
+            QUESTION_NUMBER = int(sys.argv[1])
+        except ValueError:
+            pass
+
+    # If QUESTION_NUMBER is None or 0, auto-detect the first unsolved question
+    if QUESTION_NUMBER is None or QUESTION_NUMBER == 0:
+        detected_q = 1
+        for q_num in sorted(TESTS.keys()):
+            if not run_test(q_num, silent=True):
+                detected_q = q_num
+                break
+        else:
+            detected_q = max(TESTS.keys())
+        QUESTION_NUMBER = detected_q
+
+    # Run the selected question in verbose mode
+    run_test(QUESTION_NUMBER, silent=False)
