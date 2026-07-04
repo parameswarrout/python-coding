@@ -17,6 +17,7 @@ QUESTION_NUMBER = None  # <-- Change this to solve different questions
 
 # ==================== ALL 100 QUESTIONS ====================
 
+
 def q1(arr):
     """Q1: Build Prefix Sum Array - arr = [1, 2, 3, 4, 5]"""
     n = len(arr)
@@ -25,6 +26,7 @@ def q1(arr):
     for i in range(1, n):
         prefix[i] = prefix[i-1] + arr[i]
     return prefix
+
 
 def q2(arr, left, right):
     """Q2: Range Sum Query - arr = [1,2,3,4,5,6], left=2, right=4"""
@@ -37,6 +39,7 @@ def q2(arr, left, right):
         return prefix[right]
     else:
         return prefix[right] - prefix[left - 1]
+
 
 def q3(arr):
     """Q3: Total Sum Using Prefix - arr = [5, 10, 15, 20, 25]"""
@@ -59,6 +62,7 @@ def q4(arr, index):
         prefix[i] = prefix[i-1] + arr[i]
     return prefix[index]
 
+
 def q5(arr, queries):
     """Q5: Multiple Range Queries"""
     # Write your logic here
@@ -75,6 +79,7 @@ def q5(arr, queries):
             result.append(prefix[query[1]]-prefix[query[0]-1])
     return result
 
+
 def q6(arr):
     """Q6: Prefix Sum with Negative Numbers"""
     # Write your logic here
@@ -84,6 +89,7 @@ def q6(arr):
     for i in range(1, n):
         prefix[i] = prefix[i-1] + arr[i]
     return prefix
+
 
 def q7(arr, left, right):
     """Q7: Sum Between Two Indices (Exclusive)"""
@@ -98,6 +104,7 @@ def q7(arr, left, right):
     else:
         return prefix[right-1] - prefix[left]
 
+
 def q8(arr):
     """Q8: Compare sum of first half and second half"""
     # Write your logic here
@@ -109,6 +116,7 @@ def q8(arr):
         prefix[i] = prefix[i-1] + arr[i]
     return prefix[mid-1] == prefix[n-1] - prefix[mid-1]
 
+
 def q9(arr):
     """Q9: Running Sum at Each Index"""
     # Write your logic here
@@ -119,6 +127,7 @@ def q9(arr):
         prefix[i] = prefix[i-1] + arr[i]
     return prefix
 
+
 def q10(arr):
     """Q10: Maximum Prefix Sum"""
     # Write your logic here
@@ -128,6 +137,7 @@ def q10(arr):
     for i in range(1, n):
         prefix[i] = prefix[i-1] + arr[i]
     return prefix[n-1]
+
 
 def q11(arr):
     """Q11: Minimum Prefix Sum"""
@@ -141,6 +151,7 @@ def q11(arr):
         if prefix[i] < min_num:
             min_num = prefix[i]
     return min_num
+
 
 def q12(arr):
     """Q12: Count Positive Prefix Sums"""
@@ -159,6 +170,7 @@ def q12(arr):
             count += 1
     print(prefix)
     return count
+
 
 def q13(arr, k):
     """Q13: First Index Where Prefix Sum > K"""
@@ -187,6 +199,7 @@ def q14(arr, k):
             return i
     return -1
 
+
 def q15(arr, n):
     """Q15: Sum of First N Elements"""
     # Write your logic here
@@ -195,7 +208,6 @@ def q15(arr, n):
     for i in range(1, n):
         prefix[i] = prefix[i-1]+arr[i]
     return prefix[-1]
-
 
 
 def q16(arr, n):
@@ -225,6 +237,7 @@ def q17(arr, left, right):
         result = prefix[right] - prefix[left-1]
     return result/(right-left+1)
 
+
 def q18(arr):
     """Q18: Prefix Sum with Zeros"""
     # Write your logic here
@@ -234,6 +247,7 @@ def q18(arr):
     for i in range(1, n):
         prefix[i] = prefix[i-1] + arr[i]
     return prefix
+
 
 def q19(arr, index):
     """Q19: Range Sum with Single Element"""
@@ -246,6 +260,7 @@ def q19(arr, index):
     if index == 0:
         return prefix[index]
     return prefix[index] - prefix[index-1]
+
 
 def q20(arr, left, right):
     """Q20: Validate Range Sum"""
@@ -282,7 +297,6 @@ def q21(arr):
     return prefix
 
 
-
 def q22(arr):
     """Q22: Prefix Sum of Odd Numbers Only"""
     n = len(arr)
@@ -304,6 +318,7 @@ def q23(arr, left, right):
     if not arr:
         return 0
     return right - left + 1
+
 
 def q24(arr):
     """Q24: Suffix Sum (Prefix Sum Reversed)"""
@@ -343,6 +358,7 @@ def q26(arr):
         seen.add(prefix_sum)
     return False
 
+
 def q27(arr, k):
     """Q27: Count Subarrays with Sum K"""
     # Write your logic here
@@ -364,6 +380,7 @@ def q27(arr, k):
             if sub_sum == k:
                 count += 1
     return count
+
 
 def q28(arr, k):
     """Q28: Longest Subarray with Sum K"""
@@ -387,355 +404,426 @@ def q29(arr):
     # Write your logic here
     pass
 
+
 def q30(arr):
     """Q30: Minimum Subarray Sum"""
     # Write your logic here
     pass
+
 
 def q31(arr, k):
     """Q31: Count Subarrays with Sum Divisible by K"""
     # Write your logic here
     pass
 
+
 def q32(arr):
     """Q32: Find Equilibrium Index"""
     # Write your logic here
     pass
+
 
 def q33(arr):
     """Q33: Product of Array Except Self"""
     # Write your logic here
     pass
 
+
 def q34(arr, queries):
     """Q34: Range Sum Query - Immutable"""
     # Write your logic here
     pass
+
 
 def q35(arr, n):
     """Q35: Find Missing Number Using Sum"""
     # Write your logic here
     pass
 
+
 def q36(arr):
     """Q36: Count Subarrays with Odd Sum"""
     # Write your logic here
     pass
+
 
 def q37(arr):
     """Q37: Count Subarrays with Even Sum"""
     # Write your logic here
     pass
 
+
 def q38(arr, k):
     """Q38: Maximum Sum Subarray of Size K"""
     # Write your logic here
     pass
+
 
 def q39(arr, k):
     """Q39: Minimum Sum Subarray of Size K"""
     # Write your logic here
     pass
 
+
 def q40(arr, sum_left, sum_right):
     """Q40: Count Subarrays with Sum in Range"""
     # Write your logic here
     pass
+
 
 def q41(arr, n):
     """Q41: Find Duplicate Using Sum"""
     # Write your logic here
     pass
 
+
 def q42(arr):
     """Q42: Alternating Sum"""
     # Write your logic here
     pass
+
 
 def q43(arr):
     """Q43: Cumulative Frequency"""
     # Write your logic here
     pass
 
+
 def q44(arr, target):
     """Q44: Subarray with Given Sum (Positive Numbers)"""
     # Write your logic here
     pass
+
 
 def q45(arr, target):
     """Q45: Subarray with Given Sum (Including Negative)"""
     # Write your logic here
     pass
 
+
 def q46(arr, k):
     """Q46: Maximum Sum of Two Non-Overlapping Subarrays"""
     # Write your logic here
     pass
+
 
 def q47(arr, k):
     """Q47: Find All Subarrays with Sum K"""
     # Write your logic here
     pass
 
+
 def q48(arr, k):
     """Q48: Count Subarrays with Sum Less Than K"""
     # Write your logic here
     pass
+
 
 def q49(arr, k):
     """Q49: Count Subarrays with Sum Greater Than K"""
     # Write your logic here
     pass
 
+
 def q50(arr, k):
     """Q50: Subarray Product Less Than K"""
     # Write your logic here
     pass
+
 
 def q51(arr):
     """Q51: Find Pivot Index"""
     # Write your logic here
     pass
 
+
 def q52(arr):
     """Q52: Middle Index with Equal Sums"""
     # Write your logic here
     pass
+
 
 def q53(arr, k):
     """Q53: Subarray Sum Multiple of K"""
     # Write your logic here
     pass
 
+
 def q54(arr, k):
     """Q54: Continuous Subarray Sum Multiple of K"""
     # Write your logic here
     pass
+
 
 def q55(arr, range_min, range_max):
     """Q55: Subarray Sum in Range"""
     # Write your logic here
     pass
 
+
 def q56(arr):
     """Q56: Maximum Sum Circular Subarray"""
     # Write your logic here
     pass
+
 
 def q57(arr, target):
     """Q57: Minimum Size Subarray Sum"""
     # Write your logic here
     pass
 
+
 def q58(arr, k):
     """Q58: Subarray Sum Closest to K"""
     # Write your logic here
     pass
+
 
 def q59(arr):
     """Q59: Most Frequent Subarray Sum"""
     # Write your logic here
     pass
 
+
 def q60(arr):
     """Q60: Longest Subarray with Equal 0s and 1s"""
     # Write your logic here
     pass
+
 
 def q61(matrix):
     """Q61: Build 2D Prefix Sum"""
     # Write your logic here
     pass
 
+
 def q62(matrix, row1, col1, row2, col2):
     """Q62: 2D Range Sum Query"""
     # Write your logic here
     pass
+
 
 def q63(matrix):
     """Q63: Maximum Sum Rectangle in 2D"""
     # Write your logic here
     pass
 
+
 def q64(matrix):
     """Q64: Count Negative Numbers in Sorted Matrix"""
     # Write your logic here
     pass
+
 
 def q65(nums):
     """Q65: Running Sum of 1D Array"""
     # Write your logic here
     pass
 
+
 def q66(n):
     """Q66: Find N Unique Integers Sum up to Zero"""
     # Write your logic here
     pass
+
 
 def q67(nums):
     """Q67: Decompress Run-Length Encoded List"""
     # Write your logic here
     pass
 
+
 def q68(grid, k):
     """Q68: Shift 2D Grid"""
     # Write your logic here
     pass
+
 
 def q69(mat, k):
     """Q69: Matrix Block Sum"""
     # Write your logic here
     pass
 
+
 def q70(trips, capacity):
     """Q70: Car Pooling"""
     # Write your logic here
     pass
+
 
 def q71(bookings, n):
     """Q71: Corporate Flight Bookings"""
     # Write your logic here
     pass
 
+
 def q72(n):
     """Q72: Minimum Operations to Make Array Equal"""
     # Write your logic here
     pass
+
 
 def q73(nums):
     """Q73: Find All Duplicates in Array"""
     # Write your logic here
     pass
 
+
 def q74(nums, n):
     """Q74: Find All Numbers Disappeared in Array"""
     # Write your logic here
     pass
+
 
 def q75(nums, k):
     """Q75: Subarray Sums Divisible by K"""
     # Write your logic here
     pass
 
+
 def q76(nums, k):
     """Q76: Subarray Sum Equals K (Binary Array)"""
     # Write your logic here
     pass
+
 
 def q77(nums):
     """Q77: Contiguous Array"""
     # Write your logic here
     pass
 
+
 def q78(nums):
     """Q78: Maximum Length of Subarray with Positive Product"""
     # Write your logic here
     pass
+
 
 def q79(nums):
     """Q79: Maximum Product Subarray"""
     # Write your logic here
     pass
 
+
 def q80(nums, k):
     """Q80: Count Subarray Product Less Than K"""
     # Write your logic here
     pass
+
 
 def q81(nums):
     """Q81: Find Subarrays With Equal Sum"""
     # Write your logic here
     pass
 
+
 def q82(nums):
     """Q82: Partition Array Into Two Arrays with Equal Sum"""
     # Write your logic here
     pass
+
 
 def q83(nums, target):
     """Q83: Target Sum"""
     # Write your logic here
     pass
 
+
 def q84(nums):
     """Q84: Minimum Average Difference"""
     # Write your logic here
     pass
+
 
 def q85(nums, k):
     """Q85: Count Prefix Sums Divisible by K"""
     # Write your logic here
     pass
 
+
 def q86(n, updates):
     """Q86: Range Addition"""
     # Write your logic here
     pass
+
 
 def q87(arr):
     """Q87: Find Longest Subarray with Equal Number of 0s and 1s"""
     # Write your logic here
     pass
 
+
 def q88(arr, k):
     """Q88: Maximum Sum After Partitioning"""
     # Write your logic here
     pass
+
 
 def q89(arr):
     """Q89: Subarray Sum Closest to Zero"""
     # Write your logic here
     pass
 
+
 def q90(matrix):
     """Q90: Count Submatrices With Sum Zero"""
     # Write your logic here
     pass
+
 
 def q91(arr, k):
     """Q91: Find K-th Smallest Subarray Sum"""
     # Write your logic here
     pass
 
+
 def q92(arr, k):
     """Q92: Maximum Sum of Subarray of Length at Least K"""
     # Write your logic here
     pass
+
 
 def q93(arr, target):
     """Q93: Subarray with Given Sum in Binary Array"""
     # Write your logic here
     pass
 
+
 def q94(arr, k):
     """Q94: Count Subarrays with Median K"""
     # Write your logic here
     pass
+
 
 def q95(arr):
     """Q95: Find Longest Subarray with Maximum Sum"""
     # Write your logic here
     pass
 
+
 def q96(arr, k):
     """Q96: Subarray Sum Equals K with Removal"""
     # Write your logic here
     pass
+
 
 def q97(arr, k):
     """Q97: Maximum Sum of Two Overlapping Subarrays"""
     # Write your logic here
     pass
 
+
 def q98(arr, k):
     """Q98: Count Subarrays with Score Less Than K"""
     # Write your logic here
     pass
 
+
 def q99(arr, ratio):
     """Q99: Find Subarray with Sum Ratio"""
     # Write your logic here
     pass
+
 
 def q100(arr):
     """Q100: Complete Prefix Sum Challenge"""
@@ -850,6 +938,7 @@ TESTS = {
 
 
 # ==================== RUN TEST ====================
+
 
 def run_test(QUESTION_NUMBER, silent=False):
     import io
@@ -1052,6 +1141,7 @@ def run_test(QUESTION_NUMBER, silent=False):
         return False
     finally:
         sys.stdout = old_stdout
+
 
 if __name__ == "__main__":
     import sys

@@ -22,6 +22,7 @@ class ListNode:
         self.val = val
         self.next = next
 
+
 def to_list(head: ListNode) -> list:
     res = []
     curr = head
@@ -29,6 +30,7 @@ def to_list(head: ListNode) -> list:
         res.append(curr.val)
         curr = curr.next
     return res
+
 
 def to_linked_list(arr: list) -> ListNode:
     if not arr:
@@ -45,6 +47,7 @@ def to_linked_list(arr: list) -> ListNode:
 
 # --- EASY LEVEL (Q1 - Q25) ---
 
+
 def q1(head: ListNode) -> ListNode:
     """Q1: Reverse a Linked List. Reverse the list in-place and return the new head.
     Input: head = [1, 2, 3, 4, 5]
@@ -59,6 +62,7 @@ def q1(head: ListNode) -> ListNode:
         curr = nxt
     return prev
 
+
 def q2(node: ListNode) -> None:
     """Q2: Delete Node in a Linked List. Delete the node in-place (given access only to that node).
     Input: node_val = 5 (list is [4, 5, 1, 9])
@@ -66,6 +70,7 @@ def q2(node: ListNode) -> None:
     """
     node.val = node.next.val
     node.next = node.next.next
+
 
 def q3(head: ListNode, val: int) -> ListNode:
     """Q3: Remove Linked List Elements. Remove all elements with value equal to val.
@@ -75,6 +80,7 @@ def q3(head: ListNode, val: int) -> ListNode:
     # Write your logic here
     pass
 
+
 def q4(head: ListNode) -> ListNode:
     """Q4: Middle of the Linked List. Return the middle node. If two middle nodes, return second.
     Input: head = [1, 2, 3, 4, 5, 6]
@@ -82,6 +88,7 @@ def q4(head: ListNode) -> ListNode:
     """
     # Write your logic here
     pass
+
 
 def q5(list1: ListNode, list2: ListNode) -> ListNode:
     """Q5: Merge Two Sorted Lists. Merge into one sorted list.
@@ -91,6 +98,7 @@ def q5(list1: ListNode, list2: ListNode) -> ListNode:
     # Write your logic here
     pass
 
+
 def q6(head: ListNode) -> ListNode:
     """Q6: Remove Duplicates from Sorted List.
     Input: head = [1, 1, 2, 3, 3]
@@ -98,6 +106,7 @@ def q6(head: ListNode) -> ListNode:
     """
     # Write your logic here
     pass
+
 
 def q7(head: ListNode) -> bool:
     """Q7: Palindrome Linked List. Check if list values read same forward and backward.
@@ -107,6 +116,7 @@ def q7(head: ListNode) -> bool:
     # Write your logic here
     pass
 
+
 def q8(head: ListNode) -> bool:
     """Q8: Linked List Cycle. Return True if list has a cycle.
     Input: head = [3, 2, 0, -4] (cycle back to index 1)
@@ -114,6 +124,7 @@ def q8(head: ListNode) -> bool:
     """
     # Write your logic here
     pass
+
 
 def q9(headA: ListNode, headB: ListNode) -> ListNode:
     """Q9: Intersection of Two Linked Lists. Return node where lists intersect, or None.
@@ -123,6 +134,7 @@ def q9(headA: ListNode, headB: ListNode) -> ListNode:
     # Write your logic here
     pass
 
+
 def q10(head: ListNode, n: int) -> ListNode:
     """Q10: Remove Nth Node From End of List.
     Input: head = [1, 2, 3, 4, 5], n = 2
@@ -130,6 +142,7 @@ def q10(head: ListNode, n: int) -> ListNode:
     """
     # Write your logic here
     pass
+
 
 def q11(head: ListNode) -> ListNode:
     """Q11: Delete Middle Node of a Linked List.
@@ -139,6 +152,7 @@ def q11(head: ListNode) -> ListNode:
     # Write your logic here
     pass
 
+
 def q12(head: ListNode, left: int, right: int) -> ListNode:
     """Q12: Reverse Linked List II. Reverse list elements from position left to right (1-indexed).
     Input: head = [1, 2, 3, 4, 5], left = 2, right = 4
@@ -146,6 +160,7 @@ def q12(head: ListNode, left: int, right: int) -> ListNode:
     """
     # Write your logic here
     pass
+
 
 def q13(head: ListNode) -> ListNode:
     """Q13: Reorder List. Reorder in-place to L0 -> Ln -> L1 -> Ln-1 -> ...
@@ -155,6 +170,7 @@ def q13(head: ListNode) -> ListNode:
     # Write your logic here
     pass
 
+
 def q14(head: ListNode, k: int) -> ListNode:
     """Q14: Rotate List. Rotate the list to the right by k places.
     Input: head = [1, 2, 3, 4, 5], k = 2
@@ -162,6 +178,7 @@ def q14(head: ListNode, k: int) -> ListNode:
     """
     # Write your logic here
     pass
+
 
 def q15(head: ListNode) -> ListNode:
     """Q15: Swap Nodes in Pairs. Swap adjacent nodes in-place.
@@ -171,6 +188,7 @@ def q15(head: ListNode) -> ListNode:
     # Write your logic here
     pass
 
+
 def q16(head: ListNode) -> ListNode:
     """Q16: Odd Even Linked List. Group odd-positioned nodes together followed by even-positioned nodes.
     Input: head = [1, 2, 3, 4, 5]
@@ -178,6 +196,7 @@ def q16(head: ListNode) -> ListNode:
     """
     # Write your logic here
     pass
+
 
 def q17(head: ListNode) -> ListNode:
     """Q17: Remove Duplicates from Sorted List II. Remove all nodes that have duplicate values.
@@ -187,6 +206,7 @@ def q17(head: ListNode) -> ListNode:
     # Write your logic here
     pass
 
+
 def q18(head: ListNode, x: int) -> ListNode:
     """Q18: Partition List. Rearrange so elements < x are before elements >= x.
     Input: head = [1, 4, 3, 2, 5, 2], x = 3
@@ -194,6 +214,7 @@ def q18(head: ListNode, x: int) -> ListNode:
     """
     # Write your logic here
     pass
+
 
 def q19(head: ListNode) -> ListNode:
     """Q19: Copy List with Random Pointer (deep copy of list containing random pointers. represented as lists).
@@ -203,6 +224,7 @@ def q19(head: ListNode) -> ListNode:
     # Write your logic here
     pass
 
+
 def q20(l1: ListNode, l2: ListNode) -> ListNode:
     """Q20: Add Two Numbers. Add digits represented in reverse order in linked lists.
     Input: l1 = [2, 4, 3], l2 = [5, 6, 4]
@@ -210,6 +232,7 @@ def q20(l1: ListNode, l2: ListNode) -> ListNode:
     """
     # Write your logic here
     pass
+
 
 def q21(l1: ListNode, l2: ListNode) -> ListNode:
     """Q21: Add Two Numbers II. Add digits represented in forward order in linked lists.
@@ -219,6 +242,7 @@ def q21(l1: ListNode, l2: ListNode) -> ListNode:
     # Write your logic here
     pass
 
+
 def q22(head: ListNode, k: int) -> ListNode:
     """Q22: Reverse Nodes in k-Group.
     Input: head = [1, 2, 3, 4, 5], k = 2
@@ -226,6 +250,7 @@ def q22(head: ListNode, k: int) -> ListNode:
     """
     # Write your logic here
     pass
+
 
 def q23(lists: list) -> ListNode:
     """Q23: Merge K Sorted Lists.
@@ -235,6 +260,7 @@ def q23(lists: list) -> ListNode:
     # Write your logic here
     pass
 
+
 def q24(head: ListNode) -> ListNode:
     """Q24: Sort List. Sort the linked list in O(n log n) time.
     Input: head = [4, 2, 1, 3]
@@ -242,6 +268,7 @@ def q24(head: ListNode) -> ListNode:
     """
     # Write your logic here
     pass
+
 
 def q25(head: ListNode) -> ListNode:
     """Q25: Linked List Cycle II. Find starting node of cycle. Return starting node (or index for testing).
@@ -254,6 +281,7 @@ def q25(head: ListNode) -> ListNode:
 
 # --- INTERMEDIATE LEVEL (Q26 - Q60) ---
 
+
 def q26(height):
     """Q26: Container With Most Water.
     Input: height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
@@ -261,6 +289,7 @@ def q26(height):
     """
     # Write your logic here
     pass
+
 
 def q27(nums):
     """Q27: 3Sum.
@@ -270,6 +299,7 @@ def q27(nums):
     # Write your logic here
     pass
 
+
 def q28(nums, target):
     """Q28: 3Sum Closest.
     Input: nums = [-1, 2, 1, -4], target = 1
@@ -277,6 +307,7 @@ def q28(nums, target):
     """
     # Write your logic here
     pass
+
 
 def q29(nums, target):
     """Q29: 3Sum Smaller.
@@ -286,6 +317,7 @@ def q29(nums, target):
     # Write your logic here
     pass
 
+
 def q30(nums, target):
     """Q30: 4Sum.
     Input: nums = [1, 0, -1, 0, -2, 2], target = 0
@@ -293,6 +325,7 @@ def q30(nums, target):
     """
     # Write your logic here
     pass
+
 
 def q31(nums, target):
     """Q31: Two Sum Less Than K.
@@ -302,6 +335,7 @@ def q31(nums, target):
     # Write your logic here
     pass
 
+
 def q32(nums):
     """Q32: Sort Colors.
     Input: nums = [2, 0, 2, 1, 1, 0]
@@ -309,6 +343,7 @@ def q32(nums):
     """
     # Write your logic here
     pass
+
 
 def q33(target, nums):
     """Q33: Minimum Size Subarray Sum.
@@ -318,6 +353,7 @@ def q33(target, nums):
     # Write your logic here
     pass
 
+
 def q34(s):
     """Q34: Longest Substring Without Repeating Characters.
     Input: s = "abcabcbb"
@@ -325,6 +361,7 @@ def q34(s):
     """
     # Write your logic here
     pass
+
 
 def q35(nums, k):
     """Q35: Max Consecutive Ones III.
@@ -334,6 +371,7 @@ def q35(nums, k):
     # Write your logic here
     pass
 
+
 def q36(tokens, power):
     """Q36: Bag of Tokens.
     Input: tokens = [100, 200, 300, 400], power = 200
@@ -341,6 +379,7 @@ def q36(tokens, power):
     """
     # Write your logic here
     pass
+
 
 def q37(people, limit):
     """Q37: Boats to Save People.
@@ -350,6 +389,7 @@ def q37(people, limit):
     # Write your logic here
     pass
 
+
 def q38(nums):
     """Q38: Minimize Maximum Pair Sum in Array.
     Input: nums = [3, 5, 2, 3]
@@ -357,6 +397,7 @@ def q38(nums):
     """
     # Write your logic here
     pass
+
 
 def q39(nums, left, right):
     """Q39: Number of Subarrays with Bounded Maximum.
@@ -366,6 +407,7 @@ def q39(nums, left, right):
     # Write your logic here
     pass
 
+
 def q40(firstList, secondList):
     """Q40: Interval List Intersections.
     Input: firstList = [[0,2],[5,10],[13,23],[24,25]], secondList = [[1,5],[8,12],[15,24],[25,26]]
@@ -373,6 +415,7 @@ def q40(firstList, secondList):
     """
     # Write your logic here
     pass
+
 
 def q41(dominoes):
     """Q41: Push Dominoes.
@@ -382,6 +425,7 @@ def q41(dominoes):
     # Write your logic here
     pass
 
+
 def q42(start, target):
     """Q42: Move Pieces to Obtain a String.
     Input: start = "_R_L_", target = "__RL_"
@@ -389,6 +433,7 @@ def q42(start, target):
     """
     # Write your logic here
     pass
+
 
 def q43(s):
     """Q43: Split Two Strings to Make Palindrome.
@@ -398,6 +443,7 @@ def q43(s):
     # Write your logic here
     pass
 
+
 def q44(sentence1, sentence2):
     """Q44: Sentence Similarity III.
     Input: sentence1 = "My name is Haley", sentence2 = "My Haley"
@@ -405,6 +451,7 @@ def q44(sentence1, sentence2):
     """
     # Write your logic here
     pass
+
 
 def q45(arr, k, x):
     """Q45: Find K Closest Elements.
@@ -414,6 +461,7 @@ def q45(arr, k, x):
     # Write your logic here
     pass
 
+
 def q46(nums):
     """Q46: Valid Triangle Number.
     Input: nums = [2, 2, 3, 4]
@@ -421,6 +469,7 @@ def q46(nums):
     """
     # Write your logic here
     pass
+
 
 def q47(arr):
     """Q47: Longest Mountain in Array.
@@ -430,6 +479,7 @@ def q47(arr):
     # Write your logic here
     pass
 
+
 def q48(nums):
     """Q48: Longest Subarray of 1's After Deleting One Element.
     Input: nums = [1, 1, 0, 1]
@@ -437,6 +487,7 @@ def q48(nums):
     """
     # Write your logic here
     pass
+
 
 def q49(s):
     """Q49: Partition Labels.
@@ -446,6 +497,7 @@ def q49(s):
     # Write your logic here
     pass
 
+
 def q50(version1, version2):
     """Q50: Compare Version Numbers.
     Input: version1 = "1.01", version2 = "1.001"
@@ -453,6 +505,7 @@ def q50(version1, version2):
     """
     # Write your logic here
     pass
+
 
 def q51(nums):
     """Q51: Minimum Swaps to Group All 1's Together.
@@ -462,6 +515,7 @@ def q51(nums):
     # Write your logic here
     pass
 
+
 def q52(chars):
     """Q52: String Compression.
     Input: chars = ["a", "a", "b", "b", "c", "c", "c"]
@@ -469,6 +523,7 @@ def q52(chars):
     """
     # Write your logic here
     pass
+
 
 def q53(nums):
     """Q53: Next Permutation.
@@ -478,6 +533,7 @@ def q53(nums):
     # Write your logic here
     pass
 
+
 def q54(s):
     """Q54: Smallest Subsequence of Distinct Characters.
     Input: s = "cbacdcbc"
@@ -485,6 +541,7 @@ def q54(s):
     """
     # Write your logic here
     pass
+
 
 def q55(s, k):
     """Q55: Longest Substring with At Most K Distinct Characters.
@@ -494,6 +551,7 @@ def q55(s, k):
     # Write your logic here
     pass
 
+
 def q56(s):
     """Q56: Number of Substrings Containing All Three Characters.
     Input: s = "abcabc"
@@ -501,6 +559,7 @@ def q56(s):
     """
     # Write your logic here
     pass
+
 
 def q57(s1, s2):
     """Q57: Permutation in String.
@@ -510,6 +569,7 @@ def q57(s1, s2):
     # Write your logic here
     pass
 
+
 def q58(s, p):
     """Q58: Find All Anagrams in a String.
     Input: s = "cbaebabacd", p = "abc"
@@ -518,6 +578,7 @@ def q58(s, p):
     # Write your logic here
     pass
 
+
 def q59(nums):
     """Q59: Maximum Erasure Value.
     Input: nums = [4, 2, 4, 5, 6]
@@ -525,6 +586,7 @@ def q59(nums):
     """
     # Write your logic here
     pass
+
 
 def q60(s, t, maxCost):
     """Q60: Get Equal Substrings Within Budget.
@@ -537,6 +599,7 @@ def q60(s, t, maxCost):
 
 # --- ADVANCED LEVEL (Q61 - Q100) ---
 
+
 def q61(height):
     """Q61: Trapping Rain Water.
     Input: height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
@@ -544,6 +607,7 @@ def q61(height):
     """
     # Write your logic here
     pass
+
 
 def q62(s, t):
     """Q62: Minimum Window Substring.
@@ -553,6 +617,7 @@ def q62(s, t):
     # Write your logic here
     pass
 
+
 def q63(nums, k):
     """Q63: Subarrays with K Different Integers.
     Input: nums = [1, 2, 1, 2, 3], k = 2
@@ -560,6 +625,7 @@ def q63(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q64(s, t):
     """Q64: Minimum Window Subsequence.
@@ -569,6 +635,7 @@ def q64(s, t):
     # Write your logic here
     pass
 
+
 def q65(nums, k):
     """Q65: Subarray Product Less Than K.
     Input: nums = [10, 5, 2, 6], k = 100
@@ -576,6 +643,7 @@ def q65(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q66(nums, k):
     """Q66: Shortest Subarray with Sum at Least K.
@@ -585,6 +653,7 @@ def q66(nums, k):
     # Write your logic here
     pass
 
+
 def q67(s, k):
     """Q67: Longest Repeating Character Replacement.
     Input: s = "AABABBA", k = 1
@@ -592,6 +661,7 @@ def q67(s, k):
     """
     # Write your logic here
     pass
+
 
 def q68(nums, k):
     """Q68: Sliding Window Maximum.
@@ -601,6 +671,7 @@ def q68(nums, k):
     # Write your logic here
     pass
 
+
 def q69(nums, x):
     """Q69: Minimum Operations to Reduce X to Zero.
     Input: nums = [1, 1, 4, 2, 3], x = 5
@@ -608,6 +679,7 @@ def q69(nums, x):
     """
     # Write your logic here
     pass
+
 
 def q70(matrix, k):
     """Q70: Max Sum of Rectangle No Larger Than K.
@@ -617,6 +689,7 @@ def q70(matrix, k):
     # Write your logic here
     pass
 
+
 def q71(s1, s2):
     """Q71: Minimum Swaps to Make Strings Equal.
     Input: s1 = "xx", s2 = "yy"
@@ -624,6 +697,7 @@ def q71(s1, s2):
     """
     # Write your logic here
     pass
+
 
 def q72(words, groups):
     """Q72: Expressive Words.
@@ -633,6 +707,7 @@ def q72(words, groups):
     # Write your logic here
     pass
 
+
 def q73(s, k):
     """Q73: Valid Palindrome III.
     Input: s = "abcdeca", k = 2
@@ -640,6 +715,7 @@ def q73(s, k):
     """
     # Write your logic here
     pass
+
 
 def q74(s):
     """Q74: Longest Chunked Palindrome Decomposition.
@@ -649,6 +725,7 @@ def q74(s):
     # Write your logic here
     pass
 
+
 def q75(s, t):
     """Q75: Distinct Subsequences.
     Input: s = "rabbbit", t = "rabbit"
@@ -656,6 +733,7 @@ def q75(s, t):
     """
     # Write your logic here
     pass
+
 
 def q76(lists):
     """Q76: Merge K Sorted Lists.
@@ -665,6 +743,7 @@ def q76(lists):
     # Write your logic here
     pass
 
+
 def q77(arr):
     """Q77: Shortest Subarray to be Removed to Make Array Sorted.
     Input: arr = [1, 2, 3, 10, 4, 2, 3, 5]
@@ -672,6 +751,7 @@ def q77(arr):
     """
     # Write your logic here
     pass
+
 
 def q78(start, end):
     """Q78: Swap Adjacent in LR String.
@@ -681,6 +761,7 @@ def q78(start, end):
     # Write your logic here
     pass
 
+
 def q79(s):
     """Q79: Remove Duplicate Letters.
     Input: s = "bcabc"
@@ -688,6 +769,7 @@ def q79(s):
     """
     # Write your logic here
     pass
+
 
 def q80(nums, k):
     """Q80: Maximum Score of a Good Subarray.
@@ -697,6 +779,7 @@ def q80(nums, k):
     # Write your logic here
     pass
 
+
 def q81(nums, k):
     """Q81: Subarray Sums Divisible by K.
     Input: nums = [4, 5, 0, -2, -3, 1], k = 5
@@ -704,6 +787,7 @@ def q81(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q82(s):
     """Q82: Optimal Partition of String.
@@ -713,6 +797,7 @@ def q82(s):
     # Write your logic here
     pass
 
+
 def q83(nums, k):
     """Q83: Count Subarrays With Median K.
     Input: nums = ([3, 2, 1, 4, 5], 4)
@@ -720,6 +805,7 @@ def q83(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q84(fruits):
     """Q84: Fruit Into Baskets.
@@ -729,6 +815,7 @@ def q84(fruits):
     # Write your logic here
     pass
 
+
 def q85(nums):
     """Q85: Minimum Operations to Make Array Continuous.
     Input: nums = [4, 2, 5, 3]
@@ -736,6 +823,7 @@ def q85(nums):
     """
     # Write your logic here
     pass
+
 
 def q86(s):
     """Q86: Replace the Substring for Balanced String.
@@ -745,6 +833,7 @@ def q86(s):
     # Write your logic here
     pass
 
+
 def q87(nums, k):
     """Q87: Constrained Subsequence Sum.
     Input: nums = [10, 2, -10, 5, 20], k = 2
@@ -752,6 +841,7 @@ def q87(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q88(nums, limit):
     """Q88: Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit.
@@ -761,6 +851,7 @@ def q88(nums, limit):
     # Write your logic here
     pass
 
+
 def q89(nums, k):
     """Q89: Count Subarrays Where Max Element Appears at Least K Times.
     Input: nums = ([1, 3, 2, 3, 3], 2)
@@ -768,6 +859,7 @@ def q89(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q90(s):
     """Q90: Minimum Number of Flips to Make the Binary String Alternating.
@@ -777,6 +869,7 @@ def q90(s):
     # Write your logic here
     pass
 
+
 def q91(nums, k):
     """Q91: Split Array Largest Sum.
     Input: nums = [7, 2, 5, 10, 8], k = 2
@@ -784,6 +877,7 @@ def q91(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q92(weights, days):
     """Q92: Capacity To Ship Packages Within D Days.
@@ -793,6 +887,7 @@ def q92(weights, days):
     # Write your logic here
     pass
 
+
 def q93(piles, h):
     """Q93: Koko Eating Bananas.
     Input: piles = [3, 6, 7, 11], h = 8
@@ -800,6 +895,7 @@ def q93(piles, h):
     """
     # Write your logic here
     pass
+
 
 def q94(nums, queries):
     """Q94: Minimum Absolute Difference Query.
@@ -809,6 +905,7 @@ def q94(nums, queries):
     # Write your logic here
     pass
 
+
 def q95(head, k):
     """Q95: Reverse Nodes in k-Group.
     Input: head = [1, 2, 3, 4, 5], k = 2
@@ -816,6 +913,7 @@ def q95(head, k):
     """
     # Write your logic here
     pass
+
 
 def q96(head):
     """Q96: Sort List.
@@ -825,6 +923,7 @@ def q96(head):
     # Write your logic here
     pass
 
+
 def q97(head, x):
     """Q97: Partition List.
     Input: head = ([1, 4, 3, 2, 5, 2], 3)
@@ -832,6 +931,7 @@ def q97(head, x):
     """
     # Write your logic here
     pass
+
 
 def q98(head):
     """Q98: Palindrome Linked List.
@@ -841,6 +941,7 @@ def q98(head):
     # Write your logic here
     pass
 
+
 def q99(head):
     """Q99: Linked List Cycle II.
     Input: head = ([3, 2, 0, -4], 1)
@@ -848,6 +949,7 @@ def q99(head):
     """
     # Write your logic here
     pass
+
 
 def q100(nums):
     """Q100: Find the Duplicate Number.
@@ -967,6 +1069,7 @@ TESTS = {
 
 
 # ==================== RUN TEST ====================
+
 
 def run_test(QUESTION_NUMBER, silent=False):
     import io
@@ -1169,6 +1272,7 @@ def run_test(QUESTION_NUMBER, silent=False):
         return False
     finally:
         sys.stdout = old_stdout
+
 
 if __name__ == "__main__":
     import sys

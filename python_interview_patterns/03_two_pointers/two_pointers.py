@@ -19,6 +19,7 @@ QUESTION_NUMBER = None  # <-- Change this to solve different questions
 
 # --- EASY LEVEL (Q1 - Q25) ---
 
+
 def q1(arr):
     """Q1: Reverse an array in-place.
     Input: arr = [1, 2, 3, 4, 5]
@@ -30,6 +31,7 @@ def q1(arr):
         left += 1
         right -= 1
     return arr
+
 
 def q2(s):
     """Q2: Reverse vowels in a string (return new string).
@@ -50,6 +52,7 @@ def q2(s):
         right -= 1
     return "".join(chars)
 
+
 def q3(s):
     """Q3: Valid Palindrome (ignoring non-alphanumeric, case-insensitive).
     Input: s = "A man, a plan, a canal: Panama"
@@ -58,6 +61,7 @@ def q3(s):
     # Write your logic here
     pass
 
+
 def q4(numbers, target):
     """Q4: Two Sum II - Input Array Is Sorted (1-indexed).
     Input: numbers = [2, 7, 11, 15], target = 9
@@ -65,6 +69,7 @@ def q4(numbers, target):
     """
     # Write your logic here
     pass
+
 
 def q5(nums):
     """Q5: Remove Duplicates from Sorted Array (in-place).
@@ -75,6 +80,7 @@ def q5(nums):
     # Write your logic here
     pass
 
+
 def q6(nums):
     """Q6: Remove Duplicates from Sorted Array II.
     Each unique element may appear at most twice. Return the count.
@@ -84,6 +90,7 @@ def q6(nums):
     # Write your logic here
     pass
 
+
 def q7(nums):
     """Q7: Move Zeros. Move all 0's to the end in-place while maintaining relative order of non-zeros.
     Input: nums = [0, 1, 0, 3, 12]
@@ -91,6 +98,7 @@ def q7(nums):
     """
     # Write your logic here
     pass
+
 
 def q8(nums1, m, nums2, n):
     """Q8: Merge Sorted Array. nums1 has size m+n. Merge nums2 into nums1 in-place.
@@ -100,6 +108,7 @@ def q8(nums1, m, nums2, n):
     # Write your logic here
     pass
 
+
 def q9(nums):
     """Q9: Squares of a Sorted Array. Return sorted squares of nums sorted in non-decreasing order.
     Input: nums = [-4, -1, 0, 3, 10]
@@ -107,6 +116,7 @@ def q9(nums):
     """
     # Write your logic here
     pass
+
 
 def q10(nums1, nums2):
     """Q10: Intersection of Two Sorted Arrays. Find unique common elements.
@@ -116,6 +126,7 @@ def q10(nums1, nums2):
     # Write your logic here
     pass
 
+
 def q11(nums1, nums2):
     """Q11: Union of Two Sorted Arrays. Find all unique sorted union elements.
     Input: nums1 = [1, 2, 5], nums2 = [2, 3, 5, 6]
@@ -123,6 +134,7 @@ def q11(nums1, nums2):
     """
     # Write your logic here
     pass
+
 
 def q12(s):
     """Q12: Valid Palindrome II. Can delete at most one character to make it a palindrome.
@@ -132,6 +144,7 @@ def q12(s):
     # Write your logic here
     pass
 
+
 def q13(s):
     """Q13: Reverse Words in a String III. Reverse characters in each word individually.
     Input: s = "Let's take LeetCode contest"
@@ -139,6 +152,7 @@ def q13(s):
     """
     # Write your logic here
     pass
+
 
 def q14(arr1, arr2):
     """Q14: Minimum Difference Between Two Sorted Arrays. Find min absolute difference |a - b| (a from arr1, b from arr2).
@@ -148,6 +162,7 @@ def q14(arr1, arr2):
     # Write your logic here
     pass
 
+
 def q15(s, t):
     """Q15: Check if s is subsequence of t.
     Input: s = "abc", t = "ahbgdc"
@@ -155,6 +170,7 @@ def q15(s, t):
     """
     # Write your logic here
     pass
+
 
 def q16(nums, target):
     """Q16: Find Pair with Given Difference in a sorted array (return True if pair exists).
@@ -164,6 +180,7 @@ def q16(nums, target):
     # Write your logic here
     pass
 
+
 def q17(nums):
     """Q17: Sort Array By Parity. Move all even integers to the beginning followed by all odd integers.
     Input: nums = [3, 1, 2, 4]
@@ -171,6 +188,7 @@ def q17(nums):
     """
     # Write your logic here
     pass
+
 
 def q18(nums):
     """Q18: Sort Array By Parity II. Sort so that even indices have even values and odd indices have odd values.
@@ -180,6 +198,7 @@ def q18(nums):
     # Write your logic here
     pass
 
+
 def q19(nums, pivot):
     """Q19: Partition Array According to Pivot. Less than pivot on left, greater on right, preserving relative order.
     Input: nums = [9, 12, 5, 10, 14, 3, 10], pivot = 10
@@ -187,6 +206,7 @@ def q19(nums, pivot):
     """
     # Write your logic here
     pass
+
 
 def q20(s, t):
     """Q20: Backspace String Compare. '#' means backspace. Return True if strings are equal after backspacing.
@@ -196,6 +216,7 @@ def q20(s, t):
     # Write your logic here
     pass
 
+
 def q21(haystack, needle):
     """Q21: Find Index of First Occurrence in String.
     Input: haystack = "sadbutsad", needle = "sad"
@@ -203,6 +224,7 @@ def q21(haystack, needle):
     """
     # Write your logic here
     pass
+
 
 def q22(s):
     """Q22: Longest Palindromic Substring (using two pointers expansion method).
@@ -212,6 +234,7 @@ def q22(s):
     # Write your logic here
     pass
 
+
 def q23(s):
     """Q23: Minimum Length of String After Deleting Similar Ends.
     Input: s = "caac"
@@ -220,6 +243,7 @@ def q23(s):
     # Write your logic here
     pass
 
+
 def q24(nums, k):
     """Q24: Find K-diff Pairs in an Array (number of unique pairs (i, j) where nums[i] - nums[j] = k).
     Input: nums = [3, 1, 4, 1, 5], k = 2
@@ -227,6 +251,7 @@ def q24(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q25(g, s):
     """Q25: Assign Cookies. g is children greedy factor, s is cookie sizes. Maximize content children.
@@ -239,6 +264,7 @@ def q25(g, s):
 
 # --- INTERMEDIATE LEVEL (Q26 - Q60) ---
 
+
 def q26(height):
     """Q26: Container With Most Water.
     Input: height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
@@ -246,6 +272,7 @@ def q26(height):
     """
     # Write your logic here
     pass
+
 
 def q27(nums):
     """Q27: 3Sum. Find all unique triplets that sum to 0.
@@ -255,6 +282,7 @@ def q27(nums):
     # Write your logic here
     pass
 
+
 def q28(nums, target):
     """Q28: 3Sum Closest. Return sum of three integers closest to target.
     Input: nums = [-1, 2, 1, -4], target = 1
@@ -262,6 +290,7 @@ def q28(nums, target):
     """
     # Write your logic here
     pass
+
 
 def q29(nums, target):
     """Q29: 3Sum Smaller. Return count of triplets index i, j, k with nums[i] + nums[j] + nums[k] < target.
@@ -271,6 +300,7 @@ def q29(nums, target):
     # Write your logic here
     pass
 
+
 def q30(nums, target):
     """Q30: 4Sum. Find all unique quadruplets that sum to target.
     Input: nums = [1, 0, -1, 0, -2, 2], target = 0
@@ -278,6 +308,7 @@ def q30(nums, target):
     """
     # Write your logic here
     pass
+
 
 def q31(nums, target):
     """Q31: Two Sum Less Than K. Return maximum sum of nums[i] + nums[j] < target.
@@ -287,6 +318,7 @@ def q31(nums, target):
     # Write your logic here
     pass
 
+
 def q32(nums):
     """Q32: Sort Colors (Dutch National Flag). Sort 0s (red), 1s (white), 2s (blue) in-place.
     Input: nums = [2, 0, 2, 1, 1, 0]
@@ -294,6 +326,7 @@ def q32(nums):
     """
     # Write your logic here
     pass
+
 
 def q33(target, nums):
     """Q33: Minimum Size Subarray Sum. Min length of subarray with sum >= target. Return 0 if none.
@@ -303,6 +336,7 @@ def q33(target, nums):
     # Write your logic here
     pass
 
+
 def q34(s):
     """Q34: Longest Substring Without Repeating Characters.
     Input: s = "abcabcbb"
@@ -310,6 +344,7 @@ def q34(s):
     """
     # Write your logic here
     pass
+
 
 def q35(nums, k):
     """Q35: Max Consecutive Ones III. Longest subarray of 1's if you can flip at most k 0's.
@@ -319,6 +354,7 @@ def q35(nums, k):
     # Write your logic here
     pass
 
+
 def q36(tokens, power):
     """Q36: Bag of Tokens. Maximize score by playing tokens face up/down.
     Input: tokens = [100, 200, 300, 400], power = 200
@@ -326,6 +362,7 @@ def q36(tokens, power):
     """
     # Write your logic here
     pass
+
 
 def q37(people, limit):
     """Q37: Boats to Save People. Each boat carries at most 2 people with weight sum <= limit.
@@ -335,6 +372,7 @@ def q37(people, limit):
     # Write your logic here
     pass
 
+
 def q38(nums):
     """Q38: Minimize Maximum Pair Sum in Array. Pair elements to minimize the max pair sum.
     Input: nums = [3, 5, 2, 3]
@@ -342,6 +380,7 @@ def q38(nums):
     """
     # Write your logic here
     pass
+
 
 def q39(nums, left, right):
     """Q39: Number of Subarrays with Bounded Maximum. Subarrays where max element in [left, right].
@@ -351,6 +390,7 @@ def q39(nums, left, right):
     # Write your logic here
     pass
 
+
 def q40(firstList, secondList):
     """Q40: Interval List Intersections. Find intersection of two lists of closed intervals.
     Input: firstList = [[0,2],[5,10],[13,23],[24,25]], secondList = [[1,5],[8,12],[15,24],[25,26]]
@@ -358,6 +398,7 @@ def q40(firstList, secondList):
     """
     # Write your logic here
     pass
+
 
 def q41(dominoes):
     """Q41: Push Dominoes. Return final state after dominoes fall ('L', 'R', '.').
@@ -367,6 +408,7 @@ def q41(dominoes):
     # Write your logic here
     pass
 
+
 def q42(start, target):
     """Q42: Move Pieces to Obtain a String. Can move 'L' left and 'R' right past '.' if valid.
     Input: start = "_R_L_", target = "__RL_"
@@ -374,6 +416,7 @@ def q42(start, target):
     """
     # Write your logic here
     pass
+
 
 def q43(s):
     """Q43: Split Two Strings to Make Palindrome. Check if split prefix of a + suffix of b is a palindrome.
@@ -383,6 +426,7 @@ def q43(s):
     # Write your logic here
     pass
 
+
 def q44(sentence1, sentence2):
     """Q44: Sentence Similarity III. Check if sentences can be made equal by inserting a phrase in one of them.
     Input: sentence1 = "My name is Haley", sentence2 = "My Haley"
@@ -390,6 +434,7 @@ def q44(sentence1, sentence2):
     """
     # Write your logic here
     pass
+
 
 def q45(arr, k, x):
     """Q45: Find K Closest Elements in sorted array to target x.
@@ -399,6 +444,7 @@ def q45(arr, k, x):
     # Write your logic here
     pass
 
+
 def q46(nums):
     """Q46: Valid Triangle Number. Count triplets of indices that can form a triangle.
     Input: nums = [2, 2, 3, 4]
@@ -406,6 +452,7 @@ def q46(nums):
     """
     # Write your logic here
     pass
+
 
 def q47(arr):
     """Q47: Longest Mountain in Array. Longest subarray that rises to a peak and falls.
@@ -415,6 +462,7 @@ def q47(arr):
     # Write your logic here
     pass
 
+
 def q48(nums):
     """Q48: Longest Subarray of 1's After Deleting One Element.
     Input: nums = [1, 1, 0, 1]
@@ -422,6 +470,7 @@ def q48(nums):
     """
     # Write your logic here
     pass
+
 
 def q49(s):
     """Q49: Partition Labels. Partition string into as many parts as possible so each char appears in at most one part.
@@ -431,6 +480,7 @@ def q49(s):
     # Write your logic here
     pass
 
+
 def q50(version1, version2):
     """Q50: Compare Version Numbers. Return -1 if v1 < v2, 1 if v1 > v2, 0 otherwise.
     Input: version1 = "1.01", version2 = "1.001"
@@ -438,6 +488,7 @@ def q50(version1, version2):
     """
     # Write your logic here
     pass
+
 
 def q51(nums):
     """Q51: Minimum Swaps to Group All 1's Together in a circular binary array.
@@ -447,6 +498,7 @@ def q51(nums):
     # Write your logic here
     pass
 
+
 def q52(chars):
     """Q52: String Compression. Compress chars in-place. Return the new length.
     Input: chars = ["a", "a", "b", "b", "c", "c", "c"]
@@ -454,6 +506,7 @@ def q52(chars):
     """
     # Write your logic here
     pass
+
 
 def q53(nums):
     """Q53: Next Permutation. Rearrange numbers into lexicographically next greater permutation in-place.
@@ -463,6 +516,7 @@ def q53(nums):
     # Write your logic here
     pass
 
+
 def q54(s):
     """Q54: Smallest Subsequence of Distinct Characters (same as Remove Duplicate Letters).
     Input: s = "cbacdcbc"
@@ -470,6 +524,7 @@ def q54(s):
     """
     # Write your logic here
     pass
+
 
 def q55(s, k):
     """Q55: Longest Substring with At Most K Distinct Characters.
@@ -479,6 +534,7 @@ def q55(s, k):
     # Write your logic here
     pass
 
+
 def q56(s):
     """Q56: Number of Substrings Containing All Three Characters ('a', 'b' and 'c').
     Input: s = "abcabc"
@@ -486,6 +542,7 @@ def q56(s):
     """
     # Write your logic here
     pass
+
 
 def q57(s1, s2):
     """Q57: Permutation in String. Check if s2 contains a permutation of s1.
@@ -495,6 +552,7 @@ def q57(s1, s2):
     # Write your logic here
     pass
 
+
 def q58(s, p):
     """Q58: Find All Anagrams in a String. Return start indices of p's anagrams in s.
     Input: s = "cbaebabacd", p = "abc"
@@ -503,6 +561,7 @@ def q58(s, p):
     # Write your logic here
     pass
 
+
 def q59(nums):
     """Q59: Maximum Erasure Value. Max sum of subarray with unique elements.
     Input: nums = [4, 2, 4, 5, 6]
@@ -510,6 +569,7 @@ def q59(nums):
     """
     # Write your logic here
     pass
+
 
 def q60(s, t, maxCost):
     """Q60: Get Equal Substrings Within Budget. Max length to change s substring to t substring within maxCost.
@@ -522,6 +582,7 @@ def q60(s, t, maxCost):
 
 # --- ADVANCED LEVEL (Q61 - Q100) ---
 
+
 def q61(height):
     """Q61: Trapping Rain Water.
     Input: height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
@@ -529,6 +590,7 @@ def q61(height):
     """
     # Write your logic here
     pass
+
 
 def q62(s, t):
     """Q62: Minimum Window Substring. Smallest window in s containing all characters of t.
@@ -538,6 +600,7 @@ def q62(s, t):
     # Write your logic here
     pass
 
+
 def q63(nums, k):
     """Q63: Subarrays with K Different Integers. Count subarrays with exactly k unique numbers.
     Input: nums = [1, 2, 1, 2, 3], k = 2
@@ -545,6 +608,7 @@ def q63(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q64(s, t):
     """Q64: Minimum Window Subsequence. Minimum window in s that contains t as a subsequence.
@@ -554,6 +618,7 @@ def q64(s, t):
     # Write your logic here
     pass
 
+
 def q65(nums, k):
     """Q65: Subarray Product Less Than K. Count subarrays where product < k.
     Input: nums = [10, 5, 2, 6], k = 100
@@ -561,6 +626,7 @@ def q65(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q66(nums, k):
     """Q66: Shortest Subarray with Sum at Least K. Return min length.
@@ -570,6 +636,7 @@ def q66(nums, k):
     # Write your logic here
     pass
 
+
 def q67(s, k):
     """Q67: Longest Repeating Character Replacement. Replace at most k characters to make all characters same.
     Input: s = "AABABBA", k = 1
@@ -577,6 +644,7 @@ def q67(s, k):
     """
     # Write your logic here
     pass
+
 
 def q68(nums, k):
     """Q68: Sliding Window Maximum. Return max elements in window size k.
@@ -586,6 +654,7 @@ def q68(nums, k):
     # Write your logic here
     pass
 
+
 def q69(nums, x):
     """Q69: Minimum Operations to Reduce X to Zero. Find min operations of removing elements from left/right to sum to x.
     Input: nums = [1, 1, 4, 2, 3], x = 5
@@ -593,6 +662,7 @@ def q69(nums, x):
     """
     # Write your logic here
     pass
+
 
 def q70(matrix, k):
     """Q70: Max Sum of Rectangle No Larger Than K in 2D grid.
@@ -602,6 +672,7 @@ def q70(matrix, k):
     # Write your logic here
     pass
 
+
 def q71(s1, s2):
     """Q71: Minimum Swaps to Make Strings Equal. (chars can only be 'x' or 'y').
     Input: s1 = "xx", s2 = "yy"
@@ -609,6 +680,7 @@ def q71(s1, s2):
     """
     # Write your logic here
     pass
+
 
 def q72(words, groups):
     """Q72: Expressive Words. Count words that can stretch to match query.
@@ -618,6 +690,7 @@ def q72(words, groups):
     # Write your logic here
     pass
 
+
 def q73(s, k):
     """Q73: Valid Palindrome III. Check if s can become palindrome by deleting at most k characters.
     Input: s = "abcdeca", k = 2
@@ -625,6 +698,7 @@ def q73(s, k):
     """
     # Write your logic here
     pass
+
 
 def q74(s):
     """Q74: Longest Chunked Palindrome Decomposition.
@@ -634,6 +708,7 @@ def q74(s):
     # Write your logic here
     pass
 
+
 def q75(s, t):
     """Q75: Distinct Subsequences. Count occurrences of t as a subsequence of s.
     Input: s = "rabbbit", t = "rabbit"
@@ -641,6 +716,7 @@ def q75(s, t):
     """
     # Write your logic here
     pass
+
 
 def q76(lists):
     """Q76: Merge K Sorted Lists (input is list of lists, output is single sorted list).
@@ -650,6 +726,7 @@ def q76(lists):
     # Write your logic here
     pass
 
+
 def q77(arr):
     """Q77: Shortest Subarray to be Removed to Make Array Sorted.
     Input: arr = [1, 2, 3, 10, 4, 2, 3, 5]
@@ -657,6 +734,7 @@ def q77(arr):
     """
     # Write your logic here
     pass
+
 
 def q78(start, end):
     """Q78: Swap Adjacent in LR String. Can swap "XL" to "LX" and "RX" to "XR".
@@ -666,6 +744,7 @@ def q78(start, end):
     # Write your logic here
     pass
 
+
 def q79(s):
     """Q79: Remove Duplicate Letters. Return lexicographically smallest result.
     Input: s = "bcabc"
@@ -673,6 +752,7 @@ def q79(s):
     """
     # Write your logic here
     pass
+
 
 def q80(nums, numsCompare):
     """Q80: Maximum Score of a Good Subarray. Good subarray has i <= k <= j. Score is min(nums[i..j]) * (j - i + 1).
@@ -682,6 +762,7 @@ def q80(nums, numsCompare):
     # Write your logic here
     pass
 
+
 def q81(nums, k):
     """Q81: Subarray Sums Divisible by K. Return count.
     Input: nums = [4, 5, 0, -2, -3, 1], k = 5
@@ -689,6 +770,7 @@ def q81(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q82(s):
     """Q82: Optimal Partition of String. Min partitions so each char appears at most once in each partition.
@@ -698,6 +780,7 @@ def q82(s):
     # Write your logic here
     pass
 
+
 def q83(nums, k):
     """Q83: Count Subarrays With Median K.
     Input: nums = ([3, 2, 1, 4, 5], 4)
@@ -705,6 +788,7 @@ def q83(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q84(fruits):
     """Q84: Fruit Into Baskets. Max fruits in 2 baskets (each basket contains only 1 type of fruit).
@@ -714,6 +798,7 @@ def q84(fruits):
     # Write your logic here
     pass
 
+
 def q85(nums):
     """Q85: Minimum Operations to Make Array Continuous.
     Input: nums = [4, 2, 5, 3]
@@ -721,6 +806,7 @@ def q85(nums):
     """
     # Write your logic here
     pass
+
 
 def q86(s):
     """Q86: Replace the Substring for Balanced String. Min length of substring to replace to make each char count <= n/4.
@@ -730,6 +816,7 @@ def q86(s):
     # Write your logic here
     pass
 
+
 def q87(nums, k):
     """Q87: Constrained Subsequence Sum. Max sum of subsequence where index diff <= k.
     Input: nums = [10, 2, -10, 5, 20], k = 2
@@ -737,6 +824,7 @@ def q87(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q88(nums, limit):
     """Q88: Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit.
@@ -746,6 +834,7 @@ def q88(nums, limit):
     # Write your logic here
     pass
 
+
 def q89(nums, k):
     """Q89: Count Subarrays Where Max Element Appears at Least K Times.
     Input: nums = ([1, 3, 2, 3, 3], 2) where max is 3, count >= 2
@@ -753,6 +842,7 @@ def q89(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q90(s):
     """Q90: Minimum Number of Flips to Make the Binary String Alternating.
@@ -762,6 +852,7 @@ def q90(s):
     # Write your logic here
     pass
 
+
 def q91(nums, k):
     """Q91: Split Array Largest Sum. Split nums into k subarrays to minimize maximum subarray sum.
     Input: nums = [7, 2, 5, 10, 8], k = 2
@@ -769,6 +860,7 @@ def q91(nums, k):
     """
     # Write your logic here
     pass
+
 
 def q92(weights, days):
     """Q92: Capacity To Ship Packages Within D Days. Find min capacity of conveyor belt.
@@ -778,6 +870,7 @@ def q92(weights, days):
     # Write your logic here
     pass
 
+
 def q93(piles, h):
     """Q93: Koko Eating Bananas. Min integer speed k to eat all bananas within h hours.
     Input: piles = [3, 6, 7, 11], h = 8
@@ -785,6 +878,7 @@ def q93(piles, h):
     """
     # Write your logic here
     pass
+
 
 def q94(nums, queries):
     """Q94: Minimum Absolute Difference Query.
@@ -794,6 +888,7 @@ def q94(nums, queries):
     # Write your logic here
     pass
 
+
 def q95(head, k):
     """Q95: Reverse Nodes in k-Group. Given head (represented as list), reverse in blocks of size k.
     Input: head = [1, 2, 3, 4, 5], k = 2
@@ -801,6 +896,7 @@ def q95(head, k):
     """
     # Write your logic here
     pass
+
 
 def q96(head):
     """Q96: Sort List. Given head (represented as list), sort it.
@@ -810,6 +906,7 @@ def q96(head):
     # Write your logic here
     pass
 
+
 def q97(head, x):
     """Q97: Partition List. Given head (represented as list) and x, partition so elements < x are before >= x.
     Input: head = ([1, 4, 3, 2, 5, 2], 3)
@@ -817,6 +914,7 @@ def q97(head, x):
     """
     # Write your logic here
     pass
+
 
 def q98(head):
     """Q98: Palindrome Linked List. Given head (represented as list), check if palindrome.
@@ -826,6 +924,7 @@ def q98(head):
     # Write your logic here
     pass
 
+
 def q99(head):
     """Q99: Linked List Cycle II (Floyd's Tortoise and Hare). Given list, return index where cycle starts, or -1.
     Input: head = ([3, 2, 0, -4], 1) where cycle starts at index 1
@@ -833,6 +932,7 @@ def q99(head):
     """
     # Write your logic here
     pass
+
 
 def q100(nums):
     """Q100: Find the Duplicate Number (Floyd's Cycle Detection on Array). Find duplicate element in-place without modification.
@@ -952,6 +1052,7 @@ TESTS = {
 
 
 # ==================== RUN TEST ====================
+
 
 def run_test(QUESTION_NUMBER, silent=False):
     import io
@@ -1154,6 +1255,7 @@ def run_test(QUESTION_NUMBER, silent=False):
         return False
     finally:
         sys.stdout = old_stdout
+
 
 if __name__ == "__main__":
     import sys

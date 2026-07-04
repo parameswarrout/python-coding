@@ -16,6 +16,7 @@ QUESTION_NUMBER = None  # <-- Set to None to auto-detect your active question
 
 # ==================== ALL 100 QUESTIONS ====================
 
+
 def q1(n: int) -> list:
     """Q1: Generate list of numbers from 1 to N.
     Input: n = 5
@@ -25,6 +26,7 @@ def q1(n: int) -> list:
     for i in range(1, n + 1):
         res.append(i)
     return res
+
 
 def q2(n: int) -> int:
     """Q2: Calculate sum of numbers from 1 to N.
@@ -36,6 +38,7 @@ def q2(n: int) -> int:
         total += i
     return total
 
+
 def q3(n: int) -> int:
     """Q3: Calculate factorial of N.
     Input: n = 5
@@ -43,6 +46,7 @@ def q3(n: int) -> int:
     """
     # Write your logic here
     pass
+
 
 def q4(n: int) -> int:
     """Q4: Count the number of digits in an integer N.
@@ -52,6 +56,7 @@ def q4(n: int) -> int:
     # Write your logic here
     pass
 
+
 def q5(n: int) -> int:
     """Q5: Reverse the digits of an integer N.
     Input: n = 12345
@@ -59,6 +64,7 @@ def q5(n: int) -> int:
     """
     # Write your logic here
     pass
+
 
 def q6(n: int) -> bool:
     """Q6: Check if a number N is prime.
@@ -68,6 +74,7 @@ def q6(n: int) -> bool:
     # Write your logic here
     pass
 
+
 def q7(n: int) -> int:
     """Q7: Find the Nth Fibonacci number (0-indexed, F(0)=0, F(1)=1, F(2)=1, F(3)=2...).
     Input: n = 6
@@ -75,6 +82,7 @@ def q7(n: int) -> int:
     """
     # Write your logic here
     pass
+
 
 def q8(arr: list) -> int:
     """Q8: Find the maximum element in an array using a loop.
@@ -84,6 +92,7 @@ def q8(arr: list) -> int:
     # Write your logic here
     pass
 
+
 def q9(arr: list) -> int:
     """Q9: Find the minimum element in an array using a loop.
     Input: arr = [3, 1, 4, 1, 5, 9, 2]
@@ -91,6 +100,7 @@ def q9(arr: list) -> int:
     """
     # Write your logic here
     pass
+
 
 def q10(arr: list) -> int:
     """Q10: Calculate the sum of all elements in an array.
@@ -100,6 +110,7 @@ def q10(arr: list) -> int:
     # Write your logic here
     pass
 
+
 def q11(n: int) -> list:
     """Q11: Generate a list of all even numbers up to N.
     Input: n = 10
@@ -107,6 +118,7 @@ def q11(n: int) -> list:
     """
     # Write your logic here
     pass
+
 
 def q12(n: int) -> list:
     """Q12: Generate a list of all odd numbers up to N.
@@ -116,6 +128,7 @@ def q12(n: int) -> list:
     # Write your logic here
     pass
 
+
 def q13(n: int) -> int:
     """Q13: Calculate the sum of all odd numbers up to N.
     Input: n = 9
@@ -123,6 +136,7 @@ def q13(n: int) -> int:
     """
     # Write your logic here
     pass
+
 
 def q14(n: int) -> int:
     """Q14: Calculate the sum of all even numbers up to N.
@@ -132,6 +146,7 @@ def q14(n: int) -> int:
     # Write your logic here
     pass
 
+
 def q15(n: int) -> int:
     """Q15: Count the number of divisors of a number N.
     Input: n = 12
@@ -139,6 +154,7 @@ def q15(n: int) -> int:
     """
     # Write your logic here
     pass
+
 
 def q16(n: int) -> list:
     """Q16: Find all divisors of a number N (return as a sorted list).
@@ -148,6 +164,7 @@ def q16(n: int) -> list:
     # Write your logic here
     pass
 
+
 def q17(n: int) -> bool:
     """Q17: Check if N is a perfect number (sum of proper divisors equals N).
     Input: n = 28
@@ -155,6 +172,7 @@ def q17(n: int) -> bool:
     """
     # Write your logic here
     pass
+
 
 def q18(n: int) -> bool:
     """Q18: Check if N is an Armstrong number (sum of cube of digits equals N for 3-digit numbers).
@@ -164,6 +182,7 @@ def q18(n: int) -> bool:
     # Write your logic here
     pass
 
+
 def q19(n: int) -> list:
     """Q19: Generate the multiplication table of N (first 10 multiples).
     Input: n = 5
@@ -171,6 +190,7 @@ def q19(n: int) -> list:
     """
     # Write your logic here
     pass
+
 
 def q20(a: int, b: int) -> int:
     """Q20: Find the Greatest Common Divisor (GCD) of a and b using a loop.
@@ -180,6 +200,7 @@ def q20(a: int, b: int) -> int:
     # Write your logic here
     pass
 
+
 def q21(a: int, b: int) -> int:
     """Q21: Find the Least Common Multiple (LCM) of a and b using a loop.
     Input: a = 12, b = 18
@@ -187,6 +208,7 @@ def q21(a: int, b: int) -> int:
     """
     # Write your logic here
     pass
+
 
 def q22(n: int) -> list:
     """Q22: Generate a right-angled triangle pattern of stars of height N.
@@ -196,6 +218,7 @@ def q22(n: int) -> list:
     # Write your logic here
     pass
 
+
 def q23(n: int) -> list:
     """Q23: Generate an inverted right-angled triangle pattern of stars of height N.
     Input: n = 3
@@ -204,6 +227,7 @@ def q23(n: int) -> list:
     # Write your logic here
     pass
 
+
 def q24(n: int) -> list:
     """Q24: Generate a pyramid pattern of stars of height N.
     Input: n = 3
@@ -211,6 +235,7 @@ def q24(n: int) -> list:
     """
     # Write your logic here
     pass
+
 
 def q25(n: int) -> list:
     """Q25: Generate a diamond pattern of stars of height N.
@@ -223,6 +248,7 @@ def q25(n: int) -> list:
 
 # --- INTERMEDIATE LEVEL (Q26 - Q60) ---
 
+
 def q26(arr):
     """Q26: Count occurrences of a target element in an array using a loop.
     Input: arr = ([1, 2, 3, 2, 4, 2], 2)
@@ -230,6 +256,7 @@ def q26(arr):
     """
     # Write your logic here
     pass
+
 
 def q27(arr):
     """Q27: Check if an array is sorted in non-decreasing order using a loop.
@@ -239,6 +266,7 @@ def q27(arr):
     # Write your logic here
     pass
 
+
 def q28(arr):
     """Q28: Find the second largest element in an array using a loop.
     Input: arr = [12, 35, 1, 10, 34, 1]
@@ -246,6 +274,7 @@ def q28(arr):
     """
     # Write your logic here
     pass
+
 
 def q29(arr):
     """Q29: Find the second smallest element in an array using a loop.
@@ -255,6 +284,7 @@ def q29(arr):
     # Write your logic here
     pass
 
+
 def q30(arr):
     """Q30: Count the number of positive and negative numbers in an array.
     Input: arr = [1, -2, 3, -4, 5]
@@ -262,6 +292,7 @@ def q30(arr):
     """
     # Write your logic here
     pass
+
 
 def q31(arr):
     """Q31: Reverse an array in place using a loop.
@@ -271,6 +302,7 @@ def q31(arr):
     # Write your logic here
     pass
 
+
 def q32(arr):
     """Q32: Left rotate an array by one position using a loop.
     Input: arr = [1, 2, 3, 4, 5]
@@ -278,6 +310,7 @@ def q32(arr):
     """
     # Write your logic here
     pass
+
 
 def q33(arr_d):
     """Q33: Left rotate an array by D positions using a loop.
@@ -287,6 +320,7 @@ def q33(arr_d):
     # Write your logic here
     pass
 
+
 def q34(arr):
     """Q34: Move all zeros in an array to the end using a loop.
     Input: arr = [0, 1, 0, 3, 12]
@@ -294,6 +328,7 @@ def q34(arr):
     """
     # Write your logic here
     pass
+
 
 def q35(arr):
     """Q35: Remove duplicate elements from a sorted array using a loop.
@@ -303,6 +338,7 @@ def q35(arr):
     # Write your logic here
     pass
 
+
 def q36(arr):
     """Q36: Remove all occurrences of a target element from an array.
     Input: arr = ([3, 2, 2, 3], 3)
@@ -310,6 +346,7 @@ def q36(arr):
     """
     # Write your logic here
     pass
+
 
 def q37(arr):
     """Q37: Find the first repeating element in an array using a loop.
@@ -319,6 +356,7 @@ def q37(arr):
     # Write your logic here
     pass
 
+
 def q38(arr):
     """Q38: Find the first non-repeating element in an array using a loop.
     Input: arr = [9, 4, 9, 6, 7, 4]
@@ -326,6 +364,7 @@ def q38(arr):
     """
     # Write your logic here
     pass
+
 
 def q39(arr):
     """Q39: Find the missing number in an array of size N-1 containing numbers from 1 to N.
@@ -335,6 +374,7 @@ def q39(arr):
     # Write your logic here
     pass
 
+
 def q40(arr):
     """Q40: Check if there exists a pair in the array whose sum equals a target.
     Input: arr = ([1, 4, 45, 6, 10, 8], 16)
@@ -342,6 +382,7 @@ def q40(arr):
     """
     # Write your logic here
     pass
+
 
 def q41(arr):
     """Q41: Find all pairs in the array whose sum equals a target.
@@ -351,6 +392,7 @@ def q41(arr):
     # Write your logic here
     pass
 
+
 def q42(arr):
     """Q42: Find the element that appears once in an array where all other elements appear twice.
     Input: arr = [2, 3, 5, 4, 5, 3, 4]
@@ -358,6 +400,7 @@ def q42(arr):
     """
     # Write your logic here
     pass
+
 
 def q43(arr):
     """Q43: Count the number of subarrays with a sum of 0 using a loop.
@@ -367,6 +410,7 @@ def q43(arr):
     # Write your logic here
     pass
 
+
 def q44(arr):
     """Q44: Find the maximum sum of a contiguous subarray using a loop.
     Input: arr = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
@@ -374,6 +418,7 @@ def q44(arr):
     """
     # Write your logic here
     pass
+
 
 def q45(arr):
     """Q45: Find the maximum product of a contiguous subarray using a loop.
@@ -383,6 +428,7 @@ def q45(arr):
     # Write your logic here
     pass
 
+
 def q46(s):
     """Q46: Check if a string is a palindrome using a loop.
     Input: s = "radar"
@@ -390,6 +436,7 @@ def q46(s):
     """
     # Write your logic here
     pass
+
 
 def q47(s):
     """Q47: Reverse a string using a loop.
@@ -399,6 +446,7 @@ def q47(s):
     # Write your logic here
     pass
 
+
 def q48(s):
     """Q48: Count the number of vowels and consonants in a string.
     Input: s = "leetcode"
@@ -406,6 +454,7 @@ def q48(s):
     """
     # Write your logic here
     pass
+
 
 def q49(s):
     """Q49: Convert a string to lowercase using a loop without built-in lower().
@@ -415,6 +464,7 @@ def q49(s):
     # Write your logic here
     pass
 
+
 def q50(s):
     """Q50: Convert a string to uppercase using a loop without built-in upper().
     Input: s = "HEllO"
@@ -422,6 +472,7 @@ def q50(s):
     """
     # Write your logic here
     pass
+
 
 def q51(n):
     """Q51: Check if N is a palindrome number.
@@ -431,6 +482,7 @@ def q51(n):
     # Write your logic here
     pass
 
+
 def q52(n):
     """Q52: Check if N is a Harshad (or Niven) number (divisible by the sum of its digits).
     Input: n = 18
@@ -438,6 +490,7 @@ def q52(n):
     """
     # Write your logic here
     pass
+
 
 def q53(n):
     """Q53: Check if N is an Abundant number (sum of proper divisors is greater than N).
@@ -447,6 +500,7 @@ def q53(n):
     # Write your logic here
     pass
 
+
 def q54(n):
     """Q54: Check if N is a Deficient number (sum of proper divisors is less than N).
     Input: n = 15
@@ -454,6 +508,7 @@ def q54(n):
     """
     # Write your logic here
     pass
+
 
 def q55(n):
     """Q55: Generate first N Prime numbers.
@@ -463,6 +518,7 @@ def q55(n):
     # Write your logic here
     pass
 
+
 def q56(limit):
     """Q56: Generate all prime numbers up to a given limit using a loop.
     Input: limit = 20
@@ -470,6 +526,7 @@ def q56(limit):
     """
     # Write your logic here
     pass
+
 
 def q57(n):
     """Q57: Print all prime factors of N.
@@ -479,6 +536,7 @@ def q57(n):
     # Write your logic here
     pass
 
+
 def q58(n):
     """Q58: Check if N is a Strong number (sum of factorial of digits equals N).
     Input: n = 145
@@ -487,6 +545,7 @@ def q58(n):
     # Write your logic here
     pass
 
+
 def q59(n):
     """Q59: Convert Binary to Decimal using a loop.
     Input: n = "1010"
@@ -494,6 +553,7 @@ def q59(n):
     """
     # Write your logic here
     pass
+
 
 def q60(n):
     """Q60: Convert Decimal to Binary using a loop.
@@ -506,6 +566,7 @@ def q60(n):
 
 # --- ADVANCED LEVEL (Q61 - Q100) ---
 
+
 def q61(matrix):
     """Q61: Transpose of a 2D matrix using loops.
     Input: matrix = [[1, 2], [3, 4]]
@@ -513,6 +574,7 @@ def q61(matrix):
     """
     # Write your logic here
     pass
+
 
 def q62(matrices):
     """Q62: Multiply two 2D matrices using nested loops.
@@ -522,6 +584,7 @@ def q62(matrices):
     # Write your logic here
     pass
 
+
 def q63(matrix):
     """Q63: Rotate a 2D matrix 90 degrees clockwise using loops.
     Input: matrix = [[1, 2], [3, 4]]
@@ -529,6 +592,7 @@ def q63(matrix):
     """
     # Write your logic here
     pass
+
 
 def q64(matrix):
     """Q64: Find print elements of a matrix in spiral order.
@@ -538,6 +602,7 @@ def q64(matrix):
     # Write your logic here
     pass
 
+
 def q65(arr):
     """Q65: Sort an array using Bubble Sort algorithm with loops.
     Input: arr = [5, 1, 4, 2, 8]
@@ -545,6 +610,7 @@ def q65(arr):
     """
     # Write your logic here
     pass
+
 
 def q66(arr):
     """Q66: Sort an array using Selection Sort algorithm with loops.
@@ -554,6 +620,7 @@ def q66(arr):
     # Write your logic here
     pass
 
+
 def q67(arr):
     """Q67: Sort an array using Insertion Sort algorithm with loops.
     Input: arr = [5, 1, 4, 2, 8]
@@ -561,6 +628,7 @@ def q67(arr):
     """
     # Write your logic here
     pass
+
 
 def q68(arr):
     """Q68: Binary Search implementation using a loop.
@@ -570,6 +638,7 @@ def q68(arr):
     # Write your logic here
     pass
 
+
 def q69(nums):
     """Q69: Find the majority element (appears more than N/2 times) using a loop (Boyer-Moore voting algorithm).
     Input: nums = [2, 2, 1, 1, 1, 2, 2]
@@ -577,6 +646,7 @@ def q69(nums):
     """
     # Write your logic here
     pass
+
 
 def q70(nums):
     """Q70: Find the peak element in an array (greater than its neighbors) using a loop.
@@ -586,6 +656,7 @@ def q70(nums):
     # Write your logic here
     pass
 
+
 def q71(arr):
     """Q71: Find the equilibrium index of an array (left sum equals right sum).
     Input: arr = [-7, 1, 5, 2, -4, 3, 0]
@@ -593,6 +664,7 @@ def q71(arr):
     """
     # Write your logic here
     pass
+
 
 def q72(arr):
     """Q72: Find the index where sum of left and right elements are equal (Pivot index).
@@ -602,6 +674,7 @@ def q72(arr):
     # Write your logic here
     pass
 
+
 def q73(arr):
     """Q73: Partition an array into two subarrays with equal sum using a loop.
     Input: arr = [1, 2, 3, 4, 5, 5]
@@ -609,6 +682,7 @@ def q73(arr):
     """
     # Write your logic here
     pass
+
 
 def q74(arr):
     """Q74: Find if there exists a triplet in the array whose sum equals a target.
@@ -618,6 +692,7 @@ def q74(arr):
     # Write your logic here
     pass
 
+
 def q75(arr):
     """Q75: Count the number of triplets in the array whose sum is less than a target.
     Input: arr = ([-2, 0, 1, 3], 2)
@@ -625,6 +700,7 @@ def q75(arr):
     """
     # Write your logic here
     pass
+
 
 def q76(n):
     """Q76: Find the square root of a number N to nearest integer using a loop (Binary Search style).
@@ -634,6 +710,7 @@ def q76(n):
     # Write your logic here
     pass
 
+
 def q77(arr):
     """Q77: Find the maximum sum of K consecutive elements in an array (Sliding Window loop).
     Input: arr = ([100, 200, 300, 400], 2)
@@ -641,6 +718,7 @@ def q77(arr):
     """
     # Write your logic here
     pass
+
 
 def q78(arr):
     """Q78: Find the longest subarray containing all 1s after deleting one 0.
@@ -650,6 +728,7 @@ def q78(arr):
     # Write your logic here
     pass
 
+
 def q79(arr):
     """Q79: Count the number of subarrays having product less than K.
     Input: arr = ([10, 5, 2, 6], 100)
@@ -657,6 +736,7 @@ def q79(arr):
     """
     # Write your logic here
     pass
+
 
 def q80(arr):
     """Q80: Find the longest substring without repeating characters using a loop.
@@ -666,6 +746,7 @@ def q80(arr):
     # Write your logic here
     pass
 
+
 def q81(n):
     """Q81: Check if N is a Happy number.
     Input: n = 19
@@ -673,6 +754,7 @@ def q81(n):
     """
     # Write your logic here
     pass
+
 
 def q82(n):
     """Q82: Check if N is a Magic number (recursive sum of digits is 1).
@@ -682,6 +764,7 @@ def q82(n):
     # Write your logic here
     pass
 
+
 def q83(n):
     """Q83: Check if N is a Neon number (sum of digits of its square is equal to N).
     Input: n = 9
@@ -689,6 +772,7 @@ def q83(n):
     """
     # Write your logic here
     pass
+
 
 def q84(n):
     """Q84: Check if N is a Spy number (sum of digits is equal to product of digits).
@@ -698,6 +782,7 @@ def q84(n):
     # Write your logic here
     pass
 
+
 def q85(n):
     """Q85: Check if N is an Automorphic number (square of the number ends in the number itself).
     Input: n = 25
@@ -705,6 +790,7 @@ def q85(n):
     """
     # Write your logic here
     pass
+
 
 def q86(n):
     """Q86: Check if N is a Kaprekar number.
@@ -714,6 +800,7 @@ def q86(n):
     # Write your logic here
     pass
 
+
 def q87(n):
     """Q87: Check if N is a Disarium number (sum of its digits powered with their respective positions is N).
     Input: n = 89
@@ -721,6 +808,7 @@ def q87(n):
     """
     # Write your logic here
     pass
+
 
 def q88(n):
     """Q88: Check if N is a Keith number.
@@ -730,6 +818,7 @@ def q88(n):
     # Write your logic here
     pass
 
+
 def q89(n):
     """Q89: Check if N is a Smith number.
     Input: n = 4937775
@@ -737,6 +826,7 @@ def q89(n):
     """
     # Write your logic here
     pass
+
 
 def q90(n):
     """Q90: Check if N is a Narcissistic number (Armstrong style for any power).
@@ -746,6 +836,7 @@ def q90(n):
     # Write your logic here
     pass
 
+
 def q91(arr):
     """Q91: Find the count of subsegment sums divisible by K using a loop.
     Input: arr = ([4, 5, 0, -2, -3, 1], 5)
@@ -753,6 +844,7 @@ def q91(arr):
     """
     # Write your logic here
     pass
+
 
 def q92(n):
     """Q92: Find the sum of all proper divisors of N.
@@ -762,6 +854,7 @@ def q92(n):
     # Write your logic here
     pass
 
+
 def q93(n):
     """Q93: Find all abundant numbers up to N.
     Input: n = 20
@@ -769,6 +862,7 @@ def q93(n):
     """
     # Write your logic here
     pass
+
 
 def q94(n):
     """Q94: Find all perfect numbers up to N.
@@ -778,6 +872,7 @@ def q94(n):
     # Write your logic here
     pass
 
+
 def q95(arr):
     """Q95: Find the maximum length of a subarray of even numbers.
     Input: arr = [1, 2, 4, 3, 6, 8, 10, 5]
@@ -785,6 +880,7 @@ def q95(arr):
     """
     # Write your logic here
     pass
+
 
 def q96(arr):
     """Q96: Find the maximum length of a subarray of odd numbers.
@@ -794,6 +890,7 @@ def q96(arr):
     # Write your logic here
     pass
 
+
 def q97(s):
     """Q97: Find the first duplicate character in a string using loops.
     Input: s = "geeksforgeeks"
@@ -801,6 +898,7 @@ def q97(s):
     """
     # Write your logic here
     pass
+
 
 def q98(s):
     """Q98: Find the first non-duplicate character in a string using loops.
@@ -810,6 +908,7 @@ def q98(s):
     # Write your logic here
     pass
 
+
 def q99(n):
     """Q99: Generate Pascal's Triangle up to N rows using loops.
     Input: n = 4
@@ -817,6 +916,7 @@ def q99(n):
     """
     # Write your logic here
     pass
+
 
 def q100(n):
     """Q100: Print Fibonacci sequence up to N elements.
@@ -934,6 +1034,7 @@ TESTS = {
 
 
 # ==================== RUN TEST ====================
+
 
 def run_test(QUESTION_NUMBER, silent=False):
     import io
@@ -1136,6 +1237,7 @@ def run_test(QUESTION_NUMBER, silent=False):
         return False
     finally:
         sys.stdout = old_stdout
+
 
 if __name__ == "__main__":
     import sys
