@@ -1,8 +1,8 @@
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 """
-String Patterns - Practice One Question at a Time
-=================================================
+Bit Manipulation - Practice One Question at a Time
+==================================================
 HOW TO USE:
 1. Change QUESTION_NUMBER below to the question you want to solve (1 to 100)
 2. Write your logic in the corresponding function (q1 to q100)
@@ -16,215 +16,207 @@ QUESTION_NUMBER = None  # <-- Change this to solve different questions
 
 # ==================== ALL 100 QUESTIONS ====================
 
-# --- EASY LEVEL (Q1 - Q25) ---
-
-def q1(strs):
-    """Q1: Longest Common Prefix. Find the longest common prefix string amongst an array of strings.
-    Input: strs = ["flower", "flow", "flight"]
-    Expected Output: "fl"
+def q1(nums: list) -> int:
+    """Q1: Single Number. Find single element in array where every other element appears twice.
+    Input: nums = [4, 1, 2, 1, 2]
+    Expected Output: 4
     """
-    if not strs:
-        return ""
-    shortest = min(strs, key=len)
-    for i, char in enumerate(shortest):
-        for other in strs:
-            if other[i] != char:
-                return shortest[:i]
-    return shortest
+    xor_val = 0
+    for num in nums:
+        xor_val ^= num
+    return xor_val
 
-def q2(haystack, needle):
-    """Q2: Find the Index of the First Occurrence in a String. Return index or -1.
-    Input: haystack = "sadbutsad", needle = "sad"
-    Expected Output: 0
+def q2(n: int) -> int:
+    """Q2: Number of 1 Bits (Hamming weight). Return count of set bits (1s) in integer's binary representation.
+    Input: n = 11 (binary 00000000000000000000000000001011)
+    Expected Output: 3
     """
-    if not needle:
-        return 0
-    n, h = len(needle), len(haystack)
-    for i in range(h - n + 1):
-        if haystack[i:i+n] == needle:
-            return i
-    return -1
+    count = 0
+    while n:
+        n &= (n - 1)
+        count += 1
+    return count
 
-def q3(s):
-    """Q3: Length of Last Word. Return length of last word in string of spaces and words.
-    Input: s = "   fly me   to   the moon  "
-    Expected: 4 ("moon")
+def q3(n: int) -> list:
+    """Q3: Counting Bits. Return list of length n + 1 where ans[i] is the number of 1s in binary representation of i.
+    Input: n = 5
+    Expected: [0, 1, 1, 2, 1, 2]
     """
     # Write your logic here
     pass
 
-def q4(s):
-    """Q4: Valid Parentheses. Check bracket matching: '(', ')', '{', '}', '[', ']'.
-    Input: s = "()[]{}"
+def q4(n: int) -> int:
+    """Q4: Reverse Bits. Reverse bits of a given 32-bit unsigned integer.
+    Input: n = 43261596 (binary 00000010100101000001111010011100)
+    Expected: 964176192 (binary 00111001011110000010100101000000)
+    """
+    # Write your logic here
+    pass
+
+def q5(n: int) -> bool:
+    """Q5: Power of Two. Check if integer is a power of two.
+    Input: n = 16
     Expected: True
     """
     # Write your logic here
     pass
 
-def q5(address):
-    """Q5: Defanging an IP Address. Replace every '.' with '[.]'.
-    Input: address = "1.1.1.1"
-    Expected: "1[.]1[.]1[.]1"
+def q6(x: int, y: int) -> int:
+    """Q6: Hamming Distance. Find number of positions at which the corresponding bits are different.
+    Input: x = 1, y = 4
+    Expected: 2 (1 is 0001, 4 is 0100 -> different positions at 1st and 3rd bits)
     """
     # Write your logic here
     pass
 
-def q6(s):
-    """Q6: To Lower Case. Convert all characters in string to lower case in-place/return.
-    Input: s = "Hello"
-    Expected: "hello"
+def q7(nums: list) -> int:
+    """Q7: Missing Number. Find the missing number in the range [0, n] from array.
+    Input: nums = [3, 0, 1]
+    Expected: 2
     """
     # Write your logic here
     pass
 
-def q7(s):
-    """Q7: Reverse Only Letters. Keep non-letters in their original locations.
-    Input: s = "a-bC-dEf-ghIj"
-    Expected: "j-Ih-gfE-dCba"
-    """
-    # Write your logic here
-    pass
-
-def q8(s):
-    """Q8: Reverse Words in a String. Reverse words order, remove extra spaces.
-    Input: s = "  hello world  "
-    Expected: "world hello"
-    """
-    # Write your logic here
-    pass
-
-def q9(n):
-    """Q9: Count and Say (sequence generator).
-    Input: n = 4
-    Expected: "1211" (say 1 is "11", say 11 is "21", say 21 is "1211")
-    """
-    # Write your logic here
-    pass
-
-def q10(s):
-    """Q10: Repeated Substring Pattern. Check if s can be formed by repeating a substring.
-    Input: s = "abab"
+def q8(n: int) -> bool:
+    """Q8: Binary Number with Alternating Bits. Check if adjacent bits in n always have different values.
+    Input: n = 5 (binary 101)
     Expected: True
     """
     # Write your logic here
     pass
 
-def q11(s):
-    """Q11: Valid Palindrome (considering only alphanumeric characters and ignoring cases).
-    Input: s = "A man, a plan, a canal: Panama"
+def q9(nums: list) -> list:
+    """Q9: Subsets using bit masks (generate power set by iterating bit patterns).
+    Input: nums = [1, 2]
+    Expected: [[], [1], [2], [1, 2]]
+    """
+    # Write your logic here
+    pass
+
+def q10(nums: list) -> int:
+    """Q10: Single Number II. Find element appearing once where all others appear three times.
+    Input: nums = [2, 2, 3, 2]
+    Expected: 3
+    """
+    # Write your logic here
+    pass
+
+def q11(nums: list) -> list:
+    """Q11: Single Number III. Find two elements appearing once where all others appear twice.
+    Input: nums = [1, 2, 1, 3, 2, 5]
+    Expected: [3, 5]
+    """
+    # Write your logic here
+    pass
+
+def q12(left: int, right: int) -> int:
+    """Q12: Bitwise AND of Numbers Range.
+    Input: left = 5, right = 7
+    Expected: 4
+    """
+    # Write your logic here
+    pass
+
+def q13(words: list) -> int:
+    """Q13: Maximum Product of Word Lengths (using bit masks for word character tracking).
+    Input: words = ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"]
+    Expected: 16 (product of length "abcw" and "xtfn" -> 4 * 4 = 16)
+    """
+    # Write your logic here
+    pass
+
+def q14(a: int, b: int) -> int:
+    """Q14: Sum of Two Integers. Add two integers without using '+' or '-' operators.
+    Input: a = 1, b = 2
+    Expected: 3
+    """
+    # Write your logic here
+    pass
+
+def q15(data: list) -> bool:
+    """Q15: UTF-8 Validation. Check if input list represents valid UTF-8 encoding.
+    Input: data = [197, 130, 1]
     Expected: True
     """
     # Write your logic here
     pass
 
-def q12(s):
-    """Q12: Valid Palindrome II. Can delete at most one character to make it a palindrome.
-    Input: s = "abca"
-    Expected: True
+def q16(dividend: int, divisor: int) -> int:
+    """Q16: Divide Two Integers (bitwise division by shifting).
+    Input: dividend = 10, divisor = 3
+    Expected: 3
     """
     # Write your logic here
     pass
 
-def q13(s, t):
-    """Q13: Isomorphic Strings. Check if s and t are isomorphic.
-    Input: s = "egg", t = "add"
-    Expected: True
+def q17(a: int, b: int, c: int) -> int:
+    """Q17: Minimum Flips to Make a OR b Equal to c.
+    Input: a = 2, b = 6, c = 5
+    Expected: 3
     """
     # Write your logic here
     pass
 
-def q14(pattern, s):
-    """Q14: Word Pattern. Check if s follows pattern.
-    Input: pattern = "abba", s = "dog cat cat dog"
-    Expected: True
+def q18(nums: list) -> int:
+    """Q18: Maximum XOR of Two Numbers in an Array.
+    Input: nums = [3, 10, 5, 25, 2, 8]
+    Expected: 28
     """
     # Write your logic here
     pass
 
-def q15(s):
-    """Q15: Longest Palindromic Substring.
-    Input: s = "babad"
-    Expected: "bab" (or "aba")
+def q19(nums1: list, nums2: list) -> int:
+    """Q19: Minimum XOR Sum of Two Arrays.
+    Input: nums1 = [1, 2], nums2 = [2, 3]
+    Expected: 2
     """
     # Write your logic here
     pass
 
-def q16(s):
-    """Q16: Palindromic Substrings (count total palindromic substrings).
-    Input: s = "aaa"
-    Expected: 6 ("a", "a", "a", "aa", "aa", "aaa")
+def q20(words: list, puzzles: list) -> list:
+    """Q20: Number of Valid Words for Each Puzzle (Trie or Bitmask frequency mapping).
+    Input: words = ["aaaa","asas","able","ability","actt","actor","access"], puzzles = ["aboveyz","abrodyz","abslute","absoryz","actresz","gasnest"]
+    Expected: [1, 1, 3, 2, 4, 0]
     """
     # Write your logic here
     pass
 
-def q17(path):
-    """Q17: Simplify Path (canonical path representation).
-    Input: path = "/home//foo/"
-    Expected: "/home/foo"
+def q21(nums: list) -> int:
+    """Q21: Triples with Bitwise AND Equal To Zero.
+    Input: nums = [2, 1, 3]
+    Expected: 12
     """
     # Write your logic here
     pass
 
-def q18(num1, num2):
-    """Q18: Multiply Strings (large numbers multiplication without using big integer library).
-    Input: num1 = "123", num2 = "456"
-    Expected: "56088"
+def q22(s: str) -> int:
+    """Q22: Find Longest Awesome Substring (using parity state bit masks).
+    Input: s = "3242415"
+    Expected: 5 (awesome substring is "24241" or "24245" etc. which can be rearranged to palindrome)
     """
     # Write your logic here
     pass
 
-def q19(s):
-    """Q19: Basic Calculator II (evaluate expression string containing +, -, *, /).
-    Input: s = "3+2*2"
-    Expected: 7
+def q23(maxChoosableInteger: int, desiredTotal: int) -> bool:
+    """Q23: Can I Win (state compression DP backtracking).
+    Input: maxChoosableInteger = 10, desiredTotal = 11
+    Expected: False
     """
     # Write your logic here
     pass
 
-def q20(s, numRows):
-    """Q20: Zigzag Conversion.
-    Input: s = "PAYPALISHIRING", numRows = 3
-    Expected: "PAHNAPLSIIGYIR"
+def q24(root_arr: list) -> int:
+    """Q24: Pseudo-Palindromic Paths in a Binary Tree (represented as serialized list).
+    Input: root_arr = [2, 3, 1, 3, 1, null if 'null' in globals() else None, 1]
+    Expected: 2
     """
     # Write your logic here
     pass
 
-def q21(s):
-    """Q21: String to Integer (atoi).
-    Input: s = "   -42"
-    Expected: -42
-    """
-    # Write your logic here
-    pass
-
-def q22(num):
-    """Q22: Integer to Roman.
-    Input: num = 1994
-    Expected: "MCMXCIV"
-    """
-    # Write your logic here
-    pass
-
-def q23(s):
-    """Q23: Roman to Integer.
-    Input: s = "MCMXCIV"
-    Expected: 1994
-    """
-    # Write your logic here
-    pass
-
-def q24(s):
-    """Q24: Decode Ways. Return number of ways to decode string numbers to letters (A->1, B->2, ... Z->26).
-    Input: s = "226"
-    Expected: 3 (BZ -> 2, 26; VF -> 22, 6; BBF -> 2, 2, 6)
-    """
-    # Write your logic here
-    pass
-
-def q25(s):
-    """Q25: Restore IP Addresses. All possible valid IP addresses that can be formed from s digits.
-    Input: s = "25525511135"
-    Expected: ["255.255.11.135", "255.255.111.35"]
+def q25(nums: list) -> list:
+    """Q25: Maximum XOR Score Subarray Queries.
+    Input: nums = [1, 2]
+    Expected: [1]
     """
     # Write your logic here
     pass
@@ -241,7 +233,7 @@ def q26(height):
     pass
 
 def q27(nums):
-    """Q27: 3Sum. Unique triplets that sum to 0.
+    """Q27: 3Sum.
     Input: nums = [-1, 0, 1, 2, -1, -4]
     Expected: [[-1, -1, 2], [-1, 0, 1]]
     """
@@ -839,31 +831,31 @@ def q100(nums):
 # ==================== TEST SUITE DICTIONARY ====================
 
 TESTS = {
-    1: {'func': q1, 'args': [["flower", "flow", "flight"]], 'expected': "fl"},
-    2: {'func': q2, 'args': ["sadbutsad", "sad"], 'expected': 0},
-    3: {'func': q3, 'args': ["   fly me   to   the moon  "], 'expected': 4},
-    4: {'func': q4, 'args': ["()[]{}"], 'expected': True},
-    5: {'func': q5, 'args': ["1.1.1.1"], 'expected': "1[.]1[.]1[.]1"},
-    6: {'func': q6, 'args': ["Hello"], 'expected': "hello"},
-    7: {'func': q7, 'args': ["a-bC-dEf-ghIj"], 'expected': "j-Ih-gfE-dCba"},
-    8: {'func': q8, 'args': ["  hello world  "], 'expected': "world hello"},
-    9: {'func': q9, 'args': [4], 'expected': "1211"},
-    10: {'func': q10, 'args': ["abab"], 'expected': True},
-    11: {'func': q11, 'args': ["A man, a plan, a canal: Panama"], 'expected': True},
-    12: {'func': q12, 'args': ["abca"], 'expected': True},
-    13: {'func': q13, 'args': ["egg", "add"], 'expected': True},
-    14: {'func': q14, 'args': ["abba", "dog cat cat dog"], 'expected': True},
-    15: {'func': q15, 'args': ["babad"], 'expected': "bab"},
-    16: {'func': q16, 'args': ["aaa"], 'expected': 6},
-    17: {'func': q17, 'args': ["/home//foo/"], 'expected': "/home/foo"},
-    18: {'func': q18, 'args': ["123", "456"], 'expected': "56088"},
-    19: {'func': q19, 'args': ["3+2*2"], 'expected': 7},
-    20: {'func': q20, 'args': ["PAYPALISHIRING", 3], 'expected': "PAHNAPLSIIGYIR"},
-    21: {'func': q21, 'args': ["   -42"], 'expected': -42},
-    22: {'func': q22, 'args': [1994], 'expected': "MCMXCIV"},
-    23: {'func': q23, 'args': ["MCMXCIV"], 'expected': 1994},
-    24: {'func': q24, 'args': ["226"], 'expected': 3},
-    25: {'func': q25, 'args': ["25525511135"], 'expected': ["255.255.11.135", "255.255.111.35"]},
+    1: {'func': q1, 'args': [[4, 1, 2, 1, 2]], 'expected': 4},
+    2: {'func': q2, 'args': [11], 'expected': 3},
+    3: {'func': q3, 'args': [5], 'expected': [0, 1, 1, 2, 1, 2]},
+    4: {'func': q4, 'args': [43261596], 'expected': 964176192},
+    5: {'func': q5, 'args': [16], 'expected': True},
+    6: {'func': q6, 'args': [1, 4], 'expected': 2},
+    7: {'func': q7, 'args': [[3, 0, 1]], 'expected': 2},
+    8: {'func': q8, 'args': [5], 'expected': True},
+    9: {'func': q9, 'args': [[1, 2]], 'expected': [[], [1], [2], [1, 2]]},
+    10: {'func': q10, 'args': [[2, 2, 3, 2]], 'expected': 3},
+    11: {'func': q11, 'args': [[1, 2, 1, 3, 2, 5]], 'expected': [3, 5]},
+    12: {'func': q12, 'args': [5, 7], 'expected': 4},
+    13: {'func': q13, 'args': [["abcw", "baz", "foo", "bar", "xtfn", "abcdef"]], 'expected': 16},
+    14: {'func': q14, 'args': [1, 2], 'expected': 3},
+    15: {'func': q15, 'args': [[197, 130, 1]], 'expected': True},
+    16: {'func': q16, 'args': [10, 3], 'expected': 3},
+    17: {'func': q17, 'args': [2, 6, 5], 'expected': 3},
+    18: {'func': q18, 'args': [[3, 10, 5, 25, 2, 8]], 'expected': 28},
+    19: {'func': q19, 'args': [[1, 2], [2, 3]], 'expected': 2},
+    20: {'func': q20, 'args': [["aaaa","asas","able","ability","actt","actor","access"], ["aboveyz","abrodyz","abslute","absoryz","actresz","gasnest"]], 'expected': [1, 1, 3, 2, 4, 0]},
+    21: {'func': q21, 'args': [[2, 1, 3]], 'expected': 12},
+    22: {'func': q22, 'args': ["3242415"], 'expected': 5},
+    23: {'func': q23, 'args': [10, 11], 'expected': False},
+    24: {'func': q24, 'args': [[2, 3, 1, 3, 1, None, 1]], 'expected': 2},
+    25: {'func': q25, 'args': [[1, 2]], 'expected': [1]},
     
     26: {'func': q26, 'args': [[1, 8, 6, 2, 5, 4, 8, 3, 7]], 'expected': 49},
     27: {'func': q27, 'args': [[-1, 0, 1, 2, -1, -4]], 'expected': [[-1, -1, 2], [-1, 0, 1]]},
@@ -957,51 +949,190 @@ def run_test(QUESTION_NUMBER, silent=False):
         
     try:
         test = TESTS.get(QUESTION_NUMBER)
-    
         if not test:
-            print(f"❌ Question {QUESTION_NUMBER} not found!")
+            if not silent:
+                print(f"❌ Question {QUESTION_NUMBER} not found!")
             return False
-    
+            
         func = test['func']
         args = test['args']
         expected = test['expected']
-    
-        print(f"\n{'='*60}")
-        print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0]}")
-        print(f"{'='*60}")
-        print(f"Input: {args}")
-        print(f"Expected: {expected}")
-        print("-"*60)
-    
-        try:
-            result = func(*args) if isinstance(args, list) else func(args)
         
-            # Format string lists or matches for sorting checks
-            if QUESTION_NUMBER == 25 and result:
-                result = sorted(result)
-                expected = sorted(expected)
+        if not silent:
+            print(f"\n{'='*60}")
+            print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0] if func.__doc__ else 'No docstring'}")
+            print(f"{'='*60}")
+            print(f"Input: {args}")
+            print(f"Expected: {expected}")
+            print("-" * 60)
             
-            print(f"Your Output: {result}")
+        # Run conversion logic if applicable (Linked Lists / Trees)
+        # We check filename to apply custom converters if they are defined
+        import os
+        filename = os.path.basename(__file__)
         
-            if result == expected:
-                print("\n✅ PASS - Correct!")
+        if filename == "linked_lists.py" and QUESTION_NUMBER <= 25 and QUESTION_NUMBER != 19:
+            processed_args = []
+            if QUESTION_NUMBER == 2:
+                list_vals = args[0]
+                target_val = args[1]
+                head = to_linked_list(list_vals)
+                curr = head
+                target_node = None
+                while curr:
+                    if curr.val == target_val:
+                        target_node = curr
+                        break
+                    curr = curr.next
+                func(target_node)
+                result = to_list(head)
+            elif QUESTION_NUMBER == 8:
+                list_vals = args[0]
+                cycle_pos = args[1]
+                head = to_linked_list(list_vals)
+                if cycle_pos != -1:
+                    curr = head
+                    cycle_node = None
+                    tail = None
+                    idx = 0
+                    while curr:
+                        if idx == cycle_pos:
+                            cycle_node = curr
+                        tail = curr
+                        curr = curr.next
+                        idx += 1
+                    if tail and cycle_node:
+                        tail.next = cycle_node
+                result = func(head)
+            elif QUESTION_NUMBER == 9:
+                listA = args[0]
+                listB = args[1]
+                skipA = args[2]
+                skipB = args[3]
+                headA = to_linked_list(listA[:skipA])
+                headB = to_linked_list(listB[:skipB])
+                intersect = to_linked_list(listA[skipA:])
+                if headA:
+                    curr = headA
+                    while curr.next:
+                        curr = curr.next
+                    curr.next = intersect
+                else:
+                    headA = intersect
+                if headB:
+                    curr = headB
+                    while curr.next:
+                        curr = curr.next
+                    curr.next = intersect
+                else:
+                    headB = intersect
+                res_node = func(headA, headB)
+                result = to_list(res_node)
+            elif QUESTION_NUMBER == 23:
+                list_nodes = [to_linked_list(arr) for arr in args[0]]
+                res_node = func(list_nodes)
+                result = to_list(res_node)
+            elif QUESTION_NUMBER == 25:
+                list_vals = args[0]
+                cycle_pos = args[1]
+                head = to_linked_list(list_vals)
+                if cycle_pos != -1:
+                    curr = head
+                    cycle_node = None
+                    tail = None
+                    idx = 0
+                    while curr:
+                        if idx == cycle_pos:
+                            cycle_node = curr
+                        tail = curr
+                        curr = curr.next
+                        idx += 1
+                    if tail and cycle_node:
+                        tail.next = cycle_node
+                res_node = func(head)
+                if not res_node:
+                    result = -1
+                else:
+                    curr = head
+                    idx = 0
+                    result = -1
+                    for _ in range(100):
+                        if curr == res_node:
+                            result = idx
+                            break
+                        curr = curr.next
+                        idx += 1
             else:
+                for arg in args:
+                    if isinstance(arg, list):
+                        processed_args.append(to_linked_list(arg))
+                    else:
+                        processed_args.append(arg)
+                res_node = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
+                result = to_list(res_node) if isinstance(res_node, ListNode) else res_node
+                
+        elif filename == "trees_and_bst.py" and QUESTION_NUMBER <= 25:
+            processed_args = []
+            for arg in args:
+                if isinstance(arg, list):
+                    processed_args.append(to_tree(arg))
+                else:
+                    processed_args.append(arg)
+            res_val = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
+            if isinstance(res_val, TreeNode):
+                result = to_list(res_val)
+            else:
+                result = res_val
+                
+        elif filename == "tries.py":
+            # Tries test runner class-based instantiation and method calling
+            commands = args[0]
+            arguments = args[1]
+            obj = func() # Instantiate the class (Trie or MapSum)
+            result = [None]
+            for i in range(1, len(commands)):
+                cmd = commands[i]
+                arg = arguments[i]
+                method = getattr(obj, cmd)
+                res = method(*arg) if arg else method()
+                result.append(res)
+                
+        else:
+            # Standard input/output check
+            result = func(*args) if isinstance(args, list) else func(args)
+            
+        # Custom result sorting for combinations/subsets/permutations
+        if filename == "backtracking.py" and QUESTION_NUMBER in [1, 2, 4, 13, 20]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+        elif filename == "bit_manipulation.py" and QUESTION_NUMBER in [9, 11]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+        elif filename == "loop_basics.py" and QUESTION_NUMBER in [41]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+                
+        if not silent:
+            print(f"Your Output: {result}")
+            
+        if result == expected:
+            if not silent:
+                print("\n✅ PASS - Correct!")
+            return True
+        else:
+            if not silent:
                 print("\n❌ FAIL - Output doesn't match expected")
-        except Exception as e:
-            print(f"\n❌ ERROR: {e}")
-    
-        print(f"{'='*60}\n")
+            return False
+            
     except Exception as e:
         if not silent:
             print(f"\n❌ ERROR: {e}")
         return False
     finally:
         sys.stdout = old_stdout
-        
-    if silent:
-        output_str = captured.getvalue()
-        return "✅ PASS" in output_str
-    return True
 
 if __name__ == "__main__":
     import sys
@@ -1012,15 +1143,38 @@ if __name__ == "__main__":
         except ValueError:
             pass
 
-    # If QUESTION_NUMBER is None or 0, auto-detect the first unsolved question
+    # If QUESTION_NUMBER is None or 0, auto-detect the highest-numbered non-empty question
     if QUESTION_NUMBER is None or QUESTION_NUMBER == 0:
+        import ast
+        import inspect
+        
         detected_q = 1
-        for q_num in sorted(TESTS.keys()):
-            if not run_test(q_num, silent=True):
-                detected_q = q_num
-                break
-        else:
-            detected_q = max(TESTS.keys())
+        for q_num in sorted(TESTS.keys(), reverse=True):
+            test = TESTS[q_num]
+            func = test['func']
+            try:
+                source = inspect.getsource(func)
+                tree = ast.parse(source)
+                func_def = tree.body[0]
+                body = func_def.body
+                
+                # Check if there are non-docstring, non-pass statements
+                non_empty = False
+                for stmt in body:
+                    # Ignore docstrings
+                    if isinstance(stmt, ast.Expr) and isinstance(stmt.value, (ast.Constant, ast.Str)):
+                        continue
+                    # Ignore pass
+                    if isinstance(stmt, ast.Pass):
+                        continue
+                    non_empty = True
+                    break
+                
+                if non_empty:
+                    detected_q = q_num
+                    break
+            except Exception:
+                pass
         QUESTION_NUMBER = detected_q
 
     # Run the selected question in verbose mode

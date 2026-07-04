@@ -1,8 +1,8 @@
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 """
-Binary Search - Practice One Question at a Time
-===============================================
+Matrix Traversal - Practice One Question at a Time
+==================================================
 HOW TO USE:
 1. Change QUESTION_NUMBER below to the question you want to solve (1 to 100)
 2. Write your logic in the corresponding function (q1 to q100)
@@ -18,217 +18,218 @@ QUESTION_NUMBER = None  # <-- Change this to solve different questions
 
 # --- EASY LEVEL (Q1 - Q25) ---
 
-def q1(nums, target):
-    """Q1: Binary Search. Find target in a sorted ascending array. Return index or -1.
-    Input: nums = [-1, 0, 3, 5, 9, 12], target = 9
-    Expected Output: 4
+def q1(matrix):
+    """Q1: Transpose Matrix. Swap row index with column index.
+    Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    Expected Output: [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
     """
-    left, right = 0, len(nums) - 1
-    while left <= right:
-        mid = (left + right) // 2
-        if nums[mid] == target:
-            return mid
-        elif nums[mid] < target:
-            left = mid + 1
-        else:
-            right = mid - 1
-    return -1
+    R = len(matrix)
+    C = len(matrix[0])
+    transpose = [[0] * R for _ in range(C)]
+    for r in range(R):
+        for c in range(C):
+            transpose[c][r] = matrix[r][c]
+    return transpose
 
-def q2(nums, target):
-    """Q2: Search Insert Position. Find target index or where it would be inserted in sorted order.
-    Input: nums = [1, 3, 5, 6], target = 5
-    Expected Output: 2
+def q2(matrix):
+    """Q2: Matrix Diagonal Sum. Sum the primary and secondary diagonal.
+    Include overlapping center element only once.
+    Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    Expected Output: 25 (primary: 1+5+9=15, secondary: 3+5+7=15, overlap center 5 subtracted: 30 - 5 = 25)
     """
-    left, right = 0, len(nums) - 1
-    while left <= right:
-        mid = (left + right) // 2
-        if nums[mid] == target:
-            return mid
-        elif nums[mid] < target:
-            left = mid + 1
-        else:
-            right = mid - 1
-    return left
+    n = len(matrix)
+    total = 0
+    for i in range(n):
+        total += matrix[i][i]
+        total += matrix[i][n - 1 - i]
+    if n % 2 == 1:
+        total -= matrix[n // 2][n // 2]
+    return total
 
-def q3(arr):
-    """Q3: Peak Index in a Mountain Array. Returns index of peak element.
-    Input: arr = [0, 10, 5, 2]
-    Expected: 1
+def q3(mat, r, c):
+    """Q3: Reshape the Matrix. Convert mat to a new r x c matrix. Return original if impossible.
+    Input: mat = [[1, 2], [3, 4]], r = 1, c = 4
+    Expected: [[1, 2, 3, 4]]
     """
     # Write your logic here
     pass
 
-def q4(n, bad):
-    """Q4: First Bad Version (find the first bad version in [1..n] given isBadVersion(v) api).
-    Input: n = 5, bad = 4
-    Expected: 4
+def q4(image):
+    """Q4: Flip Image. Horizontal flip then invert values (0->1, 1->0).
+    Input: image = [[1, 1, 0], [1, 0, 1], [0, 0, 0]]
+    Expected: [[1, 0, 0], [0, 1, 0], [1, 1, 1]]
     """
     # Write your logic here
     pass
 
-def q5(n, pick):
-    """Q5: Guess Number Higher or Lower (find pick in [1..n] using guess(num) api).
-    Input: n = 10, pick = 6
-    Expected: 6
+def q5(grid):
+    """Q5: Island Perimeter. grid contains 0 (water) and 1 (land). Find the perimeter of the island.
+    Input: grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]
+    Expected: 16
     """
     # Write your logic here
     pass
 
-def q6(num):
-    """Q6: Valid Perfect Square. Return True if num is perfect square without using sqrt function.
-    Input: num = 16
+def q6(image, sr, sc, color):
+    """Q6: Flood Fill. Fill starting pixel and all 4-directionally matching neighbors with color.
+    Input: image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2
+    Expected: [[2,2,2],[2,2,0],[2,0,1]]
+    """
+    # Write your logic here
+    pass
+
+def q7(grid):
+    """Q7: Count Negative Numbers in a Sorted Matrix. Rows and cols sorted descending.
+    Input: grid = [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]
+    Expected: 8
+    """
+    # Write your logic here
+    pass
+
+def q8(matrix):
+    """Q8: Spiral Matrix. Return elements in spiral order (outer clock-wise boundary inward).
+    Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    Expected: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+    """
+    # Write your logic here
+    pass
+
+def q9(n):
+    """Q9: Spiral Matrix II. Generate an n x n matrix containing numbers 1 to n^2 in spiral order.
+    Input: n = 3
+    Expected: [[1, 2, 3], [8, 9, 4], [7, 6, 5]]
+    """
+    # Write your logic here
+    pass
+
+def q10(matrix):
+    """Q10: Rotate Image (in-place clockwise 90 degrees). Return the matrix.
+    Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    Expected: [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+    """
+    # Write your logic here
+    pass
+
+def q11(mat):
+    """Q11: Diagonal Traverse. Return elements diagonal-by-diagonal (alternating up and down).
+    Input: mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    Expected: [1, 2, 4, 7, 5, 3, 6, 8, 9]
+    """
+    # Write your logic here
+    pass
+
+def q12(matrix):
+    """Q12: Set Matrix Zeroes. In-place. If cell is 0, set its entire row and column to 0. Return matrix.
+    Input: matrix = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]
+    Expected: [[1, 0, 1], [0, 0, 0], [1, 0, 1]]
+    """
+    # Write your logic here
+    pass
+
+def q13(matrix, target):
+    """Q13: Search a 2D Matrix (binary search compatible, sorted left-to-right, row-by-row).
+    Input: matrix = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], target = 3
     Expected: True
     """
     # Write your logic here
     pass
 
-def q7(letters, target):
-    """Q7: Find Smallest Letter Greater Than Target (sorted circular array of chars).
-    Input: letters = ["c", "f", "j"], target = "a"
-    Expected: "c"
-    """
-    # Write your logic here
-    pass
-
-def q8(nums, target):
-    """Q8: Search in Rotated Sorted Array. Return index of target or -1.
-    Input: nums = [4, 5, 6, 7, 0, 1, 2], target = 0
-    Expected: 4
-    """
-    # Write your logic here
-    pass
-
-def q9(nums, target):
-    """Q9: Search in Rotated Sorted Array II (contains duplicates). Return True if target exists.
-    Input: nums = [2, 5, 6, 0, 0, 1, 2], target = 0
+def q14(matrix, target):
+    """Q14: Search a 2D Matrix II (each row and col is sorted individually).
+    Input: matrix = [[1,4,7,11],[2,5,8,12],[3,6,9,16],[10,13,14,17]], target = 5
     Expected: True
     """
     # Write your logic here
     pass
 
-def q10(nums):
-    """Q10: Find Minimum in Rotated Sorted Array. Unique elements.
-    Input: nums = [3, 4, 5, 1, 2]
-    Expected: 1
-    """
-    # Write your logic here
-    pass
-
-def q11(nums):
-    """Q11: Find Minimum in Rotated Sorted Array II (duplicates allowed).
-    Input: nums = [2, 2, 2, 0, 1]
-    Expected: 0
-    """
-    # Write your logic here
-    pass
-
-def q12(nums, target):
-    """Q12: Find First and Last Position of Element in Sorted Array. Return [start, end].
-    Input: nums = [5, 7, 7, 8, 8, 10], target = 8
-    Expected: [3, 4]
-    """
-    # Write your logic here
-    pass
-
-def q13(nums):
-    """Q13: Find Peak Element. Return index of peak element.
-    Input: nums = [1, 2, 1, 3, 5, 6, 4]
-    Expected: 5 (value 6, or 1 for value 2)
-    """
-    # Write your logic here
-    pass
-
-def q14(nums):
-    """Q14: Single Element in a Sorted Array. Find single element in O(log n) time and O(1) space.
-    Input: nums = [1, 1, 2, 3, 3, 4, 4, 8, 8]
-    Expected: 2
-    """
-    # Write your logic here
-    pass
-
-def q15(arr, k, x):
-    """Q15: Find K Closest Elements in a sorted array to target x.
-    Input: arr = [1, 2, 3, 4, 5], k = 4, x = 3
-    Expected: [1, 2, 3, 4]
-    """
-    # Write your logic here
-    pass
-
-def q16(x):
-    """Q16: Sqrt(x). Return integer square root.
-    Input: x = 8
-    Expected: 2
-    """
-    # Write your logic here
-    pass
-
-def q17(piles, h):
-    """Q17: Koko Eating Bananas. Find min eating speed k.
-    Input: piles = [3, 6, 7, 11], h = 8
-    Expected: 4
-    """
-    # Write your logic here
-    pass
-
-def q18(weights, days):
-    """Q18: Capacity To Ship Packages Within D Days.
-    Input: weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], days = 5
-    Expected: 15
-    """
-    # Write your logic here
-    pass
-
-def q19(nums, k):
-    """Q19: Split Array Largest Sum.
-    Input: nums = [7, 2, 5, 10, 8], k = 2
-    Expected: 18
-    """
-    # Write your logic here
-    pass
-
-def q20(nums):
-    """Q20: Find the Duplicate Number (in-place cyclic detection or binary search range [1, n]).
-    Input: nums = [1, 3, 4, 2, 2]
-    Expected: 2
-    """
-    # Write your logic here
-    pass
-
-def q21(nums1, nums2):
-    """Q21: Median of Two Sorted Arrays. Find median in O(log(min(m, n))) time.
-    Input: nums1 = [1, 3], nums2 = [2]
-    Expected: 2.0
-    """
-    # Write your logic here
-    pass
-
-def q22(nums, k):
-    """Q22: Find K-th Smallest Pair Distance.
-    Input: nums = [1, 3, 1], k = 1
-    Expected: 0 (pairs are (1,3) diff 2, (1,1) diff 0, (3,1) diff 2. sorted: 0, 2, 2)
-    """
-    # Write your logic here
-    pass
-
-def q23(nums, maxOperations):
-    """Q23: Minimum Limit of Balls in a Bag.
-    Input: nums = [9], maxOperations = 2
-    Expected: 3 (split 9 to 3, 6, then split 6 to 3, 3)
-    """
-    # Write your logic here
-    pass
-
-def q24(dist, hour):
-    """Q24: Minimum Speed to Arrive on Time.
-    Input: dist = [1, 3, 2], hour = 2.7
+def q15(grid):
+    """Q15: Number of Islands (connected components of 1s using 4-directional search).
+    Input: grid = [
+        ["1","1","0","0","0"],
+        ["1","1","0","0","0"],
+        ["0","0","1","0","0"],
+        ["0","0","0","1","1"]
+    ]
     Expected: 3
     """
     # Write your logic here
     pass
 
-def q25(n, index, maxSum):
-    """Q25: Maximum Value at a Given Index in a Bounded Array.
-    Input: n = 4, index = 2, maxSum = 6
+def q16(grid):
+    """Q16: Max Area of Island. Find the max count of connected 1s.
+    Input: grid = [[0,0,1,0,0],[0,0,1,1,0],[0,1,1,0,0],[0,0,0,0,0]]
+    Expected: 5
+    """
+    # Write your logic here
+    pass
+
+def q17(grid):
+    """Q17: Number of Closed Islands. Closed island is surrounded entirely by 1s (cannot touch boundary).
+    Input: grid = [[1,1,1,1,1,1,1,0],[1,0,0,0,0,1,1,0],[1,0,1,0,1,1,1,0],[1,0,0,0,0,1,0,1],[1,1,1,1,1,1,1,0]]
+    Expected: 2
+    """
+    # Write your logic here
+    pass
+
+def q18(grid):
+    """Q18: Rotting Oranges (BFS multisource). 0 empty, 1 fresh, 2 rotten. Return min minutes.
+    Input: grid = [[2,1,1],[1,1,0],[0,1,1]]
+    Expected: 4
+    """
+    # Write your logic here
+    pass
+
+def q19(mat):
+    """Q19: 01 Matrix. Find distance of nearest 0 for each cell.
+    Input: mat = [[0,0,0],[0,1,0],[1,1,1]]
+    Expected: [[0,0,0],[0,1,0],[1,2,1]]
+    """
+    # Write your logic here
+    pass
+
+def q20(board, word):
+    """Q20: Word Search (DFS backtracking on grid to check if word exists).
+    Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+    Expected: True
+    """
+    # Write your logic here
+    pass
+
+def q21(m, n):
+    """Q21: Unique Paths. Robot starts at top-left, moves to bottom-right of m x n grid.
+    Input: m = 3, n = 7
+    Expected: 28
+    """
+    # Write your logic here
+    pass
+
+def q22(obstacleGrid):
+    """Q22: Unique Paths II. Grid contains obstacles (1).
+    Input: obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]
+    Expected: 2
+    """
+    # Write your logic here
+    pass
+
+def q23(grid):
+    """Q23: Minimum Path Sum. Move top-left to bottom-right minimizing sum of cell values.
+    Input: grid = [[1,3,1],[1,5,1],[4,2,1]]
+    Expected: 7 (path: 1->3->1->1->1)
+    """
+    # Write your logic here
+    pass
+
+def q24(matrix):
+    """Q24: Longest Increasing Path in a Matrix (DFS + Memoization).
+    Input: matrix = [[9,9,4],[6,6,8],[2,1,1]]
+    Expected: 4 (path: 1->2->6->9)
+    """
+    # Write your logic here
+    pass
+
+def q25(grid):
+    """Q25: Shortest Path in Binary Matrix (BFS, clear path of 0s, 8-directional).
+    Input: grid = [[0,1],[1,0]]
     Expected: 2
     """
     # Write your logic here
@@ -844,31 +845,31 @@ def q100(nums):
 # ==================== TEST SUITE DICTIONARY ====================
 
 TESTS = {
-    1: {'func': q1, 'args': [[-1, 0, 3, 5, 9, 12], 9], 'expected': 4},
-    2: {'func': q2, 'args': [[1, 3, 5, 6], 5], 'expected': 2},
-    3: {'func': q3, 'args': [[0, 10, 5, 2]], 'expected': 1},
-    4: {'func': q4, 'args': [5, 4], 'expected': 4},
-    5: {'func': q5, 'args': [10, 6], 'expected': 6},
-    6: {'func': q6, 'args': [16], 'expected': True},
-    7: {'func': q7, 'args': [["c", "f", "j"], "a"], 'expected': "c"},
-    8: {'func': q8, 'args': [[4, 5, 6, 7, 0, 1, 2], 0], 'expected': 4},
-    9: {'func': q9, 'args': [[2, 5, 6, 0, 0, 1, 2], 0], 'expected': True},
-    10: {'func': q10, 'args': [[3, 4, 5, 1, 2]], 'expected': 1},
-    11: {'func': q11, 'args': [[2, 2, 2, 0, 1]], 'expected': 0},
-    12: {'func': q12, 'args': [[5, 7, 7, 8, 8, 10], 8], 'expected': [3, 4]},
-    13: {'func': q13, 'args': [[1, 2, 1, 3, 5, 6, 4]], 'expected': 5},
-    14: {'func': q14, 'args': [[1, 1, 2, 3, 3, 4, 4, 8, 8]], 'expected': 2},
-    15: {'func': q15, 'args': [[1, 2, 3, 4, 5], 4, 3], 'expected': [1, 2, 3, 4]},
-    16: {'func': q16, 'args': [8], 'expected': 2},
-    17: {'func': q17, 'args': [[3, 6, 7, 11], 8], 'expected': 4},
-    18: {'func': q18, 'args': [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5], 'expected': 15},
-    19: {'func': q19, 'args': [[7, 2, 5, 10, 8], 2], 'expected': 18},
-    20: {'func': q20, 'args': [[1, 3, 4, 2, 2]], 'expected': 2},
-    21: {'func': q21, 'args': [[1, 3], [2]], 'expected': 2.0},
-    22: {'func': q22, 'args': [[1, 3, 1], 1], 'expected': 0},
-    23: {'func': q23, 'args': [[9], 2], 'expected': 3},
-    24: {'func': q24, 'args': [[1, 3, 2], 2.7], 'expected': 3},
-    25: {'func': q25, 'args': [4, 2, 6], 'expected': 2},
+    1: {'func': q1, 'args': [[[1, 2, 3], [4, 5, 6], [7, 8, 9]]], 'expected': [[1, 4, 7], [2, 5, 8], [3, 6, 9]]},
+    2: {'func': q2, 'args': [[[1, 2, 3], [4, 5, 6], [7, 8, 9]]], 'expected': 25},
+    3: {'func': q3, 'args': [[[1, 2], [3, 4]], 1, 4], 'expected': [[1, 2, 3, 4]]},
+    4: {'func': q4, 'args': [[[1, 1, 0], [1, 0, 1], [0, 0, 0]]], 'expected': [[1, 0, 0], [0, 1, 0], [1, 1, 1]]},
+    5: {'func': q5, 'args': [[[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]]], 'expected': 16},
+    6: {'func': q6, 'args': [[[1, 1, 1], [1, 1, 0], [1, 0, 1]], 1, 1, 2], 'expected': [[2, 2, 2], [2, 2, 0], [2, 0, 1]]},
+    7: {'func': q7, 'args': [[[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]]], 'expected': 8},
+    8: {'func': q8, 'args': [[[1, 2, 3], [4, 5, 6], [7, 8, 9]]], 'expected': [1, 2, 3, 6, 9, 8, 7, 4, 5]},
+    9: {'func': q9, 'args': [3], 'expected': [[1, 2, 3], [8, 9, 4], [7, 6, 5]]},
+    10: {'func': q10, 'args': [[[1, 2, 3], [4, 5, 6], [7, 8, 9]]], 'expected': [[7, 4, 1], [8, 5, 2], [9, 6, 3]]},
+    11: {'func': q11, 'args': [[[1, 2, 3], [4, 5, 6], [7, 8, 9]]], 'expected': [1, 2, 4, 7, 5, 3, 6, 8, 9]},
+    12: {'func': q12, 'args': [[[1, 1, 1], [1, 0, 1], [1, 1, 1]]], 'expected': [[1, 0, 1], [0, 0, 0], [1, 0, 1]]},
+    13: {'func': q13, 'args': [[[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 3], 'expected': True},
+    14: {'func': q14, 'args': [[[1, 4, 7, 11], [2, 5, 8, 12], [3, 6, 9, 16], [10, 13, 14, 17]], 5], 'expected': True},
+    15: {'func': q15, 'args': [[["1", "1", "0", "0", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "1", "0", "0"], ["0", "0", "0", "1", "1"]]], 'expected': 3},
+    16: {'func': q16, 'args': [[[0, 0, 1, 0, 0], [0, 0, 1, 1, 0], [0, 1, 1, 0, 0], [0, 0, 0, 0, 0]]], 'expected': 5},
+    17: {'func': q17, 'args': [[[1, 1, 1, 1, 1, 1, 1, 0], [1, 0, 0, 0, 0, 1, 1, 0], [1, 0, 1, 0, 1, 1, 1, 0], [1, 0, 0, 0, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1, 1, 0]]], 'expected': 2},
+    18: {'func': q18, 'args': [[[2, 1, 1], [1, 1, 0], [0, 1, 1]]], 'expected': 4},
+    19: {'func': q19, 'args': [[[0, 0, 0], [0, 1, 0], [1, 1, 1]]], 'expected': [[0, 0, 0], [0, 1, 0], [1, 2, 1]]},
+    20: {'func': q20, 'args': [[["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "ABCCED"], 'expected': True},
+    21: {'func': q21, 'args': [3, 7], 'expected': 28},
+    22: {'func': q22, 'args': [[[0, 0, 0], [0, 1, 0], [0, 0, 0]]], 'expected': 2},
+    23: {'func': q23, 'args': [[[1, 3, 1], [1, 5, 1], [4, 2, 1]]], 'expected': 7},
+    24: {'func': q24, 'args': [[[9, 9, 4], [6, 6, 8], [2, 1, 1]]], 'expected': 4},
+    25: {'func': q25, 'args': [[[0, 1], [1, 0]]], 'expected': 2},
     
     26: {'func': q26, 'args': [[1, 8, 6, 2, 5, 4, 8, 3, 7]], 'expected': 49},
     27: {'func': q27, 'args': [[-1, 0, 1, 2, -1, -4]], 'expected': [[-1, -1, 2], [-1, 0, 1]]},
@@ -962,60 +963,190 @@ def run_test(QUESTION_NUMBER, silent=False):
         
     try:
         test = TESTS.get(QUESTION_NUMBER)
-    
         if not test:
-            print(f"❌ Question {QUESTION_NUMBER} not found!")
+            if not silent:
+                print(f"❌ Question {QUESTION_NUMBER} not found!")
             return False
-    
+            
         func = test['func']
         args = test['args']
         expected = test['expected']
-    
-        print(f"\n{'='*60}")
-        print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0]}")
-        print(f"{'='*60}")
-        print(f"Input: {args}")
-        print(f"Expected: {expected}")
-        print("-"*60)
-    
-        try:
-            # Mock APIs for specific testing
-            if QUESTION_NUMBER == 4:
-                # mock isBadVersion
-                bad_version = args[1]
-                global isBadVersion
-                isBadVersion = lambda v: v >= bad_version
-                result = func(args[0])
-            elif QUESTION_NUMBER == 5:
-                # mock guess API
-                picked_num = args[1]
-                global guess
-                guess = lambda num: 0 if num == picked_num else (-1 if num > picked_num else 1)
-                result = func(args[0])
-            else:
-                result = func(*args) if isinstance(args, list) else func(args)
-            
-            print(f"Your Output: {result}")
         
-            if result == expected:
-                print("\n✅ PASS - Correct!")
+        if not silent:
+            print(f"\n{'='*60}")
+            print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0] if func.__doc__ else 'No docstring'}")
+            print(f"{'='*60}")
+            print(f"Input: {args}")
+            print(f"Expected: {expected}")
+            print("-" * 60)
+            
+        # Run conversion logic if applicable (Linked Lists / Trees)
+        # We check filename to apply custom converters if they are defined
+        import os
+        filename = os.path.basename(__file__)
+        
+        if filename == "linked_lists.py" and QUESTION_NUMBER <= 25 and QUESTION_NUMBER != 19:
+            processed_args = []
+            if QUESTION_NUMBER == 2:
+                list_vals = args[0]
+                target_val = args[1]
+                head = to_linked_list(list_vals)
+                curr = head
+                target_node = None
+                while curr:
+                    if curr.val == target_val:
+                        target_node = curr
+                        break
+                    curr = curr.next
+                func(target_node)
+                result = to_list(head)
+            elif QUESTION_NUMBER == 8:
+                list_vals = args[0]
+                cycle_pos = args[1]
+                head = to_linked_list(list_vals)
+                if cycle_pos != -1:
+                    curr = head
+                    cycle_node = None
+                    tail = None
+                    idx = 0
+                    while curr:
+                        if idx == cycle_pos:
+                            cycle_node = curr
+                        tail = curr
+                        curr = curr.next
+                        idx += 1
+                    if tail and cycle_node:
+                        tail.next = cycle_node
+                result = func(head)
+            elif QUESTION_NUMBER == 9:
+                listA = args[0]
+                listB = args[1]
+                skipA = args[2]
+                skipB = args[3]
+                headA = to_linked_list(listA[:skipA])
+                headB = to_linked_list(listB[:skipB])
+                intersect = to_linked_list(listA[skipA:])
+                if headA:
+                    curr = headA
+                    while curr.next:
+                        curr = curr.next
+                    curr.next = intersect
+                else:
+                    headA = intersect
+                if headB:
+                    curr = headB
+                    while curr.next:
+                        curr = curr.next
+                    curr.next = intersect
+                else:
+                    headB = intersect
+                res_node = func(headA, headB)
+                result = to_list(res_node)
+            elif QUESTION_NUMBER == 23:
+                list_nodes = [to_linked_list(arr) for arr in args[0]]
+                res_node = func(list_nodes)
+                result = to_list(res_node)
+            elif QUESTION_NUMBER == 25:
+                list_vals = args[0]
+                cycle_pos = args[1]
+                head = to_linked_list(list_vals)
+                if cycle_pos != -1:
+                    curr = head
+                    cycle_node = None
+                    tail = None
+                    idx = 0
+                    while curr:
+                        if idx == cycle_pos:
+                            cycle_node = curr
+                        tail = curr
+                        curr = curr.next
+                        idx += 1
+                    if tail and cycle_node:
+                        tail.next = cycle_node
+                res_node = func(head)
+                if not res_node:
+                    result = -1
+                else:
+                    curr = head
+                    idx = 0
+                    result = -1
+                    for _ in range(100):
+                        if curr == res_node:
+                            result = idx
+                            break
+                        curr = curr.next
+                        idx += 1
             else:
+                for arg in args:
+                    if isinstance(arg, list):
+                        processed_args.append(to_linked_list(arg))
+                    else:
+                        processed_args.append(arg)
+                res_node = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
+                result = to_list(res_node) if isinstance(res_node, ListNode) else res_node
+                
+        elif filename == "trees_and_bst.py" and QUESTION_NUMBER <= 25:
+            processed_args = []
+            for arg in args:
+                if isinstance(arg, list):
+                    processed_args.append(to_tree(arg))
+                else:
+                    processed_args.append(arg)
+            res_val = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
+            if isinstance(res_val, TreeNode):
+                result = to_list(res_val)
+            else:
+                result = res_val
+                
+        elif filename == "tries.py":
+            # Tries test runner class-based instantiation and method calling
+            commands = args[0]
+            arguments = args[1]
+            obj = func() # Instantiate the class (Trie or MapSum)
+            result = [None]
+            for i in range(1, len(commands)):
+                cmd = commands[i]
+                arg = arguments[i]
+                method = getattr(obj, cmd)
+                res = method(*arg) if arg else method()
+                result.append(res)
+                
+        else:
+            # Standard input/output check
+            result = func(*args) if isinstance(args, list) else func(args)
+            
+        # Custom result sorting for combinations/subsets/permutations
+        if filename == "backtracking.py" and QUESTION_NUMBER in [1, 2, 4, 13, 20]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+        elif filename == "bit_manipulation.py" and QUESTION_NUMBER in [9, 11]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+        elif filename == "loop_basics.py" and QUESTION_NUMBER in [41]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+                
+        if not silent:
+            print(f"Your Output: {result}")
+            
+        if result == expected:
+            if not silent:
+                print("\n✅ PASS - Correct!")
+            return True
+        else:
+            if not silent:
                 print("\n❌ FAIL - Output doesn't match expected")
-        except Exception as e:
-            print(f"\n❌ ERROR: {e}")
-    
-        print(f"{'='*60}\n")
+            return False
+            
     except Exception as e:
         if not silent:
             print(f"\n❌ ERROR: {e}")
         return False
     finally:
         sys.stdout = old_stdout
-        
-    if silent:
-        output_str = captured.getvalue()
-        return "✅ PASS" in output_str
-    return True
 
 if __name__ == "__main__":
     import sys
@@ -1026,15 +1157,38 @@ if __name__ == "__main__":
         except ValueError:
             pass
 
-    # If QUESTION_NUMBER is None or 0, auto-detect the first unsolved question
+    # If QUESTION_NUMBER is None or 0, auto-detect the highest-numbered non-empty question
     if QUESTION_NUMBER is None or QUESTION_NUMBER == 0:
+        import ast
+        import inspect
+        
         detected_q = 1
-        for q_num in sorted(TESTS.keys()):
-            if not run_test(q_num, silent=True):
-                detected_q = q_num
-                break
-        else:
-            detected_q = max(TESTS.keys())
+        for q_num in sorted(TESTS.keys(), reverse=True):
+            test = TESTS[q_num]
+            func = test['func']
+            try:
+                source = inspect.getsource(func)
+                tree = ast.parse(source)
+                func_def = tree.body[0]
+                body = func_def.body
+                
+                # Check if there are non-docstring, non-pass statements
+                non_empty = False
+                for stmt in body:
+                    # Ignore docstrings
+                    if isinstance(stmt, ast.Expr) and isinstance(stmt.value, (ast.Constant, ast.Str)):
+                        continue
+                    # Ignore pass
+                    if isinstance(stmt, ast.Pass):
+                        continue
+                    non_empty = True
+                    break
+                
+                if non_empty:
+                    detected_q = q_num
+                    break
+            except Exception:
+                pass
         QUESTION_NUMBER = detected_q
 
     # Run the selected question in verbose mode

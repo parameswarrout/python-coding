@@ -1,8 +1,8 @@
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 """
-Tries (Prefix Trees) - Practice One Question at a Time
-======================================================
+Linked Lists - Practice One Question at a Time
+==============================================
 HOW TO USE:
 1. Change QUESTION_NUMBER below to the question you want to solve (1 to 100)
 2. Write your logic in the corresponding function (q1 to q100)
@@ -14,294 +14,238 @@ QUESTION_NUMBER = None  # <-- Change this to solve different questions
 # ============================================================
 
 
+# ==================== NODE DEFINITION & HELPERS ====================
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def to_list(head: ListNode) -> list:
+    res = []
+    curr = head
+    while curr:
+        res.append(curr.val)
+        curr = curr.next
+    return res
+
+def to_linked_list(arr: list) -> ListNode:
+    if not arr:
+        return None
+    head = ListNode(arr[0])
+    curr = head
+    for val in arr[1:]:
+        curr.next = ListNode(val)
+        curr = curr.next
+    return head
+
+
 # ==================== ALL 100 QUESTIONS ====================
 
-def q1(operations, val_args):
-    """Q1: Implement Trie (Prefix Tree). Support insert, search, and startsWith.
-    Input: operations = ["Trie", "insert", "search", "search", "startsWith", "insert", "search"], val_args = [[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
-    Expected Output: [None, None, True, False, True, None, True]
+# --- EASY LEVEL (Q1 - Q25) ---
+
+def q1(head: ListNode) -> ListNode:
+    """Q1: Reverse a Linked List. Reverse the list in-place and return the new head.
+    Input: head = [1, 2, 3, 4, 5]
+    Expected Output: [5, 4, 3, 2, 1]
     """
-    class TrieNode:
-        def __init__(self):
-            self.children = {}
-            self.is_word = False
+    prev = None
+    curr = head
+    while curr:
+        nxt = curr.next
+        curr.next = prev
+        prev = curr
+        curr = nxt
+    return prev
 
-    class Trie:
-        def __init__(self):
-            self.root = TrieNode()
-        def insert(self, word: str) -> None:
-            curr = self.root
-            for char in word:
-                if char not in curr.children:
-                    curr.children[char] = TrieNode()
-                curr = curr.children[char]
-            curr.is_word = True
-        def search(self, word: str) -> bool:
-            curr = self.root
-            for char in word:
-                if char not in curr.children:
-                    return False
-                curr = curr.children[char]
-            return curr.is_word
-        def startsWith(self, prefix: str) -> bool:
-            curr = self.root
-            for char in prefix:
-                if char not in curr.children:
-                    return False
-                curr = curr.children[char]
-            return True
-
-    trie = None
-    res = []
-    for op, arg in zip(operations, val_args):
-        if op == "Trie":
-            trie = Trie()
-            res.append(None)
-        elif op == "insert":
-            trie.insert(arg[0])
-            res.append(None)
-        elif op == "search":
-            res.append(trie.search(arg[0]))
-        elif op == "startsWith":
-            res.append(trie.startsWith(arg[0]))
-    return res
-
-def q2(operations, val_args):
-    """Q2: Design Add and Search Words Data Structure (supports wildcard '.').
-    Input: operations = ["WordDictionary","addWord","addWord","addWord","search","search","search","search"], val_args = [[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]
-    Expected Output: [None,None,None,None,False,True,True,True]
+def q2(node: ListNode) -> None:
+    """Q2: Delete Node in a Linked List. Delete the node in-place (given access only to that node).
+    Input: node_val = 5 (list is [4, 5, 1, 9])
+    Expected Output: [4, 1, 9] (node with val 5 is removed)
     """
-    class TrieNode:
-        def __init__(self):
-            self.children = {}
-            self.is_word = False
+    node.val = node.next.val
+    node.next = node.next.next
 
-    class WordDictionary:
-        def __init__(self):
-            self.root = TrieNode()
-        def addWord(self, word: str) -> None:
-            curr = self.root
-            for char in word:
-                if char not in curr.children:
-                    curr.children[char] = TrieNode()
-                curr = curr.children[char]
-            curr.is_word = True
-        def search(self, word: str) -> bool:
-            def dfs(index, node):
-                curr = node
-                for i in range(index, len(word)):
-                    char = word[i]
-                    if char == '.':
-                        for child in curr.children.values():
-                            if dfs(i + 1, child):
-                                return True
-                        return False
-                    else:
-                        if char not in curr.children:
-                            return False
-                        curr = curr.children[char]
-                return curr.is_word
-            return dfs(0, self.root)
-
-    wd = None
-    res = []
-    for op, arg in zip(operations, val_args):
-        if op == "WordDictionary":
-            wd = WordDictionary()
-            res.append(None)
-        elif op == "addWord":
-            wd.addWord(arg[0])
-            res.append(None)
-        elif op == "search":
-            res.append(wd.search(arg[0]))
-    return res
-
-def q3(strs: list) -> str:
-    """Q3: Longest Common Prefix using Trie.
-    Input: strs = ["flower", "flow", "flight"]
-    Expected: "fl"
+def q3(head: ListNode, val: int) -> ListNode:
+    """Q3: Remove Linked List Elements. Remove all elements with value equal to val.
+    Input: head = [1, 2, 6, 3, 4, 5, 6], val = 6
+    Expected: [1, 2, 3, 4, 5]
     """
     # Write your logic here
     pass
 
-def q4(operations, val_args):
-    """Q4: Map Sum Pairs. Design map inserting key-value pair and summing all values of keys with matching prefix.
-    Input: operations = ["MapSum", "insert", "sum", "insert", "sum"], val_args = [[], ["apple", 3], ["ap"], ["app", 2], ["ap"]]
-    Expected: [None, None, 3, None, 5]
+def q4(head: ListNode) -> ListNode:
+    """Q4: Middle of the Linked List. Return the middle node. If two middle nodes, return second.
+    Input: head = [1, 2, 3, 4, 5, 6]
+    Expected: [4, 5, 6]
     """
     # Write your logic here
     pass
 
-def q5(dictionary: list, sentence: str) -> str:
-    """Q5: Replace Words. Replace all sentence words matching prefix in dictionary with shortest matching root prefix.
-    Input: dictionary = ["cat", "bat", "rat"], sentence = "the cattle was rattled by the battery"
-    Expected: "the cat was rat by the bat"
+def q5(list1: ListNode, list2: ListNode) -> ListNode:
+    """Q5: Merge Two Sorted Lists. Merge into one sorted list.
+    Input: list1 = [1, 2, 4], list2 = [1, 3, 4]
+    Expected: [1, 1, 2, 3, 4, 4]
     """
     # Write your logic here
     pass
 
-def q6(products: list, searchWord: str) -> list:
-    """Q6: Search Suggestions System. Suggest at most 3 words sharing prefix sorted lexicographically after each letter typed.
-    Input: products = ["mobile","mouse","moneypot","monitor","mousepad"], searchWord = "mouse"
-    Expected: [
-        ["mobile","moneypot","monitor"],
-        ["mobile","moneypot","monitor"],
-        ["mouse","mousepad"],
-        ["mouse","mousepad"],
-        ["mouse","mousepad"]
-    ]
+def q6(head: ListNode) -> ListNode:
+    """Q6: Remove Duplicates from Sorted List.
+    Input: head = [1, 1, 2, 3, 3]
+    Expected: [1, 2, 3]
     """
     # Write your logic here
     pass
 
-def q7(board: list, words: list) -> list:
-    """Q7: Word Search II (Trie + Backtracking grid search).
-    Input: board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
-    Expected: ["oath", "eat"]
+def q7(head: ListNode) -> bool:
+    """Q7: Palindrome Linked List. Check if list values read same forward and backward.
+    Input: head = [1, 2, 2, 1]
+    Expected: True
     """
     # Write your logic here
     pass
 
-def q8(s: str, dictionary: list) -> int:
-    """Q8: Extra Characters in a String (DP + Trie prefix optimization). Return min extra characters.
-    Input: s = "leetscode", dictionary = ["leet", "code", "leetcode"]
-    Expected: 1 (extra char is 's')
+def q8(head: ListNode) -> bool:
+    """Q8: Linked List Cycle. Return True if list has a cycle.
+    Input: head = [3, 2, 0, -4] (cycle back to index 1)
+    Expected: True
     """
     # Write your logic here
     pass
 
-def q9(nums: list) -> int:
-    """Q9: Maximum XOR of Two Numbers in an Array (Bitwise Trie).
-    Input: nums = [3, 10, 5, 25, 2, 8]
-    Expected: 28 (5 XOR 25 = 28)
+def q9(headA: ListNode, headB: ListNode) -> ListNode:
+    """Q9: Intersection of Two Linked Lists. Return node where lists intersect, or None.
+    Input: headA = [4,1,8,4,5], headB = [5,6,1,8,4,5] (intersection at node with val 8)
+    Expected: [8, 4, 5]
     """
     # Write your logic here
     pass
 
-def q10(nums: list, queries: list) -> list:
-    """Q10: Maximum XOR With an Element From Array. query = [x, m] (max XOR of x with nums elements <= m).
-    Input: nums = [0, 1, 2, 3, 4], queries = [[3, 1], [1, 3], [5, 6]]
-    Expected: [2, 3, 7]
+def q10(head: ListNode, n: int) -> ListNode:
+    """Q10: Remove Nth Node From End of List.
+    Input: head = [1, 2, 3, 4, 5], n = 2
+    Expected: [1, 2, 3, 5]
     """
     # Write your logic here
     pass
 
-def q11(operations, val_args):
-    """Q11: Prefix and Suffix Search (Design WordFilter supporting f(prefix, suffix) returning max index).
-    Input: operations = ["WordFilter", "f"], val_args = [[["apple"]], ["a", "e"]]
-    Expected: [None, 0]
+def q11(head: ListNode) -> ListNode:
+    """Q11: Delete Middle Node of a Linked List.
+    Input: head = [1, 3, 4, 7, 1, 2, 6]
+    Expected: [1, 3, 4, 1, 2, 6]
     """
     # Write your logic here
     pass
 
-def q12(n: int) -> list:
-    """Q12: Lexicographical Numbers. Return numbers 1 to n in lexicographical order.
-    Input: n = 13
-    Expected: [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]
+def q12(head: ListNode, left: int, right: int) -> ListNode:
+    """Q12: Reverse Linked List II. Reverse list elements from position left to right (1-indexed).
+    Input: head = [1, 2, 3, 4, 5], left = 2, right = 4
+    Expected: [1, 4, 3, 2, 5]
     """
     # Write your logic here
     pass
 
-def q13(operations, val_args):
-    """Q13: Encrypt and Decrypt Strings.
-    Input: operations = ["Encrypter", "encrypt", "decrypt"], val_args = [[["a", "b", "c", "d"], ["ei", "jf", "kg", "lh"], ["abcd", "acbd", "adbc", "badc"]], "abcd", "eijfkglh"]
-    Expected: [None, "eijfkglh", 2]
+def q13(head: ListNode) -> ListNode:
+    """Q13: Reorder List. Reorder in-place to L0 -> Ln -> L1 -> Ln-1 -> ...
+    Input: head = [1, 2, 3, 4]
+    Expected: [1, 4, 2, 3]
     """
     # Write your logic here
     pass
 
-def q14(text: str, words: list) -> list:
-    """Q14: Index Pairs of a String. Return index bounds [i, j] of occurrences of words in text.
-    Input: text = "thestoryofleetcodeandme", words = ["story","fleet","leetcode"]
-    Expected: [[3, 7], [11, 18]]
+def q14(head: ListNode, k: int) -> ListNode:
+    """Q14: Rotate List. Rotate the list to the right by k places.
+    Input: head = [1, 2, 3, 4, 5], k = 2
+    Expected: [4, 5, 1, 2, 3]
     """
     # Write your logic here
     pass
 
-def q15(words: list) -> str:
-    """Q15: Longest Word in Dictionary (can build from other words prefix by prefix).
-    Input: words = ["w","wo","wor","worl","world"]
-    Expected: "world"
+def q15(head: ListNode) -> ListNode:
+    """Q15: Swap Nodes in Pairs. Swap adjacent nodes in-place.
+    Input: head = [1, 2, 3, 4]
+    Expected: [2, 1, 4, 3]
     """
     # Write your logic here
     pass
 
-def q16(operations, val_args):
-    """Q16: Stream of Characters (Design StreamChecker check(char) returning True if suffix exists in word list).
-    Input: operations = ["StreamChecker", "query", "query", "query", "query"], val_args = [[["cd", "f", "kl"]], ["a"], ["c"], ["d"], ["f"]]
-    Expected: [None, False, False, True, True]
+def q16(head: ListNode) -> ListNode:
+    """Q16: Odd Even Linked List. Group odd-positioned nodes together followed by even-positioned nodes.
+    Input: head = [1, 2, 3, 4, 5]
+    Expected: [1, 3, 5, 2, 4]
     """
     # Write your logic here
     pass
 
-def q17(words: list, s: str) -> str:
-    """Q17: Bold Words in String. Wrap overlapping matches of words in <b> and </b> tags.
-    Input: words = ["ab", "bc"], s = "aabcd"
-    Expected: "a<b>abc</b>d"
+def q17(head: ListNode) -> ListNode:
+    """Q17: Remove Duplicates from Sorted List II. Remove all nodes that have duplicate values.
+    Input: head = [1, 2, 3, 3, 4, 4, 5]
+    Expected: [1, 2, 5]
     """
     # Write your logic here
     pass
 
-def q18(board: list, words: list) -> list:
-    """Q18: Word Search II (wildcard variant / multiple words prefix matched).
-    Input: board = [["a","b"],["c","d"]], words = ["ab","ac","ad","ae"]
-    Expected: ["ab"]
+def q18(head: ListNode, x: int) -> ListNode:
+    """Q18: Partition List. Rearrange so elements < x are before elements >= x.
+    Input: head = [1, 4, 3, 2, 5, 2], x = 3
+    Expected: [1, 2, 2, 4, 3, 5]
     """
     # Write your logic here
     pass
 
-def q19(words: list) -> list:
-    """Q19: Remove Sub-Folders from the Filesystem (Trie-based directory path cleaning).
-    Input: words = ["/a","/a/b","/c/d","/c/d/e","/c/f"]
-    Expected: ["/a","/c/d","/c/f"]
+def q19(head: ListNode) -> ListNode:
+    """Q19: Copy List with Random Pointer (deep copy of list containing random pointers. represented as lists).
+    Input: head = [[7, null], [13, 0], [11, 4], [10, 2], [1, 0]]
+    Expected: [[7, null], [13, 0], [11, 4], [10, 2], [1, 0]]
     """
     # Write your logic here
     pass
 
-def q20(words: list) -> list:
-    """Q20: Shortest Unique Prefix (find unique prefix representing each word in list).
-    Input: words = ["zebra", "dog", "duck", "dove"]
-    Expected: ["z", "dog", "du", "dov"]
+def q20(l1: ListNode, l2: ListNode) -> ListNode:
+    """Q20: Add Two Numbers. Add digits represented in reverse order in linked lists.
+    Input: l1 = [2, 4, 3], l2 = [5, 6, 4]
+    Expected: [7, 0, 8]
     """
     # Write your logic here
     pass
 
-def q21(operations, val_args):
-    """Q21: Autocomplete System (Design AutocompleteSystem input(char) yielding hot matching sentences).
-    Input: operations = ["AutocompleteSystem", "input", "input"], val_args = [[["i love you", "island", "ironman", "i love leetcode"], [5, 3, 2, 2]], "i", " "]
-    Expected: [None, ["i love you", "island", "i love leetcode"], ["i love you", "i love leetcode"]]
+def q21(l1: ListNode, l2: ListNode) -> ListNode:
+    """Q21: Add Two Numbers II. Add digits represented in forward order in linked lists.
+    Input: l1 = [7, 2, 4, 3], l2 = [5, 6, 4]
+    Expected: [7, 8, 0, 7]
     """
     # Write your logic here
     pass
 
-def q22(grid: list) -> int:
-    """Q22: Word Search II (multiple match counts on grid).
-    Input: grid = [["a","a"]]
-    Expected: 0
+def q22(head: ListNode, k: int) -> ListNode:
+    """Q22: Reverse Nodes in k-Group.
+    Input: head = [1, 2, 3, 4, 5], k = 2
+    Expected: [2, 1, 4, 3, 5]
     """
     # Write your logic here
     pass
 
-def q23(words: list) -> list:
-    """Q23: Palindrome Pairs (using Trie for fast reverse-matching). Return index pairs [i, j].
-    Input: words = ["abcd","dcba","lls","s","sssll"]
-    Expected: [[0,1],[1,0],[2,4],[3,2]]
+def q23(lists: list) -> ListNode:
+    """Q23: Merge K Sorted Lists.
+    Input: lists = [[1, 4, 5], [1, 3, 4], [2, 6]]
+    Expected: [1, 1, 2, 3, 4, 4, 5, 6]
     """
     # Write your logic here
     pass
 
-def q24(words: list) -> list:
-    """Q24: Design Search Autocomplete System (standard prefix search helper).
-    Input: words = ["abc"]
-    Expected: ["abc"]
+def q24(head: ListNode) -> ListNode:
+    """Q24: Sort List. Sort the linked list in O(n log n) time.
+    Input: head = [4, 2, 1, 3]
+    Expected: [1, 2, 3, 4]
     """
     # Write your logic here
     pass
 
-def q25(nums: list) -> int:
-    """Q25: Minimum XOR Sum of Two Arrays (bitwise trie solution).
-    Input: nums = [1, 2]
-    Expected: 3
+def q25(head: ListNode) -> ListNode:
+    """Q25: Linked List Cycle II. Find starting node of cycle. Return starting node (or index for testing).
+    Input: head = [3, 2, 0, -4] (cycle back to index 1)
+    Expected: 1
     """
     # Write your logic here
     pass
@@ -916,37 +860,31 @@ def q100(nums):
 # ==================== TEST SUITE DICTIONARY ====================
 
 TESTS = {
-    1: {'func': q1, 'args': [["Trie", "insert", "search", "search", "startsWith", "insert", "search"], [[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]], 'expected': [None, None, True, False, True, None, True]},
-    2: {'func': q2, 'args': [["WordDictionary","addWord","addWord","addWord","search","search","search","search"], [[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]], 'expected': [None,None,None,None,False,True,True,True]},
-    3: {'func': q3, 'args': [["flower", "flow", "flight"]], 'expected': "fl"},
-    4: {'func': q4, 'args': [["MapSum", "insert", "sum", "insert", "sum"], [[], ["apple", 3], ["ap"], ["app", 2], ["ap"]]], 'expected': [None, None, 3, None, 5]},
-    5: {'func': q5, 'args': [["cat", "bat", "rat"], "the cattle was rattled by the battery"], 'expected': "the cat was rat by the bat"},
-    6: {'func': q6, 'args': [["mobile","mouse","moneypot","monitor","mousepad"], "mouse"], 'expected': [
-        ["mobile","moneypot","monitor"],
-        ["mobile","moneypot","monitor"],
-        ["mouse","mousepad"],
-        ["mouse","mousepad"],
-        ["mouse","mousepad"]
-    ]},
-    7: {'func': q7, 'args': [[["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], ["oath","pea","eat","rain"]], 'expected': ["oath", "eat"]},
-    8: {'func': q8, 'args': ["leetscode", ["leet", "code", "leetcode"]], 'expected': 1},
-    9: {'func': q9, 'args': [[3, 10, 5, 25, 2, 8]], 'expected': 28},
-    10: {'func': q10, 'args': [[0, 1, 2, 3, 4], [[3, 1], [1, 3], [5, 6]]], 'expected': [2, 3, 7]},
-    11: {'func': q11, 'args': [["WordFilter", "f"], [[["apple"]], "a", "e"]], 'expected': [None, 0]},
-    12: {'func': q12, 'args': [13], 'expected': [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]},
-    13: {'func': q13, 'args': [["Encrypter", "encrypt", "decrypt"], [[["a", "b", "c", "d"], ["ei", "jf", "kg", "lh"], ["abcd", "acbd", "adbc", "badc"]], "abcd", "eijfkglh"]], 'expected': [None, "eijfkglh", 2]},
-    14: {'func': q14, 'args': ["thestoryofleetcodeandme", ["story","fleet","leetcode"]], 'expected': [[3, 7], [11, 18]]},
-    15: {'func': q15, 'args': [["w","wo","wor","worl","world"]], 'expected': "world"},
-    16: {'func': q16, 'args': [["StreamChecker", "query", "query", "query", "query"], [[["cd", "f", "kl"]], "a", "c", "d", "f"]], 'expected': [None, False, False, True, True]},
-    17: {'func': q17, 'args': [["ab", "bc"], "aabcd"], 'expected': "a<b>abc</b>d"},
-    18: {'func': q18, 'args': [[["a","b"],["c","d"]], ["ab","ac","ad","ae"]], 'expected': ["ab"]},
-    19: {'func': q19, 'args': [["/a","/a/b","/c/d","/c/d/e","/c/f"]], 'expected': ["/a","/c/d","/c/f"]},
-    20: {'func': q20, 'args': [["zebra", "dog", "duck", "dove"]], 'expected': ["z", "dog", "du", "dov"]},
-    21: {'func': q21, 'args': [["AutocompleteSystem", "input", "input"], [[["i love you", "island", "ironman", "i love leetcode"], [5, 3, 2, 2]], "i", " "]], 'expected': [None, ["i love you", "island", "i love leetcode"], ["i love you", "i love leetcode"]]},
-    22: {'func': q22, 'args': [[["a","a"]]], 'expected': 0},
-    23: {'func': q23, 'args': [["abcd","dcba","lls","s","sssll"]], 'expected': [[0,1],[1,0],[2,4],[3,2]]},
-    24: {'func': q24, 'args': [["abc"]], 'expected': ["abc"]},
-    25: {'func': q25, 'args': [[1, 2]], 'expected': 3},
+    1: {'func': q1, 'args': [[1, 2, 3, 4, 5]], 'expected': [5, 4, 3, 2, 1]},
+    2: {'func': q2, 'args': [[4, 5, 1, 9], 5], 'expected': [4, 1, 9]}, # Special delete node target test
+    3: {'func': q3, 'args': [[1, 2, 6, 3, 4, 5, 6], 6], 'expected': [1, 2, 3, 4, 5]},
+    4: {'func': q4, 'args': [[1, 2, 3, 4, 5, 6]], 'expected': [4, 5, 6]},
+    5: {'func': q5, 'args': [[1, 2, 4], [1, 3, 4]], 'expected': [1, 1, 2, 3, 4, 4]},
+    6: {'func': q6, 'args': [[1, 1, 2, 3, 3]], 'expected': [1, 2, 3]},
+    7: {'func': q7, 'args': [[1, 2, 2, 1]], 'expected': True},
+    8: {'func': q8, 'args': [[3, 2, 0, -4], 1], 'expected': True}, # cycle target test
+    9: {'func': q9, 'args': [[4, 1, 8, 4, 5], [5, 6, 1, 8, 4, 5], 3, 2], 'expected': [8, 4, 5]}, # intersection test
+    10: {'func': q10, 'args': [[1, 2, 3, 4, 5], 2], 'expected': [1, 2, 3, 5]},
+    11: {'func': q11, 'args': [[1, 3, 4, 7, 1, 2, 6]], 'expected': [1, 3, 4, 1, 2, 6]},
+    12: {'func': q12, 'args': [[1, 2, 3, 4, 5], 2, 4], 'expected': [1, 4, 3, 2, 5]},
+    13: {'func': q13, 'args': [[1, 2, 3, 4]], 'expected': [1, 4, 2, 3]},
+    14: {'func': q14, 'args': [[1, 2, 3, 4, 5], 2], 'expected': [4, 5, 1, 2, 3]},
+    15: {'func': q15, 'args': [[1, 2, 3, 4]], 'expected': [2, 1, 4, 3]},
+    16: {'func': q16, 'args': [[1, 2, 3, 4, 5]], 'expected': [1, 3, 5, 2, 4]},
+    17: {'func': q17, 'args': [[1, 2, 3, 3, 4, 4, 5]], 'expected': [1, 2, 5]},
+    18: {'func': q18, 'args': [[1, 4, 3, 2, 5, 2], 3], 'expected': [1, 2, 2, 4, 3, 5]},
+    19: {'func': q19, 'args': [[[7, None], [13, 0], [11, 4], [10, 2], [1, 0]]], 'expected': [[7, None], [13, 0], [11, 4], [10, 2], [1, 0]]},
+    20: {'func': q20, 'args': [[2, 4, 3], [5, 6, 4]], 'expected': [7, 0, 8]},
+    21: {'func': q21, 'args': [[7, 2, 4, 3], [5, 6, 4]], 'expected': [7, 8, 0, 7]},
+    22: {'func': q22, 'args': [[1, 2, 3, 4, 5], 2], 'expected': [2, 1, 4, 3, 5]},
+    23: {'func': q23, 'args': [[[1, 4, 5], [1, 3, 4], [2, 6]]], 'expected': [1, 1, 2, 3, 4, 4, 5, 6]},
+    24: {'func': q24, 'args': [[4, 2, 1, 3]], 'expected': [1, 2, 3, 4]},
+    25: {'func': q25, 'args': [[3, 2, 0, -4], 1], 'expected': 1},
     
     26: {'func': q26, 'args': [[1, 8, 6, 2, 5, 4, 8, 3, 7]], 'expected': 49},
     27: {'func': q27, 'args': [[-1, 0, 1, 2, -1, -4]], 'expected': [[-1, -1, 2], [-1, 0, 1]]},
@@ -1040,107 +978,190 @@ def run_test(QUESTION_NUMBER, silent=False):
         
     try:
         test = TESTS.get(QUESTION_NUMBER)
-    
         if not test:
-            print(f"❌ Question {QUESTION_NUMBER} not found!")
+            if not silent:
+                print(f"❌ Question {QUESTION_NUMBER} not found!")
             return False
-    
+            
         func = test['func']
         args = test['args']
         expected = test['expected']
-    
-        print(f"\n{'='*60}")
-        print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0]}")
-        print(f"{'='*60}")
-        print(f"Input: {args}")
-        print(f"Expected: {expected}")
-        print("-"*60)
-    
-        try:
-            # Mock class logic for query classes if required
-            if QUESTION_NUMBER == 11:
-                # WordFilter simulation f(prefix, suffix)
-                wf_args = args[1]
-                # Create a simple simulator
-                words_in_filter = args[0][1][0]
-                result_list = []
-                # we will run it directly to check matches
-                # query is f(prefix, suffix)
-                prefix, suffix = wf_args[1], wf_args[2]
-                best_idx = -1
-                for idx, word in enumerate(words_in_filter):
-                    if word.startswith(prefix) and word.endswith(suffix):
-                        best_idx = idx
-                result = [None, best_idx]
-            
-            elif QUESTION_NUMBER == 16:
-                # StreamChecker check(char)
-                # Create mock simulator
-                words_list = args[0][1][0]
-                queries_chars = args[1][1:]
-                res_list = [None]
-                stream = []
-                for ch in queries_chars:
-                    stream.append(ch)
-                    matched = False
-                    for w in words_list:
-                        if len(stream) >= len(w):
-                            # compare suffix
-                            if "".join(stream[-len(w):]) == w:
-                                matched = True
-                                break
-                    res_list.append(matched)
-                result = res_list
-            
-            elif QUESTION_NUMBER == 21:
-                # AutocompleteSystem simulator
-                # Create mock search
-                sentences = args[0][1][0][0]
-                times = args[0][1][0][1]
-                inputs = args[1][1:]
-                res_list = [None]
-                curr_str = ""
-                for char in inputs:
-                    curr_str += char
-                    matches = []
-                    for s, t in zip(sentences, times):
-                        if s.startswith(curr_str):
-                            matches.append((s, t))
-                    # Sort matches by count descending, then lexicographically ascending
-                    matches.sort(key=lambda x: (-x[1], x[0]))
-                    res_list.append([x[0] for x in matches[:3]])
-                result = res_list
-            
-            else:
-                result = func(*args) if isinstance(args, list) else func(args)
-            
-            # Sort lists if order doesn't matter for query matches (Word Search II etc.)
-            if QUESTION_NUMBER in [7, 23]:
-                if result and isinstance(result, list):
-                    result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
-                    expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
-                
-            print(f"Your Output: {result}")
         
-            if result == expected:
-                print("\n✅ PASS - Correct!")
+        if not silent:
+            print(f"\n{'='*60}")
+            print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0] if func.__doc__ else 'No docstring'}")
+            print(f"{'='*60}")
+            print(f"Input: {args}")
+            print(f"Expected: {expected}")
+            print("-" * 60)
+            
+        # Run conversion logic if applicable (Linked Lists / Trees)
+        # We check filename to apply custom converters if they are defined
+        import os
+        filename = os.path.basename(__file__)
+        
+        if filename == "linked_lists.py" and QUESTION_NUMBER <= 25 and QUESTION_NUMBER != 19:
+            processed_args = []
+            if QUESTION_NUMBER == 2:
+                list_vals = args[0]
+                target_val = args[1]
+                head = to_linked_list(list_vals)
+                curr = head
+                target_node = None
+                while curr:
+                    if curr.val == target_val:
+                        target_node = curr
+                        break
+                    curr = curr.next
+                func(target_node)
+                result = to_list(head)
+            elif QUESTION_NUMBER == 8:
+                list_vals = args[0]
+                cycle_pos = args[1]
+                head = to_linked_list(list_vals)
+                if cycle_pos != -1:
+                    curr = head
+                    cycle_node = None
+                    tail = None
+                    idx = 0
+                    while curr:
+                        if idx == cycle_pos:
+                            cycle_node = curr
+                        tail = curr
+                        curr = curr.next
+                        idx += 1
+                    if tail and cycle_node:
+                        tail.next = cycle_node
+                result = func(head)
+            elif QUESTION_NUMBER == 9:
+                listA = args[0]
+                listB = args[1]
+                skipA = args[2]
+                skipB = args[3]
+                headA = to_linked_list(listA[:skipA])
+                headB = to_linked_list(listB[:skipB])
+                intersect = to_linked_list(listA[skipA:])
+                if headA:
+                    curr = headA
+                    while curr.next:
+                        curr = curr.next
+                    curr.next = intersect
+                else:
+                    headA = intersect
+                if headB:
+                    curr = headB
+                    while curr.next:
+                        curr = curr.next
+                    curr.next = intersect
+                else:
+                    headB = intersect
+                res_node = func(headA, headB)
+                result = to_list(res_node)
+            elif QUESTION_NUMBER == 23:
+                list_nodes = [to_linked_list(arr) for arr in args[0]]
+                res_node = func(list_nodes)
+                result = to_list(res_node)
+            elif QUESTION_NUMBER == 25:
+                list_vals = args[0]
+                cycle_pos = args[1]
+                head = to_linked_list(list_vals)
+                if cycle_pos != -1:
+                    curr = head
+                    cycle_node = None
+                    tail = None
+                    idx = 0
+                    while curr:
+                        if idx == cycle_pos:
+                            cycle_node = curr
+                        tail = curr
+                        curr = curr.next
+                        idx += 1
+                    if tail and cycle_node:
+                        tail.next = cycle_node
+                res_node = func(head)
+                if not res_node:
+                    result = -1
+                else:
+                    curr = head
+                    idx = 0
+                    result = -1
+                    for _ in range(100):
+                        if curr == res_node:
+                            result = idx
+                            break
+                        curr = curr.next
+                        idx += 1
             else:
+                for arg in args:
+                    if isinstance(arg, list):
+                        processed_args.append(to_linked_list(arg))
+                    else:
+                        processed_args.append(arg)
+                res_node = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
+                result = to_list(res_node) if isinstance(res_node, ListNode) else res_node
+                
+        elif filename == "trees_and_bst.py" and QUESTION_NUMBER <= 25:
+            processed_args = []
+            for arg in args:
+                if isinstance(arg, list):
+                    processed_args.append(to_tree(arg))
+                else:
+                    processed_args.append(arg)
+            res_val = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
+            if isinstance(res_val, TreeNode):
+                result = to_list(res_val)
+            else:
+                result = res_val
+                
+        elif filename == "tries.py":
+            # Tries test runner class-based instantiation and method calling
+            commands = args[0]
+            arguments = args[1]
+            obj = func() # Instantiate the class (Trie or MapSum)
+            result = [None]
+            for i in range(1, len(commands)):
+                cmd = commands[i]
+                arg = arguments[i]
+                method = getattr(obj, cmd)
+                res = method(*arg) if arg else method()
+                result.append(res)
+                
+        else:
+            # Standard input/output check
+            result = func(*args) if isinstance(args, list) else func(args)
+            
+        # Custom result sorting for combinations/subsets/permutations
+        if filename == "backtracking.py" and QUESTION_NUMBER in [1, 2, 4, 13, 20]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+        elif filename == "bit_manipulation.py" and QUESTION_NUMBER in [9, 11]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+        elif filename == "loop_basics.py" and QUESTION_NUMBER in [41]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+                
+        if not silent:
+            print(f"Your Output: {result}")
+            
+        if result == expected:
+            if not silent:
+                print("\n✅ PASS - Correct!")
+            return True
+        else:
+            if not silent:
                 print("\n❌ FAIL - Output doesn't match expected")
-        except Exception as e:
-            print(f"\n❌ ERROR: {e}")
-    
-        print(f"{'='*60}\n")
+            return False
+            
     except Exception as e:
         if not silent:
             print(f"\n❌ ERROR: {e}")
         return False
     finally:
         sys.stdout = old_stdout
-        
-    if silent:
-        output_str = captured.getvalue()
-        return "✅ PASS" in output_str
-    return True
 
 if __name__ == "__main__":
     import sys
@@ -1151,15 +1172,38 @@ if __name__ == "__main__":
         except ValueError:
             pass
 
-    # If QUESTION_NUMBER is None or 0, auto-detect the first unsolved question
+    # If QUESTION_NUMBER is None or 0, auto-detect the highest-numbered non-empty question
     if QUESTION_NUMBER is None or QUESTION_NUMBER == 0:
+        import ast
+        import inspect
+        
         detected_q = 1
-        for q_num in sorted(TESTS.keys()):
-            if not run_test(q_num, silent=True):
-                detected_q = q_num
-                break
-        else:
-            detected_q = max(TESTS.keys())
+        for q_num in sorted(TESTS.keys(), reverse=True):
+            test = TESTS[q_num]
+            func = test['func']
+            try:
+                source = inspect.getsource(func)
+                tree = ast.parse(source)
+                func_def = tree.body[0]
+                body = func_def.body
+                
+                # Check if there are non-docstring, non-pass statements
+                non_empty = False
+                for stmt in body:
+                    # Ignore docstrings
+                    if isinstance(stmt, ast.Expr) and isinstance(stmt.value, (ast.Constant, ast.Str)):
+                        continue
+                    # Ignore pass
+                    if isinstance(stmt, ast.Pass):
+                        continue
+                    non_empty = True
+                    break
+                
+                if non_empty:
+                    detected_q = q_num
+                    break
+            except Exception:
+                pass
         QUESTION_NUMBER = detected_q
 
     # Run the selected question in verbose mode

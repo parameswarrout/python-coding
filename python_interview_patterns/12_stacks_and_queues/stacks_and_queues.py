@@ -1,8 +1,8 @@
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 """
-Linked Lists - Practice One Question at a Time
-==============================================
+Stacks & Queues - Practice One Question at a Time
+=================================================
 HOW TO USE:
 1. Change QUESTION_NUMBER below to the question you want to solve (1 to 100)
 2. Write your logic in the corresponding function (q1 to q100)
@@ -14,238 +14,244 @@ QUESTION_NUMBER = None  # <-- Change this to solve different questions
 # ============================================================
 
 
-# ==================== NODE DEFINITION & HELPERS ====================
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-def to_list(head: ListNode) -> list:
-    res = []
-    curr = head
-    while curr:
-        res.append(curr.val)
-        curr = curr.next
-    return res
-
-def to_linked_list(arr: list) -> ListNode:
-    if not arr:
-        return None
-    head = ListNode(arr[0])
-    curr = head
-    for val in arr[1:]:
-        curr.next = ListNode(val)
-        curr = curr.next
-    return head
-
-
 # ==================== ALL 100 QUESTIONS ====================
 
-# --- EASY LEVEL (Q1 - Q25) ---
-
-def q1(head: ListNode) -> ListNode:
-    """Q1: Reverse a Linked List. Reverse the list in-place and return the new head.
-    Input: head = [1, 2, 3, 4, 5]
-    Expected Output: [5, 4, 3, 2, 1]
+def q1(s: str) -> bool:
+    """Q1: Valid Parentheses. Check bracket matching: '(', ')', '{', '}', '[', ']'.
+    Input: s = "()[]{}"
+    Expected Output: True
     """
-    prev = None
-    curr = head
-    while curr:
-        nxt = curr.next
-        curr.next = prev
-        prev = curr
-        curr = nxt
-    return prev
+    stack = []
+    mapping = {")": "(", "}": "{", "]": "["}
+    for char in s:
+        if char in mapping:
+            top_element = stack.pop() if stack else '#'
+            if mapping[char] != top_element:
+                return False
+        else:
+            stack.append(char)
+    return not stack
 
-def q2(node: ListNode) -> None:
-    """Q2: Delete Node in a Linked List. Delete the node in-place (given access only to that node).
-    Input: node_val = 5 (list is [4, 5, 1, 9])
-    Expected Output: [4, 1, 9] (node with val 5 is removed)
+def q2(operations, val_args):
+    """Q2: Implement Queue using Stacks. Simulate queue operations: push, pop, peek, empty.
+    Input: operations = ["MyQueue", "push", "push", "peek", "pop", "empty"], val_args = [[], [1], [2], [], [], []]
+    Expected Output: [None, None, None, 1, 1, False]
     """
-    node.val = node.next.val
-    node.next = node.next.next
+    # Solved simulation example
+    class MyQueue:
+        def __init__(self):
+            self.s1 = []
+            self.s2 = []
+        def push(self, x: int) -> None:
+            self.s1.append(x)
+        def pop(self) -> int:
+            self.peek()
+            return self.s2.pop()
+        def peek(self) -> int:
+            if not self.s2:
+                while self.s1:
+                    self.s2.append(self.s1.pop())
+            return self.s2[-1]
+        def empty(self) -> bool:
+            return not self.s1 and not self.s2
 
-def q3(head: ListNode, val: int) -> ListNode:
-    """Q3: Remove Linked List Elements. Remove all elements with value equal to val.
-    Input: head = [1, 2, 6, 3, 4, 5, 6], val = 6
-    Expected: [1, 2, 3, 4, 5]
-    """
-    # Write your logic here
-    pass
+    queue = None
+    res = []
+    for op, arg in zip(operations, val_args):
+        if op == "MyQueue":
+            queue = MyQueue()
+            res.append(None)
+        elif op == "push":
+            queue.push(arg[0])
+            res.append(None)
+        elif op == "pop":
+            res.append(queue.pop())
+        elif op == "peek":
+            res.append(queue.peek())
+        elif op == "empty":
+            res.append(queue.empty())
+    return res
 
-def q4(head: ListNode) -> ListNode:
-    """Q4: Middle of the Linked List. Return the middle node. If two middle nodes, return second.
-    Input: head = [1, 2, 3, 4, 5, 6]
-    Expected: [4, 5, 6]
-    """
-    # Write your logic here
-    pass
-
-def q5(list1: ListNode, list2: ListNode) -> ListNode:
-    """Q5: Merge Two Sorted Lists. Merge into one sorted list.
-    Input: list1 = [1, 2, 4], list2 = [1, 3, 4]
-    Expected: [1, 1, 2, 3, 4, 4]
-    """
-    # Write your logic here
-    pass
-
-def q6(head: ListNode) -> ListNode:
-    """Q6: Remove Duplicates from Sorted List.
-    Input: head = [1, 1, 2, 3, 3]
-    Expected: [1, 2, 3]
-    """
-    # Write your logic here
-    pass
-
-def q7(head: ListNode) -> bool:
-    """Q7: Palindrome Linked List. Check if list values read same forward and backward.
-    Input: head = [1, 2, 2, 1]
-    Expected: True
-    """
-    # Write your logic here
-    pass
-
-def q8(head: ListNode) -> bool:
-    """Q8: Linked List Cycle. Return True if list has a cycle.
-    Input: head = [3, 2, 0, -4] (cycle back to index 1)
-    Expected: True
+def q3(operations, val_args):
+    """Q3: Implement Stack using Queues. Simulate stack operations: push, pop, top, empty.
+    Input: operations = ["MyStack", "push", "push", "top", "pop", "empty"], val_args = [[], [1], [2], [], [], []]
+    Expected: [None, None, None, 2, 2, False]
     """
     # Write your logic here
     pass
 
-def q9(headA: ListNode, headB: ListNode) -> ListNode:
-    """Q9: Intersection of Two Linked Lists. Return node where lists intersect, or None.
-    Input: headA = [4,1,8,4,5], headB = [5,6,1,8,4,5] (intersection at node with val 8)
-    Expected: [8, 4, 5]
+def q4(operations, val_args):
+    """Q4: Min Stack. Design stack that supports push, pop, top, and retrieving min element in O(1) time.
+    Input: operations = ["MinStack","push","push","push","getMin","pop","top","getMin"], val_args = [[],[-2],[0],[-3],[],[],[],[]]
+    Expected: [None,None,None,None,-3,None,0,-2]
     """
     # Write your logic here
     pass
 
-def q10(head: ListNode, n: int) -> ListNode:
-    """Q10: Remove Nth Node From End of List.
-    Input: head = [1, 2, 3, 4, 5], n = 2
-    Expected: [1, 2, 3, 5]
+def q5(s: str) -> str:
+    """Q5: Remove All Adjacent Duplicates In String. Repeatedly delete adjacent matching characters.
+    Input: s = "abbaca"
+    Expected: "ca"
     """
     # Write your logic here
     pass
 
-def q11(head: ListNode) -> ListNode:
-    """Q11: Delete Middle Node of a Linked List.
-    Input: head = [1, 3, 4, 7, 1, 2, 6]
-    Expected: [1, 3, 4, 1, 2, 6]
+def q6(s: str) -> str:
+    """Q6: Make The String Great. Remove adjacent same letters with different cases (e.g. 'aA').
+    Input: s = "leEeetcode"
+    Expected: "leetcode"
     """
     # Write your logic here
     pass
 
-def q12(head: ListNode, left: int, right: int) -> ListNode:
-    """Q12: Reverse Linked List II. Reverse list elements from position left to right (1-indexed).
-    Input: head = [1, 2, 3, 4, 5], left = 2, right = 4
-    Expected: [1, 4, 3, 2, 5]
+def q7(tickets: list, k: int) -> int:
+    """Q7: Time Needed to Buy Tickets. Each person buys 1 ticket at a time. Return seconds to finish person k.
+    Input: tickets = [2, 3, 2], k = 2
+    Expected: 6
     """
     # Write your logic here
     pass
 
-def q13(head: ListNode) -> ListNode:
-    """Q13: Reorder List. Reorder in-place to L0 -> Ln -> L1 -> Ln-1 -> ...
-    Input: head = [1, 2, 3, 4]
-    Expected: [1, 4, 2, 3]
+def q8(students: list, sandwiches: list) -> int:
+    """Q8: Number of Students Unable to Eat Lunch.
+    Input: students = [1, 1, 0, 0], sandwiches = [0, 1, 0, 1]
+    Expected: 0
     """
     # Write your logic here
     pass
 
-def q14(head: ListNode, k: int) -> ListNode:
-    """Q14: Rotate List. Rotate the list to the right by k places.
-    Input: head = [1, 2, 3, 4, 5], k = 2
-    Expected: [4, 5, 1, 2, 3]
+def q9(nums1: list, nums2: list) -> list:
+    """Q9: Next Greater Element I. Find next greater element for each x in nums1 within nums2.
+    Input: nums1 = [4, 1, 2], nums2 = [1, 3, 4, 2]
+    Expected: [-1, 3, -1]
     """
     # Write your logic here
     pass
 
-def q15(head: ListNode) -> ListNode:
-    """Q15: Swap Nodes in Pairs. Swap adjacent nodes in-place.
-    Input: head = [1, 2, 3, 4]
-    Expected: [2, 1, 4, 3]
+def q10(nums: list) -> list:
+    """Q10: Next Greater Element II (circular array).
+    Input: nums = [1, 2, 1]
+    Expected: [2, -1, 2]
     """
     # Write your logic here
     pass
 
-def q16(head: ListNode) -> ListNode:
-    """Q16: Odd Even Linked List. Group odd-positioned nodes together followed by even-positioned nodes.
-    Input: head = [1, 2, 3, 4, 5]
-    Expected: [1, 3, 5, 2, 4]
+def q11(temperatures: list) -> list:
+    """Q11: Daily Temperatures. Return array of days to wait for warmer temperature.
+    Input: temperatures = [73, 74, 75, 71, 69, 72, 76, 73]
+    Expected: [1, 1, 4, 2, 1, 1, 0, 0]
     """
     # Write your logic here
     pass
 
-def q17(head: ListNode) -> ListNode:
-    """Q17: Remove Duplicates from Sorted List II. Remove all nodes that have duplicate values.
-    Input: head = [1, 2, 3, 3, 4, 4, 5]
-    Expected: [1, 2, 5]
+def q12(prices: list) -> list:
+    """Q12: Final Prices With a Special Discount in a Shop. Discount is next element with value <= current.
+    Input: prices = [8, 4, 6, 2, 3]
+    Expected: [6, 2, 4, 2, 3]
     """
     # Write your logic here
     pass
 
-def q18(head: ListNode, x: int) -> ListNode:
-    """Q18: Partition List. Rearrange so elements < x are before elements >= x.
-    Input: head = [1, 4, 3, 2, 5, 2], x = 3
-    Expected: [1, 2, 2, 4, 3, 5]
+def q13(tokens: list) -> int:
+    """Q13: Evaluate Reverse Polish Notation. Evaluate expression in postfix format.
+    Input: tokens = ["2", "1", "+", "3", "*"]
+    Expected: 9
     """
     # Write your logic here
     pass
 
-def q19(head: ListNode) -> ListNode:
-    """Q19: Copy List with Random Pointer (deep copy of list containing random pointers. represented as lists).
-    Input: head = [[7, null], [13, 0], [11, 4], [10, 2], [1, 0]]
-    Expected: [[7, null], [13, 0], [11, 4], [10, 2], [1, 0]]
+def q14(asteroids: list) -> list:
+    """Q14: Asteroid Collision. Return final state of asteroids after collisions.
+    Input: asteroids = [5, 10, -5]
+    Expected: [5, 10]
     """
     # Write your logic here
     pass
 
-def q20(l1: ListNode, l2: ListNode) -> ListNode:
-    """Q20: Add Two Numbers. Add digits represented in reverse order in linked lists.
-    Input: l1 = [2, 4, 3], l2 = [5, 6, 4]
-    Expected: [7, 0, 8]
+def q15(s: str) -> str:
+    """Q15: Decode String (nested brackets string expansion: e.g. "3[a]2[bc]" -> "aaabcbc").
+    Input: s = "3[a]2[bc]"
+    Expected: "aaabcbc"
     """
     # Write your logic here
     pass
 
-def q21(l1: ListNode, l2: ListNode) -> ListNode:
-    """Q21: Add Two Numbers II. Add digits represented in forward order in linked lists.
-    Input: l1 = [7, 2, 4, 3], l2 = [5, 6, 4]
-    Expected: [7, 8, 0, 7]
+def q16(num: str, k: int) -> str:
+    """Q16: Remove K Digits. Return smallest possible number as string.
+    Input: num = "1432219", k = 3
+    Expected: "1219"
     """
     # Write your logic here
     pass
 
-def q22(head: ListNode, k: int) -> ListNode:
-    """Q22: Reverse Nodes in k-Group.
-    Input: head = [1, 2, 3, 4, 5], k = 2
-    Expected: [2, 1, 4, 3, 5]
+def q17(heights: list) -> int:
+    """Q17: Largest Rectangle in Histogram.
+    Input: heights = [2, 1, 5, 6, 2, 3]
+    Expected: 10
     """
     # Write your logic here
     pass
 
-def q23(lists: list) -> ListNode:
-    """Q23: Merge K Sorted Lists.
-    Input: lists = [[1, 4, 5], [1, 3, 4], [2, 6]]
-    Expected: [1, 1, 2, 3, 4, 4, 5, 6]
+def q18(matrix: list) -> int:
+    """Q18: Maximal Rectangle on binary 2D grid.
+    Input: matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]
+    Expected: 6
     """
     # Write your logic here
     pass
 
-def q24(head: ListNode) -> ListNode:
-    """Q24: Sort List. Sort the linked list in O(n log n) time.
-    Input: head = [4, 2, 1, 3]
-    Expected: [1, 2, 3, 4]
+def q19(nums: list, k: int) -> list:
+    """Q19: Sliding Window Maximum.
+    Input: nums = [1, 3, -1, -3, 5, 3, 6, 7], k = 3
+    Expected: [3, 3, 5, 5, 6, 7]
     """
     # Write your logic here
     pass
 
-def q25(head: ListNode) -> ListNode:
-    """Q25: Linked List Cycle II. Find starting node of cycle. Return starting node (or index for testing).
-    Input: head = [3, 2, 0, -4] (cycle back to index 1)
-    Expected: 1
+def q20(s: str) -> int:
+    """Q20: Basic Calculator (evaluates nested expressions with parentheses, addition, subtraction).
+    Input: s = "1 + 1"
+    Expected: 2
+    """
+    # Write your logic here
+    pass
+
+def q21(s: str) -> int:
+    """Q21: Longest Valid Parentheses. Length of longest valid parentheses substring.
+    Input: s = ")()())"
+    Expected: 4
+    """
+    # Write your logic here
+    pass
+
+def q22(s: str) -> int:
+    """Q22: Score of Parentheses. '()' has score 1, AB has score A+B, (A) has score 2*A.
+    Input: s = "(())"
+    Expected: 2
+    """
+    # Write your logic here
+    pass
+
+def q23(nums: list) -> bool:
+    """Q23: 132 Pattern. Find subsequence index i < j < k such that nums[i] < nums[k] < nums[j].
+    Input: nums = [3, 1, 4, 2]
+    Expected: True (subsequence is 1, 4, 2)
+    """
+    # Write your logic here
+    pass
+
+def q24(s: str) -> int:
+    """Q24: Minimum Add to Make Parentheses Valid.
+    Input: s = "((("
+    Expected: 3
+    """
+    # Write your logic here
+    pass
+
+def q25(nums: list) -> list:
+    """Q25: Online Stock Span. Return span of stock price (consecutive days price <= current).
+    Input: nums = [100, 80, 60, 70, 60, 75, 85]
+    Expected: [1, 1, 1, 2, 1, 4, 6]
     """
     # Write your logic here
     pass
@@ -860,31 +866,31 @@ def q100(nums):
 # ==================== TEST SUITE DICTIONARY ====================
 
 TESTS = {
-    1: {'func': q1, 'args': [[1, 2, 3, 4, 5]], 'expected': [5, 4, 3, 2, 1]},
-    2: {'func': q2, 'args': [[4, 5, 1, 9], 5], 'expected': [4, 1, 9]}, # Special delete node target test
-    3: {'func': q3, 'args': [[1, 2, 6, 3, 4, 5, 6], 6], 'expected': [1, 2, 3, 4, 5]},
-    4: {'func': q4, 'args': [[1, 2, 3, 4, 5, 6]], 'expected': [4, 5, 6]},
-    5: {'func': q5, 'args': [[1, 2, 4], [1, 3, 4]], 'expected': [1, 1, 2, 3, 4, 4]},
-    6: {'func': q6, 'args': [[1, 1, 2, 3, 3]], 'expected': [1, 2, 3]},
-    7: {'func': q7, 'args': [[1, 2, 2, 1]], 'expected': True},
-    8: {'func': q8, 'args': [[3, 2, 0, -4], 1], 'expected': True}, # cycle target test
-    9: {'func': q9, 'args': [[4, 1, 8, 4, 5], [5, 6, 1, 8, 4, 5], 3, 2], 'expected': [8, 4, 5]}, # intersection test
-    10: {'func': q10, 'args': [[1, 2, 3, 4, 5], 2], 'expected': [1, 2, 3, 5]},
-    11: {'func': q11, 'args': [[1, 3, 4, 7, 1, 2, 6]], 'expected': [1, 3, 4, 1, 2, 6]},
-    12: {'func': q12, 'args': [[1, 2, 3, 4, 5], 2, 4], 'expected': [1, 4, 3, 2, 5]},
-    13: {'func': q13, 'args': [[1, 2, 3, 4]], 'expected': [1, 4, 2, 3]},
-    14: {'func': q14, 'args': [[1, 2, 3, 4, 5], 2], 'expected': [4, 5, 1, 2, 3]},
-    15: {'func': q15, 'args': [[1, 2, 3, 4]], 'expected': [2, 1, 4, 3]},
-    16: {'func': q16, 'args': [[1, 2, 3, 4, 5]], 'expected': [1, 3, 5, 2, 4]},
-    17: {'func': q17, 'args': [[1, 2, 3, 3, 4, 4, 5]], 'expected': [1, 2, 5]},
-    18: {'func': q18, 'args': [[1, 4, 3, 2, 5, 2], 3], 'expected': [1, 2, 2, 4, 3, 5]},
-    19: {'func': q19, 'args': [[[7, None], [13, 0], [11, 4], [10, 2], [1, 0]]], 'expected': [[7, None], [13, 0], [11, 4], [10, 2], [1, 0]]},
-    20: {'func': q20, 'args': [[2, 4, 3], [5, 6, 4]], 'expected': [7, 0, 8]},
-    21: {'func': q21, 'args': [[7, 2, 4, 3], [5, 6, 4]], 'expected': [7, 8, 0, 7]},
-    22: {'func': q22, 'args': [[1, 2, 3, 4, 5], 2], 'expected': [2, 1, 4, 3, 5]},
-    23: {'func': q23, 'args': [[[1, 4, 5], [1, 3, 4], [2, 6]]], 'expected': [1, 1, 2, 3, 4, 4, 5, 6]},
-    24: {'func': q24, 'args': [[4, 2, 1, 3]], 'expected': [1, 2, 3, 4]},
-    25: {'func': q25, 'args': [[3, 2, 0, -4], 1], 'expected': 1},
+    1: {'func': q1, 'args': ["()[]{}"], 'expected': True},
+    2: {'func': q2, 'args': [["MyQueue", "push", "push", "peek", "pop", "empty"], [[], [1], [2], [], [], []]], 'expected': [None, None, None, 1, 1, False]},
+    3: {'func': q3, 'args': [["MyStack", "push", "push", "top", "pop", "empty"], [[], [1], [2], [], [], []]], 'expected': [None, None, None, 2, 2, False]},
+    4: {'func': q4, 'args': [["MinStack","push","push","push","getMin","pop","top","getMin"], [[],[-2],[0],[-3],[],[],[],[]]], 'expected': [None,None,None,None,-3,None,0,-2]},
+    5: {'func': q5, 'args': ["abbaca"], 'expected': "ca"},
+    6: {'func': q6, 'args': ["leEeetcode"], 'expected': "leetcode"},
+    7: {'func': q7, 'args': [[2, 3, 2], 2], 'expected': 6},
+    8: {'func': q8, 'args': [[1, 1, 0, 0], [0, 1, 0, 1]], 'expected': 0},
+    9: {'func': q9, 'args': [[4, 1, 2], [1, 3, 4, 2]], 'expected': [-1, 3, -1]},
+    10: {'func': q10, 'args': [[1, 2, 1]], 'expected': [2, -1, 2]},
+    11: {'func': q11, 'args': [[73, 74, 75, 71, 69, 72, 76, 73]], 'expected': [1, 1, 4, 2, 1, 1, 0, 0]},
+    12: {'func': q12, 'args': [[8, 4, 6, 2, 3]], 'expected': [6, 2, 4, 2, 3]},
+    13: {'func': q13, 'args': [["2", "1", "+", "3", "*"]], 'expected': 9},
+    14: {'func': q14, 'args': [[5, 10, -5]], 'expected': [5, 10]},
+    15: {'func': q15, 'args': ["3[a]2[bc]"], 'expected': "aaabcbc"},
+    16: {'func': q16, 'args': ["1432219", 3], 'expected': "1219"},
+    17: {'func': q17, 'args': [[2, 1, 5, 6, 2, 3]], 'expected': 10},
+    18: {'func': q18, 'args': [[["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]], 'expected': 6},
+    19: {'func': q19, 'args': [[1, 3, -1, -3, 5, 3, 6, 7], 3], 'expected': [3, 3, 5, 5, 6, 7]},
+    20: {'func': q20, 'args': ["1 + 1"], 'expected': 2},
+    21: {'func': q21, 'args': [")()())"], 'expected': 4},
+    22: {'func': q22, 'args': ["(())"], 'expected': 2},
+    23: {'func': q23, 'args': [[3, 1, 4, 2]], 'expected': True},
+    24: {'func': q24, 'args': ["((("], 'expected': 3},
+    25: {'func': q25, 'args': [[100, 80, 60, 70, 60, 75, 85]], 'expected': [1, 1, 1, 2, 1, 4, 6]},
     
     26: {'func': q26, 'args': [[1, 8, 6, 2, 5, 4, 8, 3, 7]], 'expected': 49},
     27: {'func': q27, 'args': [[-1, 0, 1, 2, -1, -4]], 'expected': [[-1, -1, 2], [-1, 0, 1]]},
@@ -978,176 +984,190 @@ def run_test(QUESTION_NUMBER, silent=False):
         
     try:
         test = TESTS.get(QUESTION_NUMBER)
-    
         if not test:
-            print(f"❌ Question {QUESTION_NUMBER} not found!")
+            if not silent:
+                print(f"❌ Question {QUESTION_NUMBER} not found!")
             return False
-    
+            
         func = test['func']
         args = test['args']
         expected = test['expected']
-    
-        print(f"\n{'='*60}")
-        print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0]}")
-        print(f"{'='*60}")
-        print(f"Input: {args}")
-        print(f"Expected: {expected}")
-        print("-"*60)
-    
-        try:
-            # Convert inputs to linked list nodes where applicable
-            if QUESTION_NUMBER <= 25 and QUESTION_NUMBER not in [19]: # 19 is special deep copy
-                # Convert list args to ListNode structure
-                processed_args = []
+        
+        if not silent:
+            print(f"\n{'='*60}")
+            print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0] if func.__doc__ else 'No docstring'}")
+            print(f"{'='*60}")
+            print(f"Input: {args}")
+            print(f"Expected: {expected}")
+            print("-" * 60)
             
-                # Special case for Q2: delete node in-place.
-                if QUESTION_NUMBER == 2:
-                    # args is [list_vals, val_to_delete]
-                    list_vals = args[0]
-                    target_val = args[1]
-                    head = to_linked_list(list_vals)
-                    # Find target node
+        # Run conversion logic if applicable (Linked Lists / Trees)
+        # We check filename to apply custom converters if they are defined
+        import os
+        filename = os.path.basename(__file__)
+        
+        if filename == "linked_lists.py" and QUESTION_NUMBER <= 25 and QUESTION_NUMBER != 19:
+            processed_args = []
+            if QUESTION_NUMBER == 2:
+                list_vals = args[0]
+                target_val = args[1]
+                head = to_linked_list(list_vals)
+                curr = head
+                target_node = None
+                while curr:
+                    if curr.val == target_val:
+                        target_node = curr
+                        break
+                    curr = curr.next
+                func(target_node)
+                result = to_list(head)
+            elif QUESTION_NUMBER == 8:
+                list_vals = args[0]
+                cycle_pos = args[1]
+                head = to_linked_list(list_vals)
+                if cycle_pos != -1:
                     curr = head
-                    target_node = None
+                    cycle_node = None
+                    tail = None
+                    idx = 0
                     while curr:
-                        if curr.val == target_val:
-                            target_node = curr
+                        if idx == cycle_pos:
+                            cycle_node = curr
+                        tail = curr
+                        curr = curr.next
+                        idx += 1
+                    if tail and cycle_node:
+                        tail.next = cycle_node
+                result = func(head)
+            elif QUESTION_NUMBER == 9:
+                listA = args[0]
+                listB = args[1]
+                skipA = args[2]
+                skipB = args[3]
+                headA = to_linked_list(listA[:skipA])
+                headB = to_linked_list(listB[:skipB])
+                intersect = to_linked_list(listA[skipA:])
+                if headA:
+                    curr = headA
+                    while curr.next:
+                        curr = curr.next
+                    curr.next = intersect
+                else:
+                    headA = intersect
+                if headB:
+                    curr = headB
+                    while curr.next:
+                        curr = curr.next
+                    curr.next = intersect
+                else:
+                    headB = intersect
+                res_node = func(headA, headB)
+                result = to_list(res_node)
+            elif QUESTION_NUMBER == 23:
+                list_nodes = [to_linked_list(arr) for arr in args[0]]
+                res_node = func(list_nodes)
+                result = to_list(res_node)
+            elif QUESTION_NUMBER == 25:
+                list_vals = args[0]
+                cycle_pos = args[1]
+                head = to_linked_list(list_vals)
+                if cycle_pos != -1:
+                    curr = head
+                    cycle_node = None
+                    tail = None
+                    idx = 0
+                    while curr:
+                        if idx == cycle_pos:
+                            cycle_node = curr
+                        tail = curr
+                        curr = curr.next
+                        idx += 1
+                    if tail and cycle_node:
+                        tail.next = cycle_node
+                res_node = func(head)
+                if not res_node:
+                    result = -1
+                else:
+                    curr = head
+                    idx = 0
+                    result = -1
+                    for _ in range(100):
+                        if curr == res_node:
+                            result = idx
                             break
                         curr = curr.next
-                    # execute function
-                    func(target_node)
-                    result = to_list(head)
-            
-                # Special case for Q8: cycle detection
-                elif QUESTION_NUMBER == 8:
-                    list_vals = args[0]
-                    cycle_pos = args[1]
-                    head = to_linked_list(list_vals)
-                    # create cycle
-                    if cycle_pos != -1:
-                        curr = head
-                        cycle_node = None
-                        tail = None
-                        idx = 0
-                        while curr:
-                            if idx == cycle_pos:
-                                cycle_node = curr
-                            tail = curr
-                            curr = curr.next
-                            idx += 1
-                        if tail and cycle_node:
-                            tail.next = cycle_node
-                    result = func(head)
-                
-                # Special case for Q9: intersection of two lists
-                elif QUESTION_NUMBER == 9:
-                    # args is [listA, listB, skipA, skipB]
-                    listA = args[0]
-                    listB = args[1]
-                    skipA = args[2]
-                    skipB = args[3]
-                
-                    headA = to_linked_list(listA[:skipA])
-                    headB = to_linked_list(listB[:skipB])
-                    intersect = to_linked_list(listA[skipA:])
-                
-                    # Link intersection
-                    if headA:
-                        curr = headA
-                        while curr.next:
-                            curr = curr.next
-                        curr.next = intersect
+                        idx += 1
+            else:
+                for arg in args:
+                    if isinstance(arg, list):
+                        processed_args.append(to_linked_list(arg))
                     else:
-                        headA = intersect
-                    
-                    if headB:
-                        curr = headB
-                        while curr.next:
-                            curr = curr.next
-                        curr.next = intersect
-                    else:
-                        headB = intersect
-                    
-                    res_node = func(headA, headB)
-                    result = to_list(res_node)
+                        processed_args.append(arg)
+                res_node = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
+                result = to_list(res_node) if isinstance(res_node, ListNode) else res_node
                 
-                # Special case for Q23: Merge K Sorted Lists
-                elif QUESTION_NUMBER == 23:
-                    # args is list of lists
-                    list_nodes = [to_linked_list(arr) for arr in args[0]]
-                    res_node = func(list_nodes)
-                    result = to_list(res_node)
-                
-                # Special case for Q25: Linked List Cycle II
-                elif QUESTION_NUMBER == 25:
-                    list_vals = args[0]
-                    cycle_pos = args[1]
-                    head = to_linked_list(list_vals)
-                    # create cycle
-                    if cycle_pos != -1:
-                        curr = head
-                        cycle_node = None
-                        tail = None
-                        idx = 0
-                        while curr:
-                            if idx == cycle_pos:
-                                cycle_node = curr
-                            tail = curr
-                            curr = curr.next
-                            idx += 1
-                        if tail and cycle_node:
-                            tail.next = cycle_node
-                    res_node = func(head)
-                    # find index of res_node
-                    if not res_node:
-                        result = -1
-                    else:
-                        curr = head
-                        idx = 0
-                        result = -1
-                        # limit traversal in case of infinite loop
-                        for _ in range(100):
-                            if curr == res_node:
-                                result = idx
-                                break
-                            curr = curr.next
-                            idx += 1
-                        
-                # Standard single or dual list input/output functions
+        elif filename == "trees_and_bst.py" and QUESTION_NUMBER <= 25:
+            processed_args = []
+            for arg in args:
+                if isinstance(arg, list):
+                    processed_args.append(to_tree(arg))
                 else:
-                    for arg in args:
-                        if isinstance(arg, list):
-                            processed_args.append(to_linked_list(arg))
-                        else:
-                            processed_args.append(arg)
-                        
-                    res_node = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
-                    result = to_list(res_node) if isinstance(res_node, ListNode) else res_node
+                    processed_args.append(arg)
+            res_val = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
+            if isinstance(res_val, TreeNode):
+                result = to_list(res_val)
             else:
-                # Fallback for questions 26-100 placeholder tests
-                result = func(*args) if isinstance(args, list) else func(args)
+                result = res_val
+                
+        elif filename == "tries.py":
+            # Tries test runner class-based instantiation and method calling
+            commands = args[0]
+            arguments = args[1]
+            obj = func() # Instantiate the class (Trie or MapSum)
+            result = [None]
+            for i in range(1, len(commands)):
+                cmd = commands[i]
+                arg = arguments[i]
+                method = getattr(obj, cmd)
+                res = method(*arg) if arg else method()
+                result.append(res)
+                
+        else:
+            # Standard input/output check
+            result = func(*args) if isinstance(args, list) else func(args)
             
+        # Custom result sorting for combinations/subsets/permutations
+        if filename == "backtracking.py" and QUESTION_NUMBER in [1, 2, 4, 13, 20]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+        elif filename == "bit_manipulation.py" and QUESTION_NUMBER in [9, 11]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+        elif filename == "loop_basics.py" and QUESTION_NUMBER in [41]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+                
+        if not silent:
             print(f"Your Output: {result}")
-        
-            if result == expected:
+            
+        if result == expected:
+            if not silent:
                 print("\n✅ PASS - Correct!")
-            else:
+            return True
+        else:
+            if not silent:
                 print("\n❌ FAIL - Output doesn't match expected")
-        except Exception as e:
-            print(f"\n❌ ERROR: {e}")
-    
-        print(f"{'='*60}\n")
+            return False
+            
     except Exception as e:
         if not silent:
             print(f"\n❌ ERROR: {e}")
         return False
     finally:
         sys.stdout = old_stdout
-        
-    if silent:
-        output_str = captured.getvalue()
-        return "✅ PASS" in output_str
-    return True
 
 if __name__ == "__main__":
     import sys
@@ -1158,15 +1178,38 @@ if __name__ == "__main__":
         except ValueError:
             pass
 
-    # If QUESTION_NUMBER is None or 0, auto-detect the first unsolved question
+    # If QUESTION_NUMBER is None or 0, auto-detect the highest-numbered non-empty question
     if QUESTION_NUMBER is None or QUESTION_NUMBER == 0:
+        import ast
+        import inspect
+        
         detected_q = 1
-        for q_num in sorted(TESTS.keys()):
-            if not run_test(q_num, silent=True):
-                detected_q = q_num
-                break
-        else:
-            detected_q = max(TESTS.keys())
+        for q_num in sorted(TESTS.keys(), reverse=True):
+            test = TESTS[q_num]
+            func = test['func']
+            try:
+                source = inspect.getsource(func)
+                tree = ast.parse(source)
+                func_def = tree.body[0]
+                body = func_def.body
+                
+                # Check if there are non-docstring, non-pass statements
+                non_empty = False
+                for stmt in body:
+                    # Ignore docstrings
+                    if isinstance(stmt, ast.Expr) and isinstance(stmt.value, (ast.Constant, ast.Str)):
+                        continue
+                    # Ignore pass
+                    if isinstance(stmt, ast.Pass):
+                        continue
+                    non_empty = True
+                    break
+                
+                if non_empty:
+                    detected_q = q_num
+                    break
+            except Exception:
+                pass
         QUESTION_NUMBER = detected_q
 
     # Run the selected question in verbose mode

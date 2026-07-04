@@ -1,8 +1,8 @@
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 """
-Trees & Binary Search Trees - Practice One Question at a Time
-=============================================================
+Backtracking - Practice One Question at a Time
+==============================================
 HOW TO USE:
 1. Change QUESTION_NUMBER below to the question you want to solve (1 to 100)
 2. Write your logic in the corresponding function (q1 to q100)
@@ -14,270 +14,242 @@ QUESTION_NUMBER = None  # <-- Change this to solve different questions
 # ============================================================
 
 
-# ==================== NODE DEFINITION & HELPERS ====================
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-def to_tree(arr: list) -> TreeNode:
-    if not arr:
-        return None
-    root = TreeNode(arr[0])
-    queue = [root]
-    i = 1
-    while queue and i < len(arr):
-        curr = queue.pop(0)
-        if curr:
-            if i < len(arr) and arr[i] is not None:
-                curr.left = TreeNode(arr[i])
-                queue.append(curr.left)
-            else:
-                curr.left = None
-            i += 1
-            if i < len(arr) and arr[i] is not None:
-                curr.right = TreeNode(arr[i])
-                queue.append(curr.right)
-            else:
-                curr.right = None
-            i += 1
-    return root
-
-def to_list(root: TreeNode) -> list:
-    if not root:
-        return []
-    res = []
-    queue = [root]
-    while queue:
-        curr = queue.pop(0)
-        if curr:
-            res.append(curr.val)
-            queue.append(curr.left)
-            queue.append(curr.right)
-        else:
-            res.append(None)
-    # Strip trailing Nones
-    while res and res[-1] is None:
-        res.pop()
-    return res
-
-
 # ==================== ALL 100 QUESTIONS ====================
 
-# --- EASY LEVEL (Q1 - Q25) ---
-
-def q1(root: TreeNode) -> list:
-    """Q1: Binary Tree Inorder Traversal. Return inorder traversal list.
-    Input: root = [1, null, 2, 3]
-    Expected Output: [1, 3, 2]
+def q1(nums: list) -> list:
+    """Q1: Subsets. Return all possible subsets (power set) of unique elements.
+    Input: nums = [1, 2, 3]
+    Expected Output: [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]] (any order)
     """
     res = []
-    def traverse(node):
-        if not node:
+    subset = []
+    def dfs(i):
+        if i >= len(nums):
+            res.append(subset.copy())
             return
-        traverse(node.left)
-        res.append(node.val)
-        traverse(node.right)
-    traverse(root)
+        # include nums[i]
+        subset.append(nums[i])
+        dfs(i + 1)
+        # exclude nums[i]
+        subset.pop()
+        dfs(i + 1)
+    dfs(0)
     return res
 
-def q2(root: TreeNode) -> list:
-    """Q2: Binary Tree Preorder Traversal. Return preorder traversal list.
-    Input: root = [1, null, 2, 3]
-    Expected Output: [1, 2, 3]
+def q2(nums: list) -> list:
+    """Q2: Subsets II. Return all subsets, avoiding duplicates if input has duplicate elements.
+    Input: nums = [1, 2, 2]
+    Expected Output: [[], [1], [2], [1, 2], [2, 2], [1, 2, 2]] (any order)
     """
+    nums.sort()
     res = []
-    def traverse(node):
-        if not node:
+    subset = []
+    def dfs(i):
+        if i >= len(nums):
+            res.append(subset.copy())
             return
-        res.append(node.val)
-        traverse(node.left)
-        traverse(node.right)
-    traverse(root)
+        # include nums[i]
+        subset.append(nums[i])
+        dfs(i + 1)
+        subset.pop()
+        
+        # skip duplicates
+        while i + 1 < len(nums) and nums[i] == nums[i + 1]:
+            i += 1
+        dfs(i + 1)
+    dfs(0)
     return res
 
-def q3(root: TreeNode) -> list:
-    """Q3: Binary Tree Postorder Traversal. Return postorder traversal list.
-    Input: root = [1, null, 2, 3]
-    Expected: [3, 2, 1]
+def q3(n: int, k: int) -> list:
+    """Q3: Combinations. Return all possible combinations of k numbers chosen from range 1 to n.
+    Input: n = 4, k = 2
+    Expected: [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
     """
     # Write your logic here
     pass
 
-def q4(root: TreeNode) -> list:
-    """Q4: Binary Tree Level Order Traversal (BFS). Return levels list.
-    Input: root = [3, 9, 20, null, null, 15, 7]
-    Expected: [[3], [9, 20], [15, 7]]
+def q4(candidates: list, target: int) -> list:
+    """Q4: Combination Sum. Candidates are unique, can reuse elements multiple times.
+    Input: candidates = [2, 3, 6, 7], target = 7
+    Expected: [[2, 2, 3], [7]]
     """
     # Write your logic here
     pass
 
-def q5(root: TreeNode) -> int:
-    """Q5: Maximum Depth of Binary Tree. Return height/depth of tree.
-    Input: root = [3, 9, 20, null, null, 15, 7]
-    Expected: 3
+def q5(candidates: list, target: int) -> list:
+    """Q5: Combination Sum II. Candidates can contain duplicates, each number can only be used once.
+    Input: candidates = [10, 1, 2, 7, 6, 1, 5], target = 8
+    Expected: [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]
     """
     # Write your logic here
     pass
 
-def q6(root: TreeNode) -> int:
-    """Q6: Minimum Depth of Binary Tree. Return min height root-to-leaf path.
-    Input: root = [3, 9, 20, null, null, 15, 7]
-    Expected: 2 (min path is 3->9, height 2)
+def q6(k: int, n: int) -> list:
+    """Q6: Combination Sum III. Find combinations of k numbers summing to n, unique numbers from 1 to 9.
+    Input: k = 3, n = 7
+    Expected: [[1, 2, 4]]
     """
     # Write your logic here
     pass
 
-def q7(p: TreeNode, q: TreeNode) -> bool:
-    """Q7: Same Tree. Return True if trees p and q are structurally identical and match values.
-    Input: p = [1, 2, 3], q = [1, 2, 3]
+def q7(digits: str) -> list:
+    """Q7: Letter Combinations of a Phone Number.
+    Input: digits = "23"
+    Expected: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+    """
+    # Write your logic here
+    pass
+
+def q8(nums: list) -> list:
+    """Q8: Permutations of distinct integers.
+    Input: nums = [1, 2, 3]
+    Expected: [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+    """
+    # Write your logic here
+    pass
+
+def q9(nums: list) -> list:
+    """Q9: Permutations II (contains duplicates). Return all unique permutations.
+    Input: nums = [1, 1, 2]
+    Expected: [[1, 1, 2], [1, 2, 1], [2, 1, 1]]
+    """
+    # Write your logic here
+    pass
+
+def q10(s: str) -> list:
+    """Q10: Palindrome Partitioning. Partition s such that every substring is a palindrome.
+    Input: s = "aab"
+    Expected: [["a", "a", "b"], ["aa", "b"]]
+    """
+    # Write your logic here
+    pass
+
+def q11(board: list, word: str) -> bool:
+    """Q11: Word Search on grid.
+    Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
     Expected: True
     """
     # Write your logic here
     pass
 
-def q8(root: TreeNode) -> bool:
-    """Q8: Symmetric Tree. Check if a tree is a mirror image of itself.
-    Input: root = [1, 2, 2, 3, 4, 4, 3]
+def q12(matchsticks: list) -> bool:
+    """Q12: Matchsticks to Square. Check if matchsticks can be partitioned into 4 equal sides.
+    Input: matchsticks = [1, 1, 2, 2, 2]
     Expected: True
     """
     # Write your logic here
     pass
 
-def q9(root: TreeNode) -> bool:
-    """Q9: Balanced Binary Tree. Height of left and right subtrees of every node diff <= 1.
-    Input: root = [3, 9, 20, null, null, 15, 7]
-    Expected: True
+def q13(s: str) -> list:
+    """Q13: Restore IP Addresses. Return all possible valid IP addresses partitioned from string.
+    Input: s = "25525511135"
+    Expected: ["255.255.11.135", "255.255.111.35"]
     """
     # Write your logic here
     pass
 
-def q10(root: TreeNode, targetSum: int) -> bool:
-    """Q10: Path Sum. Check if has root-to-leaf path sum equal to targetSum.
-    Input: root = [5, 4, 8, 11, null, 13, 4, 7, 2], targetSum = 22
-    Expected: True (path 5->4->11->2)
+def q14(n: int) -> list:
+    """Q14: N-Queens. Return all distinct board configurations.
+    Input: n = 4
+    Expected: [[".Q..", "...Q", "Q...", "..Q."], ["..Q.", "Q...", "...Q", ".Q.."]]
     """
     # Write your logic here
     pass
 
-def q11(root: TreeNode) -> TreeNode:
-    """Q11: Invert Binary Tree. Mirror invert all children nodes.
-    Input: root = [4, 2, 7, 1, 3, 6, 9]
-    Expected: [4, 7, 2, 9, 6, 3, 1]
+def q15(n: int) -> int:
+    """Q15: N-Queens II. Return total number of distinct board configurations.
+    Input: n = 4
+    Expected: 2
     """
     # Write your logic here
     pass
 
-def q12(root1: TreeNode, root2: TreeNode) -> TreeNode:
-    """Q12: Merge Two Binary Trees. Overlap nodes sum values, otherwise merge structures.
-    Input: r1 = [1, 3, 2, 5], r2 = [2, 1, 3, null, 4, null, 7]
-    Expected: [3, 4, 5, 5, 4, null, 7]
+def q16(board: list) -> list:
+    """Q16: Sudoku Solver. Solve in-place, return completed grid.
+    Input: board = [
+        ["5","3",".",".","7",".",".",".","."],
+        ["6",".",".","1","9","5",".",".","."],
+        [".","9","8",".",".",".",".","6","."],
+        ["8",".",".",".","6",".",".",".","3"],
+        ["4",".",".","8",".","3",".",".","1"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".","6",".",".",".",".","2","8","."],
+        [".",".",".","4","1","9",".",".","5"],
+        [".",".",".",".","8",".",".","7","9"]
+    ]
+    Expected: Completed sudoku board values
     """
     # Write your logic here
     pass
 
-def q13(root: TreeNode, subRoot: TreeNode) -> bool:
-    """Q13: Subtree of Another Tree. Check if subRoot structure exists within root tree.
-    Input: root = [3, 4, 5, 1, 2], subRoot = [4, 1, 2]
-    Expected: True
+def q17(board: list, words: list) -> list:
+    """Q17: Word Search II (Trie + Backtracking). Find all matching words from wordlist on board.
+    Input: board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
+    Expected: ["oath", "eat"]
     """
     # Write your logic here
     pass
 
-def q14(root: TreeNode, val: int) -> TreeNode:
-    """Q14: Search in a Binary Search Tree (BST). Return subtree node matching val, or None.
-    Input: root = [4, 2, 7, 1, 3], val = 2
-    Expected: [2, 1, 3]
+def q18(num: str, target: int) -> list:
+    """Q18: Expression Add Operators. Add operators '+', '-', or '*' to num to get target.
+    Input: num = "123", target = 6
+    Expected: ["1+2+3", "1*2*3"]
     """
     # Write your logic here
     pass
 
-def q15(root: TreeNode, val: int) -> TreeNode:
-    """Q15: Insert into a Binary Search Tree. Insert val keeping BST property.
-    Input: root = [4, 2, 7, 1, 3], val = 5
-    Expected: [4, 2, 7, 1, 3, 5]
+def q19(grid: list) -> int:
+    """Q19: Unique Paths III. Count 4-directional paths from start to end visiting every non-obstacle square exactly once.
+    Input: grid = [[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 2, -1]]
+    Expected: 2
     """
     # Write your logic here
     pass
 
-def q16(root: TreeNode, key: int) -> TreeNode:
-    """Q16: Delete Node in a BST. Delete key in BST, return new root keeping BST property.
-    Input: root = [5, 3, 6, 2, 4, null, 7], key = 3
-    Expected: [5, 4, 6, 2, null, null, 7] (or equivalent BST)
+def q20(n: int, k: int) -> str:
+    """Q20: Permutation Sequence. Find the kth permutation sequence of numbers from 1 to n.
+    Input: n = 3, k = 3
+    Expected: "213"
     """
     # Write your logic here
     pass
 
-def q17(root: TreeNode) -> bool:
-    """Q17: Validate Binary Search Tree. Check if tree conforms to BST rules.
-    Input: root = [2, 1, 3]
-    Expected: True
+def q21(s: str) -> int:
+    """Q21: Split a String Into the Max Number of Unique Substrings.
+    Input: s = "ababccc"
+    Expected: 5 (split into "a", "b", "ab", "c", "cc")
     """
     # Write your logic here
     pass
 
-def q18(root: TreeNode, p_val: int, q_val: int) -> TreeNode:
-    """Q18: Lowest Common Ancestor of a Binary Search Tree (BST).
-    Input: root = [6, 2, 8, 0, 4, 7, 9, null, null, 3, 5], p_val = 2, q_val = 8
-    Expected: 6
+def q22(n: int) -> int:
+    """Q22: Beautiful Arrangement. Count combinations of indices matching index/value divisions.
+    Input: n = 2
+    Expected: 2
     """
     # Write your logic here
     pass
 
-def q19(root: TreeNode, p_val: int, q_val: int) -> TreeNode:
-    """Q19: Lowest Common Ancestor of a Binary Tree.
-    Input: root = [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4], p_val = 5, q_val = 1
-    Expected: 3
+def q23(grid: list) -> int:
+    """Q23: Path with Maximum Gold.
+    Input: grid = [[0,6,0],[5,8,7],[0,9,0]]
+    Expected: 24 (path: 9->8->7 or 9->8->5 -> total 9+8+7 = 24)
     """
     # Write your logic here
     pass
 
-def q20(root: TreeNode, k: int) -> int:
-    """Q20: Kth Smallest Element in a BST.
-    Input: root = [3, 1, 4, null, 2], k = 1
-    Expected: 1
+def q24(n: int) -> list:
+    """Q24: Construct the Lexicographically Largest Valid Sequence.
+    Input: n = 3
+    Expected: [3, 1, 2, 3, 2]
     """
     # Write your logic here
     pass
 
-def q21(preorder: list, inorder: list) -> TreeNode:
-    """Q21: Construct Binary Tree from Preorder and Inorder Traversal.
-    Input: preorder = [3, 9, 20, 15, 7], inorder = [9, 3, 15, 20, 7]
-    Expected: [3, 9, 20, null, null, 15, 7]
-    """
-    # Write your logic here
-    pass
-
-def q22(root: TreeNode) -> list:
-    """Q22: Binary Tree Zigzag Level Order Traversal. Alternating left-to-right, right-to-left.
-    Input: root = [3, 9, 20, null, null, 15, 7]
-    Expected: [[3], [20, 9], [15, 7]]
-    """
-    # Write your logic here
-    pass
-
-def q23(root: TreeNode) -> list:
-    """Q23: Binary Tree Right Side View (return values visible from right side).
-    Input: root = [1, 2, 3, null, 5, null, 4]
-    Expected: [1, 3, 4]
-    """
-    # Write your logic here
-    pass
-
-def q24(root: TreeNode, targetSum: int) -> list:
-    """Q24: Path Sum II. Return all root-to-leaf paths summing to targetSum.
-    Input: root = [5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1], targetSum = 22
-    Expected: [[5, 4, 11, 2], [5, 8, 4, 5]]
-    """
-    # Write your logic here
-    pass
-
-def q25(root: TreeNode) -> TreeNode:
-    """Q25: Flatten Binary Tree to Linked List (flatten in-place to right child list).
-    Input: root = [1, 2, 5, 3, 4, null, 6]
-    Expected: [1, null, 2, null, 3, null, 4, null, 5, null, 6]
+def q25(turnedOn: int) -> list:
+    """Q25: Binary Watch.
+    Input: turnedOn = 1
+    Expected: ["0:01","0:02","0:04","0:08","0:16","0:32","1:00","2:00","4:00","8:00"]
     """
     # Write your logic here
     pass
@@ -892,31 +864,51 @@ def q100(nums):
 # ==================== TEST SUITE DICTIONARY ====================
 
 TESTS = {
-    1: {'func': q1, 'args': [[1, None, 2, 3]], 'expected': [1, 3, 2]},
-    2: {'func': q2, 'args': [[1, None, 2, 3]], 'expected': [1, 2, 3]},
-    3: {'func': q3, 'args': [[1, None, 2, 3]], 'expected': [3, 2, 1]},
-    4: {'func': q4, 'args': [[3, 9, 20, None, None, 15, 7]], 'expected': [[3], [9, 20], [15, 7]]},
-    5: {'func': q5, 'args': [[3, 9, 20, None, None, 15, 7]], 'expected': 3},
-    6: {'func': q6, 'args': [[3, 9, 20, None, None, 15, 7]], 'expected': 2},
-    7: {'func': q7, 'args': [[1, 2, 3], [1, 2, 3]], 'expected': True},
-    8: {'func': q8, 'args': [[1, 2, 2, 3, 4, 4, 3]], 'expected': True},
-    9: {'func': q9, 'args': [[3, 9, 20, None, None, 15, 7]], 'expected': True},
-    10: {'func': q10, 'args': [[5, 4, 8, 11, None, 13, 4, 7, 2], 22], 'expected': True},
-    11: {'func': q11, 'args': [[4, 2, 7, 1, 3, 6, 9]], 'expected': [4, 7, 2, 9, 6, 3, 1]},
-    12: {'func': q12, 'args': [[1, 3, 2, 5], [2, 1, 3, None, 4, null if 'null' in globals() else None, 7]], 'expected': [3, 4, 5, 5, 4, None, 7]},
-    13: {'func': q13, 'args': [[3, 4, 5, 1, 2], [4, 1, 2]], 'expected': True},
-    14: {'func': q14, 'args': [[4, 2, 7, 1, 3], 2], 'expected': [2, 1, 3]},
-    15: {'func': q15, 'args': [[4, 2, 7, 1, 3], 5], 'expected': [4, 2, 7, 1, 3, 5]},
-    16: {'func': q16, 'args': [[5, 3, 6, 2, 4, None, 7], 3], 'expected': [5, 4, 6, 2, None, None, 7]},
-    17: {'func': q17, 'args': [[2, 1, 3]], 'expected': True},
-    18: {'func': q18, 'args': [[6, 2, 8, 0, 4, 7, 9, None, None, 3, 5], 2, 8], 'expected': 6},
-    19: {'func': q19, 'args': [[3, 5, 1, 6, 2, 0, 8, None, None, 7, 4], 5, 1], 'expected': 3},
-    20: {'func': q20, 'args': [[3, 1, 4, None, 2], 1], 'expected': 1},
-    21: {'func': q21, 'args': [[3, 9, 20, 15, 7], [9, 3, 15, 20, 7]], 'expected': [3, 9, 20, None, None, 15, 7]},
-    22: {'func': q22, 'args': [[3, 9, 20, None, None, 15, 7]], 'expected': [[3], [20, 9], [15, 7]]},
-    23: {'func': q23, 'args': [[1, 2, 3, None, 5, None, 4]], 'expected': [1, 3, 4]},
-    24: {'func': q24, 'args': [[5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1], 22], 'expected': [[5, 4, 11, 2], [5, 8, 4, 5]]},
-    25: {'func': q25, 'args': [[1, 2, 5, 3, 4, None, 6]], 'expected': [1, None, 2, None, 3, None, 4, None, 5, None, 6]},
+    1: {'func': q1, 'args': [[1, 2, 3]], 'expected': [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]},
+    2: {'func': q2, 'args': [[1, 2, 2]], 'expected': [[], [1], [2], [1, 2], [2, 2], [1, 2, 2]]},
+    3: {'func': q3, 'args': [4, 2], 'expected': [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]},
+    4: {'func': q4, 'args': [[2, 3, 6, 7], 7], 'expected': [[2, 2, 3], [7]]},
+    5: {'func': q5, 'args': [[10, 1, 2, 7, 6, 1, 5], 8], 'expected': [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]},
+    6: {'func': q6, 'args': [3, 7], 'expected': [[1, 2, 4]]},
+    7: {'func': q7, 'args': ["23"], 'expected': ["ad","ae","af","bd","be","bf","cd","ce","cf"]},
+    8: {'func': q8, 'args': [[1, 2, 3]], 'expected': [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]},
+    9: {'func': q9, 'args': [[1, 1, 2]], 'expected': [[1, 1, 2], [1, 2, 1], [2, 1, 1]]},
+    10: {'func': q10, 'args': ["aab"], 'expected': [["a", "a", "b"], ["aa", "b"]]},
+    11: {'func': q11, 'args': [[["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED"], 'expected': True},
+    12: {'func': q12, 'args': [[1, 1, 2, 2, 2]], 'expected': True},
+    13: {'func': q13, 'args': ["25525511135"], 'expected': ["255.255.11.135", "255.255.111.35"]},
+    14: {'func': q14, 'args': [4], 'expected': [[".Q..", "...Q", "Q...", "..Q."], ["..Q.", "Q...", "...Q", ".Q.."]]},
+    15: {'func': q15, 'args': [4], 'expected': 2},
+    16: {'func': q16, 'args': [[
+        ["5","3",".",".","7",".",".",".","."],
+        ["6",".",".","1","9","5",".",".","."],
+        [".","9","8",".",".",".",".","6","."],
+        ["8",".",".",".","6",".",".",".","3"],
+        ["4",".",".","8",".","3",".",".","1"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".","6",".",".",".",".","2","8","."],
+        [".",".",".","4","1","9",".",".","5"],
+        [".",".",".",".","8",".",".","7","9"]
+    ]], 'expected': [
+        ["5","3","4","6","7","8","9","1","2"],
+        ["6","7","2","1","9","5","3","4","8"],
+        ["1","9","8","3","4","2","5","6","7"],
+        ["8","5","9","7","6","1","4","2","3"],
+        ["4","2","6","8","5","3","7","9","1"],
+        ["7","1","3","9","2","4","8","5","6"],
+        ["9","6","1","5","3","7","2","8","4"],
+        ["2","8","7","4","1","9","6","3","5"],
+        ["3","4","5","2","8","6","1","7","9"]
+    ]},
+    17: {'func': q17, 'args': [[["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], ["oath","pea","eat","rain"]], 'expected': ["oath", "eat"]},
+    18: {'func': q18, 'args': ["123", 6], 'expected': ["1+2+3", "1*2*3"]},
+    19: {'func': q19, 'args': [[[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 2, -1]]], 'expected': 2},
+    20: {'func': q20, 'args': [3, 3], 'expected': "213"},
+    21: {'func': q21, 'args': ["ababccc"], 'expected': 5},
+    22: {'func': q22, 'args': [2], 'expected': 2},
+    23: {'func': q23, 'args': [[[0,6,0],[5,8,7],[0,9,0]]], 'expected': 24},
+    24: {'func': q24, 'args': [3], 'expected': [3, 1, 2, 3, 2]},
+    25: {'func': q25, 'args': [1], 'expected': ["0:01","0:02","0:04","0:08","0:16","0:32","1:00","2:00","4:00","8:00"]},
     
     26: {'func': q26, 'args': [[1, 8, 6, 2, 5, 4, 8, 3, 7]], 'expected': 49},
     27: {'func': q27, 'args': [[-1, 0, 1, 2, -1, -4]], 'expected': [[-1, -1, 2], [-1, 0, 1]]},
@@ -1010,86 +1002,190 @@ def run_test(QUESTION_NUMBER, silent=False):
         
     try:
         test = TESTS.get(QUESTION_NUMBER)
-    
         if not test:
-            print(f"❌ Question {QUESTION_NUMBER} not found!")
+            if not silent:
+                print(f"❌ Question {QUESTION_NUMBER} not found!")
             return False
-    
+            
         func = test['func']
         args = test['args']
         expected = test['expected']
-    
-        print(f"\n{'='*60}")
-        print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0]}")
-        print(f"{'='*60}")
-        print(f"Input: {args}")
-        print(f"Expected: {expected}")
-        print("-"*60)
-    
-        try:
-            # Convert inputs to TreeNodes where applicable (only for Q1 - Q25)
-            if QUESTION_NUMBER <= 25:
-                processed_args = []
-            
-                # Special case for LCA questions: Q18 & Q19
-                if QUESTION_NUMBER in [18, 19]:
-                    # args is [tree_arr, p_val, q_val]
-                    tree_arr = args[0]
-                    p_val = args[1]
-                    q_val = args[2]
-                    root = to_tree(tree_arr)
-                    res_node = func(root, p_val, q_val)
-                    result = res_node.val if res_node else None
-                
-                # Special case for Q12 (Merge Two Binary Trees)
-                elif QUESTION_NUMBER == 12:
-                    r1 = to_tree(args[0])
-                    r2 = to_tree(args[1])
-                    res_node = func(r1, r2)
-                    result = to_list(res_node)
-                
-                # Special case for Q13 (Subtree check)
-                elif QUESTION_NUMBER == 13:
-                    r1 = to_tree(args[0])
-                    r2 = to_tree(args[1])
-                    result = func(r1, r2)
-                
-                else:
-                    for arg in args:
-                        if isinstance(arg, list):
-                            processed_args.append(to_tree(arg))
-                        else:
-                            processed_args.append(arg)
-                
-                    res_val = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
-                    if isinstance(res_val, TreeNode):
-                        result = to_list(res_val)
-                    else:
-                        result = res_val
-            else:
-                result = func(*args) if isinstance(args, list) else func(args)
-            
-            print(f"Your Output: {result}")
         
-            if result == expected:
-                print("\n✅ PASS - Correct!")
+        if not silent:
+            print(f"\n{'='*60}")
+            print(f"Question {QUESTION_NUMBER}: {func.__doc__.splitlines()[0] if func.__doc__ else 'No docstring'}")
+            print(f"{'='*60}")
+            print(f"Input: {args}")
+            print(f"Expected: {expected}")
+            print("-" * 60)
+            
+        # Run conversion logic if applicable (Linked Lists / Trees)
+        # We check filename to apply custom converters if they are defined
+        import os
+        filename = os.path.basename(__file__)
+        
+        if filename == "linked_lists.py" and QUESTION_NUMBER <= 25 and QUESTION_NUMBER != 19:
+            processed_args = []
+            if QUESTION_NUMBER == 2:
+                list_vals = args[0]
+                target_val = args[1]
+                head = to_linked_list(list_vals)
+                curr = head
+                target_node = None
+                while curr:
+                    if curr.val == target_val:
+                        target_node = curr
+                        break
+                    curr = curr.next
+                func(target_node)
+                result = to_list(head)
+            elif QUESTION_NUMBER == 8:
+                list_vals = args[0]
+                cycle_pos = args[1]
+                head = to_linked_list(list_vals)
+                if cycle_pos != -1:
+                    curr = head
+                    cycle_node = None
+                    tail = None
+                    idx = 0
+                    while curr:
+                        if idx == cycle_pos:
+                            cycle_node = curr
+                        tail = curr
+                        curr = curr.next
+                        idx += 1
+                    if tail and cycle_node:
+                        tail.next = cycle_node
+                result = func(head)
+            elif QUESTION_NUMBER == 9:
+                listA = args[0]
+                listB = args[1]
+                skipA = args[2]
+                skipB = args[3]
+                headA = to_linked_list(listA[:skipA])
+                headB = to_linked_list(listB[:skipB])
+                intersect = to_linked_list(listA[skipA:])
+                if headA:
+                    curr = headA
+                    while curr.next:
+                        curr = curr.next
+                    curr.next = intersect
+                else:
+                    headA = intersect
+                if headB:
+                    curr = headB
+                    while curr.next:
+                        curr = curr.next
+                    curr.next = intersect
+                else:
+                    headB = intersect
+                res_node = func(headA, headB)
+                result = to_list(res_node)
+            elif QUESTION_NUMBER == 23:
+                list_nodes = [to_linked_list(arr) for arr in args[0]]
+                res_node = func(list_nodes)
+                result = to_list(res_node)
+            elif QUESTION_NUMBER == 25:
+                list_vals = args[0]
+                cycle_pos = args[1]
+                head = to_linked_list(list_vals)
+                if cycle_pos != -1:
+                    curr = head
+                    cycle_node = None
+                    tail = None
+                    idx = 0
+                    while curr:
+                        if idx == cycle_pos:
+                            cycle_node = curr
+                        tail = curr
+                        curr = curr.next
+                        idx += 1
+                    if tail and cycle_node:
+                        tail.next = cycle_node
+                res_node = func(head)
+                if not res_node:
+                    result = -1
+                else:
+                    curr = head
+                    idx = 0
+                    result = -1
+                    for _ in range(100):
+                        if curr == res_node:
+                            result = idx
+                            break
+                        curr = curr.next
+                        idx += 1
             else:
+                for arg in args:
+                    if isinstance(arg, list):
+                        processed_args.append(to_linked_list(arg))
+                    else:
+                        processed_args.append(arg)
+                res_node = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
+                result = to_list(res_node) if isinstance(res_node, ListNode) else res_node
+                
+        elif filename == "trees_and_bst.py" and QUESTION_NUMBER <= 25:
+            processed_args = []
+            for arg in args:
+                if isinstance(arg, list):
+                    processed_args.append(to_tree(arg))
+                else:
+                    processed_args.append(arg)
+            res_val = func(*processed_args) if len(processed_args) > 1 else func(processed_args[0])
+            if isinstance(res_val, TreeNode):
+                result = to_list(res_val)
+            else:
+                result = res_val
+                
+        elif filename == "tries.py":
+            # Tries test runner class-based instantiation and method calling
+            commands = args[0]
+            arguments = args[1]
+            obj = func() # Instantiate the class (Trie or MapSum)
+            result = [None]
+            for i in range(1, len(commands)):
+                cmd = commands[i]
+                arg = arguments[i]
+                method = getattr(obj, cmd)
+                res = method(*arg) if arg else method()
+                result.append(res)
+                
+        else:
+            # Standard input/output check
+            result = func(*args) if isinstance(args, list) else func(args)
+            
+        # Custom result sorting for combinations/subsets/permutations
+        if filename == "backtracking.py" and QUESTION_NUMBER in [1, 2, 4, 13, 20]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+        elif filename == "bit_manipulation.py" and QUESTION_NUMBER in [9, 11]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+        elif filename == "loop_basics.py" and QUESTION_NUMBER in [41]:
+            if result and isinstance(result, list):
+                result = sorted([sorted(x) if isinstance(x, list) else x for x in result])
+                expected = sorted([sorted(x) if isinstance(x, list) else x for x in expected])
+                
+        if not silent:
+            print(f"Your Output: {result}")
+            
+        if result == expected:
+            if not silent:
+                print("\n✅ PASS - Correct!")
+            return True
+        else:
+            if not silent:
                 print("\n❌ FAIL - Output doesn't match expected")
-        except Exception as e:
-            print(f"\n❌ ERROR: {e}")
-    
-        print(f"{'='*60}\n")
+            return False
+            
     except Exception as e:
         if not silent:
             print(f"\n❌ ERROR: {e}")
         return False
     finally:
         sys.stdout = old_stdout
-        
-    if silent:
-        output_str = captured.getvalue()
-        return "✅ PASS" in output_str
-    return True
 
 if __name__ == "__main__":
     import sys
@@ -1100,15 +1196,38 @@ if __name__ == "__main__":
         except ValueError:
             pass
 
-    # If QUESTION_NUMBER is None or 0, auto-detect the first unsolved question
+    # If QUESTION_NUMBER is None or 0, auto-detect the highest-numbered non-empty question
     if QUESTION_NUMBER is None or QUESTION_NUMBER == 0:
+        import ast
+        import inspect
+        
         detected_q = 1
-        for q_num in sorted(TESTS.keys()):
-            if not run_test(q_num, silent=True):
-                detected_q = q_num
-                break
-        else:
-            detected_q = max(TESTS.keys())
+        for q_num in sorted(TESTS.keys(), reverse=True):
+            test = TESTS[q_num]
+            func = test['func']
+            try:
+                source = inspect.getsource(func)
+                tree = ast.parse(source)
+                func_def = tree.body[0]
+                body = func_def.body
+                
+                # Check if there are non-docstring, non-pass statements
+                non_empty = False
+                for stmt in body:
+                    # Ignore docstrings
+                    if isinstance(stmt, ast.Expr) and isinstance(stmt.value, (ast.Constant, ast.Str)):
+                        continue
+                    # Ignore pass
+                    if isinstance(stmt, ast.Pass):
+                        continue
+                    non_empty = True
+                    break
+                
+                if non_empty:
+                    detected_q = q_num
+                    break
+            except Exception:
+                pass
         QUESTION_NUMBER = detected_q
 
     # Run the selected question in verbose mode
