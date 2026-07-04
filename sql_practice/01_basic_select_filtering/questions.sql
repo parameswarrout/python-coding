@@ -1,0 +1,109 @@
+-- ============================================================
+-- SQL PRACTICE - 01_BASIC_SELECT_FILTERING (100 QUESTIONS)
+-- ============================================================
+-- database: practice.db (SQLite)
+--
+-- Instructions: Write your SQL query under each question.
+-- You can run these questions in DBeaver connected to practice.db.
+-- ============================================================
+
+-- Q1: Select all columns and all rows from the departments table.
+-- Q2: Select only the name and budget columns from the departments table.
+-- Q3: Select all employees' first name, last name, and salary.
+-- Q4: Select all unique locations where departments are located.
+-- Q5: Select all products and alias the name column as "Product Name".
+-- Q6: Select first name and last name of all employees, combining them as "Full Name" (use || operator).
+-- Q7: Select name and price of all products, displaying price with a 10% tax added (alias as "Price with Tax").
+-- Q8: Select all customers' first name, last name, and country.
+-- Q9: Select all unique countries from the customers table.
+-- Q10: Select all columns from the products table where the price is greater than 100.
+-- Q11: Select all employees who earn a salary of exactly 90000.
+-- Q12: Select all departments located in "New York".
+-- Q13: Select all orders with a total amount less than or equal to 300.
+-- Q14: Select all completed orders from the orders table.
+-- Q15: Select all products that belong to the "Electronics" category.
+-- Q16: Select all employees hired before January 1, 2022.
+-- Q17: Select all customers who signed up in the year 2025.
+-- Q18: Select all products with stock levels greater than 50.
+-- Q19: Select all orders that are currently "Pending".
+-- Q20: Select all employees who do not report to a manager (manager_id is NULL).
+-- Q21: Select all employees who do report to a manager (manager_id is NOT NULL).
+-- Q22: Select all products with a price between 100 and 500.
+-- Q23: Select all orders with a total amount between 500 and 1500.
+-- Q24: Select all employees hired between 2021-01-01 and 2023-01-01.
+-- Q25: Select all products in stock levels between 10 and 50.
+-- Q26: Select all employees working in department 1 or department 2.
+-- Q27: Select all products that belong to either "Furniture", "Appliances", or "Apparel".
+-- Q28: Select all customers who reside in either "USA", "Canada", or "UK".
+-- Q29: Select all orders with status "Completed" or "Shipped".
+-- Q30: Select all employees whose first name starts with the letter 'J'.
+-- Q31: Select all employees whose last name ends with 'son'.
+-- Q32: Select all products containing the word "Desk" in their name.
+-- Q33: Select all customers whose email contains "company" (search employees table instead).
+-- Q34: Select all employees whose email contains "jones".
+-- Q35: Select all products whose category does not start with 'E'.
+-- Q36: Select all customers whose first name is exactly 4 characters long (use LIKE with underscores).
+-- Q37: Select all employees whose first name has 'a' as the second character.
+-- Q38: Select all products where category is 'Electronics' and price is less than 500.
+-- Q39: Select all employees who earn more than 80000 and were hired after 2022-01-01.
+-- Q40: Select all completed orders with a total amount greater than 1000.
+-- Q41: Select all products with category 'Apparel' and price between 20 and 100.
+-- Q42: Select all customers from "Canada" who signed up after 2025-06-01.
+-- Q43: Select all employees who work in department 1 and have a manager_id of 2.
+-- Q44: Select all products that are either in the category "Appliances" or have a price less than 50.
+-- Q45: Select all employees who earn less than 70000 or were hired before 2021-01-01.
+-- Q46: Select all orders that are either "Cancelled" or have a total amount greater than 2000.
+-- Q47: Select all customers who live in "UK" or "Germany" and signed up before 2025-07-01.
+-- Q48: Select all employees whose salary is not between 70000 and 100000.
+-- Q49: Select all products that do not belong to the "Electronics" or "Appliances" categories.
+-- Q50: Select all orders that do not have a status of "Cancelled" or "Pending".
+-- Q51: Select all customers who do not live in "USA" or "Canada".
+-- Q52: Select all employees sorted by salary in ascending order.
+-- Q53: Select all employees sorted by salary in descending order.
+-- Q54: Select all products sorted by name alphabetically.
+-- Q55: Select all products sorted by price from highest to lowest.
+-- Q56: Select all orders sorted by order_date in descending order, then by total_amount in ascending order.
+-- Q57: Select all employees sorted by department_id in ascending order, then by salary in descending order.
+-- Q58: Select the top 5 highest paid employees.
+-- Q59: Select the 3 cheapest products.
+-- Q60: Select the 5 most recent orders.
+-- Q61: Select the 5 oldest employees based on hire date.
+-- Q62: Select the 5 highest paid employees, skipping the top 2 (use OFFSET).
+-- Q63: Select products sorted by price descending, displaying the 4th to 6th most expensive products.
+-- Q64: Select all employees and display their salary formatted with a '$' symbol.
+-- Q65: Select product name and price, rounding the price to the nearest integer.
+-- Q66: Select employee first name and last name, converting them to upper case.
+-- Q67: Select customer first name and last name, converting them to lower case.
+-- Q68: Select all products and show the length of their names.
+-- Q69: Select order_id, order_date, and order_date formatted as 'DD/MM/YYYY' (use strftime or substr in SQLite).
+-- Q70: Select all orders and display status, replacing "Cancelled" with "Void" (use CASE statement).
+-- Q71: Select all products and classify them as "Expensive" (price > 500) or "Affordable" (price <= 500).
+-- Q72: Select all employees and classify their salary into "High" (> 100000), "Medium" (70000-100000), or "Low" (< 70000).
+-- Q73: Select all customers and display their country, mapping "USA" to "United States" and "UK" to "United Kingdom" (use CASE).
+-- Q74: Select employees and return first_name, manager_id, but replace NULL manager_id with 0 (use COALESCE).
+-- Q75: Select all products, return name, category, stock, but replace stock with 'Out of Stock' if stock is 0 (use CASE/COALESCE).
+-- Q76: Select all employees whose first name contains exactly one 'l' character.
+-- Q77: Select all products whose price ends in '.00'.
+-- Q78: Select all employees who earn more than their department's budget / 10 (hardcode department 4 budget as 300000).
+-- Q79: Select all orders placed on a weekend (assuming SQLite date strings, use strftime('%w', order_date) in (0, 6)).
+-- Q80: Select all orders placed in the first half of the year 2025 (Jan 1 to Jun 30).
+-- Q81: Select all employees hired in the month of August of any year.
+-- Q82: Select all customers who signed up in the first 10 days of any month.
+-- Q83: Select all products whose category starts with 'A' or 'F' and price is greater than 50.
+-- Q84: Select all employees who are not engineers (department_id != 1) and earn more than 80000.
+-- Q85: Select all orders with status 'Completed' where the total_amount is not equal to 800.
+-- Q86: Select all customers where the length of their last name is greater than 6 characters.
+-- Q87: Select all employees whose email contains their first name in lower case.
+-- Q88: Select all products whose stock is less than 20 or price is greater than 1000.
+-- Q89: Select all employees whose hire_date is in the year 2023.
+-- Q90: Select all orders where total_amount is greater than 500, sorted by total_amount descending, limited to 5.
+-- Q91: Select all products where category is 'Apparel', sorted by price descending.
+-- Q92: Select all customers who live in European countries ('Germany', 'France', 'UK', 'Spain').
+-- Q93: Select all employees who earn a salary between 60000 and 90000, sorted by salary ascending.
+-- Q94: Select all orders with status 'Completed' or 'Shipped' placed after 2025-06-01.
+-- Q95: Select all products where category is 'Furniture' and stock is greater than 10, sorted by stock descending.
+-- Q96: Select all employees hired after 2022-01-01 who are not managed by manager_id 1 (bob).
+-- Q97: Select all orders where status is 'Cancelled' or 'Pending', sorted by order_date ascending.
+-- Q98: Select all customers whose first name contains 'a' and last name contains 'o'.
+-- Q99: Select all products whose price is not an integer (i.e. has cents / decimal part, use price != CAST(price AS INT)).
+-- Q100: Select all employees whose first name and last name have the same length.

@@ -10,7 +10,7 @@ HOW TO USE:
 """
 
 # ==================== CHANGE THIS NUMBER ====================
-QUESTION_NUMBER = 1  # <-- Change this to solve different questions
+QUESTION_NUMBER = 25  # <-- Change this to solve different questions
 # ============================================================
 
 
@@ -27,132 +27,325 @@ def q1(arr):
 
 def q2(arr, left, right):
     """Q2: Range Sum Query - arr = [1,2,3,4,5,6], left=2, right=4"""
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    if left == 0:
+        return prefix[right]
+    else:
+        return prefix[right] - prefix[left - 1]
 
 def q3(arr):
     """Q3: Total Sum Using Prefix - arr = [5, 10, 15, 20, 25]"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    return prefix[n-1]
+
 
 def q4(arr, index):
     """Q4: Sum from Start to Index - arr = [2,4,6,8,10], index=3"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * (index + 1)
+    prefix[0] = arr[0]
+    for i in range(1, index + 1):
+        prefix[i] = prefix[i-1] + arr[i]
+    return prefix[index]
 
 def q5(arr, queries):
     """Q5: Multiple Range Queries"""
     # Write your logic here
-    pass
+    result = []
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    for query in queries:
+        if query[0] == 0:
+            result.append(prefix[query[1]])
+        else:
+            result.append(prefix[query[1]]-prefix[query[0]-1])
+    return result
 
 def q6(arr):
     """Q6: Prefix Sum with Negative Numbers"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    return prefix
 
 def q7(arr, left, right):
     """Q7: Sum Between Two Indices (Exclusive)"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    if left == 0:
+        return prefix[right]
+    else:
+        return prefix[right-1] - prefix[left]
 
 def q8(arr):
-    """Q8: Compare Two Range Sums"""
+    """Q8: Compare sum of first half and second half"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    mid = n // 2
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    return prefix[mid-1] == prefix[n-1] - prefix[mid-1]
 
 def q9(arr):
     """Q9: Running Sum at Each Index"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    return prefix
 
 def q10(arr):
     """Q10: Maximum Prefix Sum"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    return prefix[n-1]
 
 def q11(arr):
     """Q11: Minimum Prefix Sum"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    min_num = prefix[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i - 1] + arr[i]
+        if prefix[i] < min_num:
+            min_num = prefix[i]
+    return min_num
 
 def q12(arr):
     """Q12: Count Positive Prefix Sums"""
     # Write your logic here
-    pass
+    count = 0
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+
+    if prefix[0] > 0:
+        count += 1
+
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+        if prefix[i] > 0:
+            count += 1
+    print(prefix)
+    return count
 
 def q13(arr, k):
     """Q13: First Index Where Prefix Sum > K"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    if prefix[0] > k:
+        return 0
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+        if prefix[i] > k:
+            return i
+
 
 def q14(arr, k):
     """Q14: Last Index Where Prefix Sum < K"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1]+arr[i]
+    for i in range(n-1, -1, -1):
+        if prefix[i] < k:
+            return i
+    return -1
 
 def q15(arr, n):
     """Q15: Sum of First N Elements"""
     # Write your logic here
-    pass
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1]+arr[i]
+    return prefix[-1]
+
+
 
 def q16(arr, n):
     """Q16: Sum of Last N Elements"""
     # Write your logic here
-    pass
+    length = len(arr)
+    prefix = [0] * length
+    prefix[0] = arr[0]
+    for i in range(1, length):
+        prefix[i] = prefix[i-1] + arr[i]
+    if n == length:
+        return prefix[length-1]
+    return prefix[length-1] - prefix[length-n-1]
+
 
 def q17(arr, left, right):
     """Q17: Average of Range"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] *n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    if left == 0:
+        result = prefix[right]
+    else:
+        result = prefix[right] - prefix[left-1]
+    return result/(right-left+1)
 
 def q18(arr):
     """Q18: Prefix Sum with Zeros"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    return prefix
 
 def q19(arr, index):
     """Q19: Range Sum with Single Element"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    if index == 0:
+        return prefix[index]
+    return prefix[index] - prefix[index-1]
 
 def q20(arr, left, right):
     """Q20: Validate Range Sum"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for_loop_result = 0
+    for j in range(left, right+1):
+        for_loop_result += arr[j]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    if left == 0:
+        result = prefix[right]
+    else:
+        result = prefix[right] - prefix[left-1]
+    return for_loop_result == result
+
 
 def q21(arr):
     """Q21: Prefix Sum of Even Numbers Only"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    if arr[0] % 2 == 0:
+        prefix[0] = arr[0]
+    else:
+        prefix[0] = 0
+    for i in range(1, n):
+        if arr[i] % 2 == 0:
+            prefix[i] = prefix[i-1] + arr[i]
+        else:
+            prefix[i] = prefix[i-1]
+    return prefix
+
+
 
 def q22(arr):
     """Q22: Prefix Sum of Odd Numbers Only"""
-    # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    if arr[0] % 2 != 0:
+        prefix[0] = arr[0]
+    else:
+        prefix[0] = 0
+
+    for i in range(1, n):
+        if arr[i] % 2 != 0:
+            prefix[i] = prefix[i-1] + arr[i]
+        else:
+            prefix[i] = prefix[i-1]
+    return prefix
+
 
 def q23(arr, left, right):
-    """Q23: Count Elements in Range"""
-    # Write your logic here
-    pass
+    if not arr:
+        return 0
+    return right - left + 1
 
 def q24(arr):
     """Q24: Suffix Sum (Prefix Sum Reversed)"""
     # Write your logic here
-    pass
+    n = len(arr)
+    suffix = [0] * n
+    suffix[n-1] = arr[n-1]
+    for i in range(n-2, -1, -1):
+        suffix[i] = arr[i] + suffix[i+1]
+    return suffix
+
 
 def q25(arr, left, right):
     """Q25: Difference Between Two Prefix Sums"""
     # Write your logic here
-    pass
+    n = len(arr)
+    prefix = [0] * n
+    prefix[0] = arr[0]
+    for i in range(1, n):
+        prefix[i] = prefix[i-1] + arr[i]
+    if left == 0:
+        return prefix[right]
+    return prefix[right-1] - prefix[left]
+
 
 def q26(arr):
     """Q26: Find if Subarray with Sum 0 Exists"""
     # Write your logic here
-    pass
+    prefix_sum = 0
+    seen = set()
+    for num in arr:
+        prefix_sum += num
+        if prefix_sum == 0:
+            return True
+        if prefix_sum in seen:
+            return True
+        seen.add(prefix_sum)
+    return False
 
 def q27(arr, k):
     """Q27: Count Subarrays with Sum K"""
     # Write your logic here
-    pass
+    
 
 def q28(arr, k):
     """Q28: Longest Subarray with Sum K"""
@@ -527,16 +720,16 @@ TESTS = {
     2: {'func': q2, 'args': [[1, 2, 3, 4, 5, 6], 2, 4], 'expected': 12},
     3: {'func': q3, 'args': [[5, 10, 15, 20, 25]], 'expected': 75},
     4: {'func': q4, 'args': [[2, 4, 6, 8, 10], 3], 'expected': 20},
-    5: {'func': q5, 'args': [[1,2,3,4,5,6,7,8,9,10], [(0,4), (2,6), (5,9)]], 'expected': [15, 27, 40]},
+    5: {'func': q5, 'args': [[1,2,3,4,5,6,7,8,9,10], [(0,4), (2,6), (5,9)]], 'expected': [15, 25, 40]},
     6: {'func': q6, 'args': [[5, -3, 2, -1, 4]], 'expected': [5, 2, 4, 3, 7]},
     7: {'func': q7, 'args': [[1,2,3,4,5,6,7], 2, 5], 'expected': 9},
     8: {'func': q8, 'args': [[2,3,5,7,1,4,6,8]], 'expected': False},
     9: {'func': q9, 'args': [[1, 2, 3, 4, 5]], 'expected': [1, 3, 6, 10, 15]},
     10: {'func': q10, 'args': [[3, -1, 4, -2, 5]], 'expected': 9},
     11: {'func': q11, 'args': [[2, -5, 3, -1, 4]], 'expected': -3},
-    12: {'func': q12, 'args': [[5, -3, -2, 4, -1]], 'expected': 2},
+    12: {'func': q12, 'args': [[5, -3, -2, 4, -1]], 'expected': 4},
     13: {'func': q13, 'args': [[2, 3, 4, 5, 1, 2], 10], 'expected': 3},
-    14: {'func': q14, 'args': [[1, 2, 3, 4, 5, 6], 15], 'expected': 4},
+    14: {'func': q14, 'args': [[1, 2, 3, 4, 5, 6], 15], 'expected': 3},
     15: {'func': q15, 'args': [[10,20,30,40,50,60,70], 5], 'expected': 150},
     16: {'func': q16, 'args': [[1,2,3,4,5,6,7,8], 4], 'expected': 26},
     17: {'func': q17, 'args': [[5,10,15,20,25,30,35], 2, 6], 'expected': 25.0},

@@ -1,0 +1,109 @@
+-- ============================================================
+-- SQL PRACTICE - 02_JOINS (100 QUESTIONS)
+-- ============================================================
+-- database: practice.db (SQLite)
+--
+-- Instructions: Write your SQL query under each question.
+-- You can run these questions in DBeaver connected to practice.db.
+-- ============================================================
+
+-- Q1: Inner join employees and departments tables to show employee first name, last name, and department name.
+-- Q2: Select employee email, salary, and department name for all employees in "Sales".
+-- Q3: Select product name, category, and quantity ordered from order_items joined with products.
+-- Q4: Select order_date, total_amount, and customer first_name and last_name for all orders.
+-- Q5: Inner join customers and orders to show orders placed by customers from "USA".
+-- Q6: Select employee first name, last name, and department location for employees working in "San Francisco".
+-- Q7: Select product name, unit_price from order_items, and order_date from orders.
+-- Q8: Select customer first name, last name, product name, and quantity ordered (requires 4-table join).
+-- Q9: Select order_id, customer email, product name, and category (requires 4-table join).
+-- Q10: Select employee first name, last name, and their manager's first name and last name (using self-join).
+-- Q11: Select employee name and department name, including employees who do not belong to any department (LEFT JOIN).
+-- Q12: Select all customers and their order details, including customers who have never placed an order (LEFT JOIN).
+-- Q13: Select all products and order item details, including products that have never been ordered.
+-- Q14: Select all departments and their employees, including departments with no employees.
+-- Q15: Select employee first name, last name, and manager first name, including the CEO who has no manager (LEFT JOIN).
+-- Q16: Select customer name, order_id, status, and total_amount, showing only customers who signed up in 2025.
+-- Q17: Select employee name, salary, and department budget for employees earning more than 10% of their department's budget.
+-- Q18: Select customer name and order details for orders that are "Completed" or "Shipped".
+-- Q19: Select product name, quantity, and total price (quantity * unit_price) for order items.
+-- Q20: Select all pairs of employees who share the same manager (excluding pairs with themselves).
+-- Q21: Select all pairs of employees who work in the same department and location.
+-- Q22: Select employee name and manager name, showing only cases where the employee earns more than their manager.
+-- Q23: Select customer name and product name for products ordered by customers from "Canada".
+-- Q24: Select product name, price, order_date, and quantity for order items of products costing more than 500.
+-- Q25: Select customer name and order_date, including customers with no orders, sorted by signup_date.
+-- Q26: Select order_id, order_date, product name, and category for orders placed in "2025-03".
+-- Q27: Select employee name and department name, showing only employees hired in 2023.
+-- Q28: Select all products and show the count of times ordered (even if 0, LEFT JOIN).
+-- Q29: Select customer name, product name, and status for orders with status "Cancelled".
+-- Q30: Select customer name and order total, showing only customers who signed up after 2025-06-01.
+-- Q31: Select employee name, manager name, and department name (requires 3-table join with self-join).
+-- Q32: Select all locations and employee names working at those locations (include locations with no employees).
+-- Q33: Select all customers who signed up before 2025-05-01 and show their orders (include those with no orders).
+-- Q34: Select product name, category, and quantity for order items with status "Shipped".
+-- Q35: Select customer name and product name, showing only products in the category "Appliances".
+-- Q36: Select employee name and department budget for employees earning less than 80000.
+-- Q37: Select all orders and display customer email, showing only orders placed in the first quarter of 2025.
+-- Q38: Select product name, stock, and total amount spent on that product in all orders combined.
+-- Q39: Select customer name and department name for customers who share the same last name as any employee.
+-- Q40: Select employee name and department name, showing only employees managed by manager_id 2 (Bob).
+-- Q41: Select all combinations of customers and products (CROSS JOIN).
+-- Q42: Select all combinations of departments and products.
+-- Q43: Select employee name and manager name, showing only managers who were hired BEFORE their employee.
+-- Q44: Select employee name and manager name, showing only managers who were hired AFTER their employee.
+-- Q45: Select customer name and product name for orders containing more than 2 items of that product.
+-- Q46: Select product name and order status, showing only products with stock less than 30.
+-- Q47: Select customer name, order date, and total amount for orders exceeding 1000.
+-- Q48: Select employee name, salary, and department name, sorted by department name, then by salary descending.
+-- Q49: Select product name, category, and order date, sorted by order date descending.
+-- Q50: Select customer name and signup date for customers who ordered "Laptop".
+-- Q51: Select employee name and department name for employees earning between 70000 and 100000.
+-- Q52: Select product name, stock, quantity ordered, and order date for orders in 2025.
+-- Q53: Select customer name, country, and product category for products they ordered.
+-- Q54: Select employee name and manager email for employees in the "Engineering" department.
+-- Q55: Select all customers who signed up on the same day as any other customer.
+-- Q56: Select all products with the same price as any other product.
+-- Q57: Select employee name, department name, and manager name, showing only employees in New York.
+-- Q58: Select customer name, product name, and order date for orders placed on a Monday.
+-- Q59: Select product name, stock, and order status, showing only completed orders of out-of-stock items (stock < 5).
+-- Q60: Select employee name, salary, and department location for employees earning more than 100000.
+-- Q61: Select customer name and order count for customers from USA.
+-- Q62: Select product name and total quantity ordered, sorted by quantity descending.
+-- Q63: Select employee name and department name, showing only employees hired in the month of August.
+-- Q64: Select customer name, order total, and status, showing only completed orders over 500.
+-- Q65: Select product name, category, and quantity ordered, showing only electronics products.
+-- Q66: Select employee name and manager name, showing only employees with salary > 90000.
+-- Q67: Select customer name and product name, showing only apparel products.
+-- Q68: Select employee name, department name, and salary for employees earning less than the average company salary.
+-- Q69: Select product name, price, and order status, showing only products costing less than 100.
+-- Q70: Select customer name, order total, and order status for pending orders.
+-- Q71: Select employee name, manager name, and manager salary (using self-join).
+-- Q72: Select customer name, country, and product name, showing only customers from Canada.
+-- Q73: Select product name, category, and order date, showing only orders placed in the second half of 2025.
+-- Q74: Select employee name and department budget, sorted by budget descending.
+-- Q75: Select customer name, product name, and total price (quantity * unit_price) sorted by total price descending.
+-- Q76: Select employee name, department name, and manager name, sorted by manager name.
+-- Q77: Select customer name, country, and order total for orders placed in the first half of 2025.
+-- Q78: Select product name and total stock value (stock * price).
+-- Q79: Select employee name, hire date, and manager name, sorted by hire date descending.
+-- Q80: Select customer name, product name, and order status, sorted by product name.
+-- Q81: Select employee name, department name, and salary, showing only employees in San Francisco.
+-- Q82: Select customer name, country, and product category, sorted by country.
+-- Q83: Select product name, price, and order status, sorted by price ascending.
+-- Q84: Select employee name, manager name, and department budget, showing only employees with budget > 500000.
+-- Q85: Select customer name, product name, and order status, showing only completed orders of laptops.
+-- Q86: Select employee name, salary, and department name, showing only employees in the HR department.
+-- Q87: Select customer name, product name, and quantity ordered, sorted by quantity descending.
+-- Q88: Select product name, category, and order date, showing only orders placed in 2025-08.
+-- Q89: Select employee name, department name, and manager name, showing only employees hired before 2022-01-01.
+-- Q90: Select customer name, product name, and order total, sorted by order total descending.
+-- Q91: Select employee name, salary, and department budget, showing only employees earning > 100000.
+-- Q92: Select customer name, country, and product name, sorted by customer name.
+-- Q93: Select product name, stock, and order status, showing only pending orders.
+-- Q94: Select employee name, manager name, and department name, showing only employees in the Sales department.
+-- Q95: Select customer name, product name, and order status, showing only cancelled orders.
+-- Q96: Select employee name, salary, and department name, showing only employees in the Finance department.
+-- Q97: Select customer name, product name, and quantity ordered, showing only orders placed by customers from Germany.
+-- Q98: Select product name, category, and order date, showing only orders placed in 2025-09.
+-- Q99: Select employee name, department name, and manager name, showing only employees hired after 2023-01-01.
+-- Q100: Select customer name, product name, and order total, sorted by order total ascending.

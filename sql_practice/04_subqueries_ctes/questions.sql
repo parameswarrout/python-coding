@@ -1,0 +1,109 @@
+-- ============================================================
+-- SQL PRACTICE - 04_SUBQUERIES_CTES (100 QUESTIONS)
+-- ============================================================
+-- database: practice.db (SQLite)
+--
+-- Instructions: Write your SQL query under each question.
+-- You can run these questions in DBeaver connected to practice.db.
+-- ============================================================
+
+-- Q1: Find all employees who earn more than the average salary of the entire company.
+-- Q2: Find all products with a price greater than the average price of all products.
+-- Q3: Find all orders with a total amount greater than the maximum order total from customer 1.
+-- Q4: Find the first name and last name of employees who work in departments located in "New York" (use subquery, not join).
+-- Q5: Find the name of products that have never been ordered (use NOT IN with a subquery on order_items).
+-- Q6: Find the first name and last name of customers who have placed at least one order (use IN with a subquery).
+-- Q7: Find all customers who have never placed an order (use NOT IN with a subquery).
+-- Q8: Find all employees who earn more than the maximum salary of department 2.
+-- Q9: Find all products that belong to categories having an average product price greater than 300 (use IN with a subquery).
+-- Q10: Select all departments that have a budget greater than the total salary expense of their employees.
+-- Q11: Find employees whose salary is higher than the average salary of their own department (correlated subquery).
+-- Q12: Select product details for products priced higher than the average price of products in their same category (correlated subquery).
+-- Q13: Find customers who signed up after customer 5 (Emily Williams, signup_date).
+-- Q14: Find all orders placed on the same day as any order placed by customer 1.
+-- Q15: Find employees who earn the lowest salary in their respective departments.
+-- Q16: Find employees who earn the highest salary in their respective departments.
+-- Q17: Find all customers who have placed an order with status "Cancelled" (use EXISTS).
+-- Q18: Find all customers who have never placed an order (use NOT EXISTS).
+-- Q19: Find all products that have been ordered at least once (use EXISTS).
+-- Q20: Find all products that have never been ordered (use NOT EXISTS).
+-- Q21: Select all departments that have at least one employee (use EXISTS).
+-- Q22: Select all departments that have no employees (use NOT EXISTS).
+-- Q23: Select all employees who manage at least one person (use EXISTS or IN).
+-- Q24: Select all employees who do not manage anyone (use NOT EXISTS or NOT IN).
+-- Q25: Find the second highest salary in the company (using subquery).
+-- Q26: Find the third highest salary in the company (using subquery).
+-- Q27: Write a CTE to calculate the average salary of each department, then select employees earning more than their department's average.
+-- Q28: Write a CTE to calculate total revenue per customer, then select the customer name and total revenue for customers who spent > 1000.
+-- Q29: Write a CTE to count the number of products in each category, then select categories with more than 2 products.
+-- Q30: Write a CTE to find the highest salary in each department, then join with employees to find the employee name earning that salary.
+-- Q31: Write a CTE to calculate total quantity sold for each product, then select products that sold more than 5 items.
+-- Q32: Write a CTE to find the most recent order for each customer, then select customer details and their most recent order date.
+-- Q33: Write a CTE to find the total budget and total salary expense by location, then calculate the remaining budget surplus.
+-- Q34: Write a CTE to find employees hired in 2022, and another CTE to find employees hired in 2023, then select all of them using UNION.
+-- Q35: Use UNION to combine all customer emails and employee emails into a single list.
+-- Q36: Use UNION ALL to combine customer emails and employee emails, showing duplicates if they exist.
+-- Q37: Find all emails that belong to both a customer and an employee (use INTERSECT).
+-- Q38: Find customer last names that do not appear as employee last names (use EXCEPT).
+-- Q39: Find countries where we have customers but no department locations (use EXCEPT on customer country and department location).
+-- Q40: Select all products and show a column "Sales Rank Status": 'Top Seller' if sold quantity > 5, 'Regular' otherwise (use CTE).
+-- Q41: Find all orders containing the most expensive product in the catalog.
+-- Q42: Find all orders containing the cheapest product in the catalog.
+-- Q43: Find employees hired after the CEO (Alice Smith, hire_date).
+-- Q44: Find employees hired after Bob Jones but before Charlie Brown.
+-- Q45: Select the department name and budget of the department that has the highest budget.
+-- Q46: Select the name of the product that has the highest stock level.
+-- Q47: Select the customer first name and last name of the oldest registered customer.
+-- Q48: Find all products with a price within 10% of the average product price.
+-- Q49: Find all employees whose salary is within 20% of the company's average salary.
+-- Q50: Select the order_id, order_date, and total_amount for orders placed by customers who live in Canada (use subquery).
+-- Q51: Select all employees who earn more than the average salary of the Engineering department.
+-- Q52: Select all customers who placed orders in both January and November of 2025 (use INTERSECT).
+-- Q53: Find the category name that has the lowest average price of products.
+-- Q54: Find the department name that has the highest total salary expense.
+-- Q55: Find the customer name who placed the order with the largest total amount.
+-- Q56: Find all products whose stock is greater than the average stock of all categories combined.
+-- Q57: Find the employee earning the highest salary who reports to Bob Jones.
+-- Q58: Find employees whose salary is higher than the average salary of employees hired in the same year.
+-- Q59: Find products whose price is cheaper than the average price of products ordered in the same category.
+-- Q60: Find customers who spent more on a single order than the average order total of all customers.
+-- Q61: Write a CTE to count completed, pending, and cancelled orders, then calculate the completion rate percentage.
+-- Q62: Write a CTE to find departments, and select the department name along with the percentage of the company's total budget it has.
+-- Q63: Find customers who bought at least one product from every category (hardcode number of categories = 4).
+-- Q64: Find employees who work in departments having a budget greater than 500000.
+-- Q65: Find all products that have never been ordered with a quantity greater than 2.
+-- Q66: Find all orders containing only one item (use subquery checking order_items count = 1).
+-- Q67: Find the manager name who manages the employee with the highest salary in the company.
+-- Q68: Find the employee name who was hired most recently in each department.
+-- Q69: Find all products that have been ordered by customers from both USA and Canada.
+-- Q70: Find the customer country that generated the highest total order revenue.
+-- Q71: Write a CTE to select employee name and their manager's salary, then select employees who earn more than their manager's salary.
+-- Q72: Write a CTE that lists all employees and their tenure in months, then select employees who have been with the company > 36 months.
+-- Q73: Find products ordered by customer 1 but not by customer 2 (use EXCEPT).
+-- Q74: Find all customers who placed an order in March 2025 but did not place an order in April 2025.
+-- Q75: Find the product category that has generated the highest total sales revenue.
+-- Q76: Find the department location that has the highest average salary expense.
+-- Q77: Find the customer first name and last name who has ordered the highest total quantity of products.
+-- Q78: Find all employees who earn more than the average salary of the entire company, excluding the CEO.
+-- Q79: Find the product name with the highest stock level among products costing less than 200.
+-- Q80: Find all orders with a total amount that is higher than the average total amount of completed orders.
+-- Q81: Find employees hired in the same month and year as Bob Jones.
+-- Q82: Find products in the same category as "Laptop" with stock higher than the average stock of laptops.
+-- Q83: Find customers who registered in the same month as Daniel Miller.
+-- Q84: Find all orders placed on a weekday that have a total amount higher than the average total of weekend orders.
+-- Q85: Find the average price of products that have been ordered at least 3 times.
+-- Q86: Find the total revenue of orders placed by customers who live in a country containing the letter 'a' in its name.
+-- Q87: Find employees who earn more than the average salary of departments located in "New York".
+-- Q88: Find the product name with the lowest stock level that has been ordered at least once.
+-- Q89: Find the customer name who signed up most recently in each country.
+-- Q90: Find the manager name who has the highest number of direct reports earning > 80000.
+-- Q91: Find the product category with the highest budget of departments containing employees who ordered from it.
+-- Q92: Find the location of the department that has the highest number of employees earning > 90000.
+-- Q93: Find the total quantity sold of the product that has the highest unit price.
+-- Q94: Find all orders placed by customers who signed up in the first half of the year 2025.
+-- Q95: Find the average salary of employees who are managed by Alice Smith.
+-- Q96: Find all products that belong to the category with the highest number of stock units.
+-- Q97: Find the customer country with the lowest total spending.
+-- Q98: Find the manager name who manages the highest total salary expense.
+-- Q99: Find the product category with the lowest total stock value.
+-- Q100: Find the customer country with the lowest average order total.
