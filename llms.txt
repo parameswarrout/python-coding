@@ -1,0 +1,25 @@
+# Python-Coding Master Learning Hub
+> A comprehensive Python Engineering, LeetCode 22 Master Pattern DSA, 3-Tier PyTorch AI Deep Learning, and SQL Practice Repository.
+
+## Repository Overview
+- PythonCore: Advanced Python mechanics (Decorators, Generators, Context Managers, Asyncio, Multithreading, Descriptors, Metaclasses, Slots, MRO, SOLID).
+- DSA: Core Data Structures & Algorithms with cell-by-cell interactive notebooks in `.py` format.
+- python_interview_patterns: 22 LeetCode Master Patterns with automated question testing runners covering 95%+ of tech interview problems.
+- AI: 3-Tier PyTorch Mastery (Beginner, Intermediate, Advanced Interview level - Multi-Head Attention, Custom Autograd, LoRA, AMP, KV-Cache).
+- sql_practice: Complete SQL analytics and query optimization sandbox with SQLite and DBeaver.
+
+## Key Files & Direct Links
+- [Universal Agent Guidelines](AGENTS.md): Machine-readable system instructions and CLI execution rules.
+- [Cursor AI Rules](.cursorrules): Configuration rules for Cursor AI editor.
+- [Claude Code Instructions](CLAUDE.md): Fast commands and architecture rules for Claude Code.
+- [Master Documentation](README.md): Complete human & machine readable roadmap and how-to-run guide.
+- [AI & PyTorch Guide](AI/README.md): 3-tier deep learning architecture guide.
+
+## CLI Execution Quick Reference
+- `python PythonCore/<folder>/<file>_interactive.py --all` : Run all cells of a PythonCore module.
+- `python PythonCore/<folder>/<file>_interactive.py <N>`    : Run cell N of a PythonCore module.
+- `python DSA/<file>_interactive.py --all`                 : Run all cells of a DSA module.
+- `python DSA/<file>_interactive.py <N>`                    : Run cell N of a DSA module.
+- `python python_interview_patterns/<topic>/<file>.py`     : Auto-detect and run current LeetCode question.
+- `python python_interview_patterns/<topic>/<file>.py <N>` : Run question N of a LeetCode pattern.
+- `python AI/<tier>/<file>.py`                             : Run a self-testing PyTorch AI module.

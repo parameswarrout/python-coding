@@ -1,0 +1,19 @@
+# Cursor AI Rules (.cursorrules)
+
+# Project Context
+This is a high-standard Python Coding, Data Structures & Algorithms, PyTorch AI Deep Learning, and SQL Practice repository.
+
+# Coding Guidelines
+- Language: Python 3.10+ / 3.11+
+- Always write type hints on function signatures: def func(a: int, b: list) -> int:
+- Preserve docstrings with markdown formatting, complexity notes (Time: O(N), Space: O(1)), and input/expected examples.
+- Include standard cell markers `# %% [markdown]` and `# %% [code]` in interactive learning scripts.
+- Never write destructive file overwrite operations unless explicitly instructed.
+- When adding new questions to `python_interview_patterns/`, register them in the `TESTS` dictionary with proper test inputs and expected outputs.
+- When generating PyTorch models, support both CPU and GPU (`device = 'cuda' if torch.cuda.is_available() else 'cpu'`).
+
+# Running Commands
+- Test all cells: python <file.py> --all
+- Test single cell: python <file.py> <cell_number>
+- Run DSA Pattern: python python_interview_patterns/<topic>/<topic>.py [q_num]
+- Run PyTorch AI Module: python AI/<tier>/<module>.py
